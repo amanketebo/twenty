@@ -1,0 +1,41 @@
+//
+//  Stats.swift
+//  Twenty
+//
+//  Created by Amanuel Ketebo on 3/8/17.
+//  Copyright © 2017 Amanuel Ketebo. All rights reserved.
+//
+
+import Foundation
+
+struct SeriesStats {
+    
+    struct PlayerStats {
+        var name = ""
+        var totalPoints = 0
+        var totalFouls = 0
+        var totalTechs = 0
+        var gamesWon = 0
+        var gamesLost = 0
+    }
+    
+    var playerOne = PlayerStats()
+    var playerTwo = PlayerStats()
+    
+    init(game: Game) {
+        // Setup player one
+        self.playerOne.name = game.playerOne.name
+        self.playerOne.totalPoints = game.playerOne.totalPoints
+        self.playerOne.totalFouls = game.playerOne.totalFouls
+        self.playerOne.totalTechs = game.playerOne.totalTechs
+        self.playerOne.gamesWon = game.playerOne.gamesWonInSeries
+        self.playerOne.gamesLost = game.playerOne.gamesLostInSeries
+        // Setup player two
+        self.playerTwo.name = game.playerTwo.name
+        self.playerTwo.totalPoints = game.playerTwo.totalPoints
+        self.playerTwo.totalFouls = game.playerTwo.totalFouls
+        self.playerTwo.totalTechs = game.playerTwo.totalTechs
+        self.playerTwo.gamesWon = game.playerTwo.gamesWonInSeries
+        self.playerTwo.gamesLost = game.playerTwo.gamesLostInSeries
+    }
+}
