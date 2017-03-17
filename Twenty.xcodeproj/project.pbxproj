@@ -11,9 +11,8 @@
 		CA3CADA11E31F0F90090DE7C /* GameLimitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3CADA01E31F0F90090DE7C /* GameLimitsViewController.swift */; };
 		CA4AD2831E7A1A750072EB10 /* StatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AD2821E7A1A750072EB10 /* StatCollectionViewCell.swift */; };
 		CA4AD2851E7A1E600072EB10 /* AverageStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AD2841E7A1E600072EB10 /* AverageStats.swift */; };
-		CA4AD2871E7A27D70072EB10 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AD2861E7A27D70072EB10 /* Double.swift */; };
 		CA4AD28B1E7A2C100072EB10 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AD28A1E7A2C100072EB10 /* StatisticsViewController.swift */; };
-		CA4DC0921E3044A1003D09AF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4DC0911E3044A1003D09AF /* Colors.swift */; };
+		CA4DC0921E3044A1003D09AF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4DC0911E3044A1003D09AF /* Extensions.swift */; };
 		CA528D061E7775F100685781 /* StatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA528D051E7775F100685781 /* StatsManager.swift */; };
 		CA746DC91E6FF1BA00E95130 /* SeriesStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA746DC81E6FF1BA00E95130 /* SeriesStats.swift */; };
 		CA7E0FF71E2B488000F94791 /* EmptyStatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7E0FF61E2B488000F94791 /* EmptyStatisticsViewController.swift */; };
@@ -34,9 +33,8 @@
 		CA3CADA01E31F0F90090DE7C /* GameLimitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLimitsViewController.swift; sourceTree = "<group>"; };
 		CA4AD2821E7A1A750072EB10 /* StatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA4AD2841E7A1E600072EB10 /* AverageStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AverageStats.swift; sourceTree = "<group>"; };
-		CA4AD2861E7A27D70072EB10 /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		CA4AD28A1E7A2C100072EB10 /* StatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
-		CA4DC0911E3044A1003D09AF /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		CA4DC0911E3044A1003D09AF /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CA528D051E7775F100685781 /* StatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsManager.swift; sourceTree = "<group>"; };
 		CA746DC81E6FF1BA00E95130 /* SeriesStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeriesStats.swift; sourceTree = "<group>"; };
 		CA7E0FF61E2B488000F94791 /* EmptyStatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStatisticsViewController.swift; sourceTree = "<group>"; };
@@ -65,15 +63,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CA4DC0931E3045A6003D09AF /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				CA4AD2861E7A27D70072EB10 /* Double.swift */,
-				CA4DC0911E3044A1003D09AF /* Colors.swift */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
 		CA8F6B6E1E39BF3000E81FD7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,7 +132,7 @@
 				CAA72EAC1E5E7394006BB76C /* Models */,
 				CA8F6B6F1E39BF4000E81FD7 /* Views */,
 				CA8F6B6E1E39BF3000E81FD7 /* Controllers */,
-				CA4DC0931E3045A6003D09AF /* Extensions */,
+				CA4DC0911E3044A1003D09AF /* Extensions.swift */,
 				CACEC66F1E1B520B00FB1F5C /* Support Files */,
 			);
 			path = Twenty;
@@ -222,11 +211,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA4AD2871E7A27D70072EB10 /* Double.swift in Sources */,
 				CAA72EAE1E5E7420006BB76C /* Player.swift in Sources */,
 				CA746DC91E6FF1BA00E95130 /* SeriesStats.swift in Sources */,
 				CA3CAD9F1E31F0600090DE7C /* PlayerNamesViewController.swift in Sources */,
-				CA4DC0921E3044A1003D09AF /* Colors.swift in Sources */,
+				CA4DC0921E3044A1003D09AF /* Extensions.swift in Sources */,
 				CAACB2501E319BEB00223A7D /* PageManagerViewController.swift in Sources */,
 				CA528D061E7775F100685781 /* StatsManager.swift in Sources */,
 				CA4AD28B1E7A2C100072EB10 /* StatisticsViewController.swift in Sources */,

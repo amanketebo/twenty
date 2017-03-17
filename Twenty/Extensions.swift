@@ -46,3 +46,12 @@ extension UIColor {
         return UIColor(red:0.69, green:0.11, blue:0.18, alpha:0.75)
     }
 }
+
+extension Double {
+    
+    func roundTo(places: Int) -> Double {
+        let divisor = pow(10, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+    
+}
