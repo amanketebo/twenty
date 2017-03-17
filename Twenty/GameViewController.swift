@@ -9,6 +9,7 @@
 import UIKit
 
 class GameViewController: UIViewController {
+    
     @IBOutlet weak var playerOnePoints: UILabel!
     @IBOutlet weak var playerOneFouls: UILabel!
     @IBOutlet weak var playerOneTechs: UILabel!
@@ -76,17 +77,6 @@ class GameViewController: UIViewController {
             target: self,
             action: #selector(GameViewController.alertUserAboutEndingGame(_:)
             ))
-        // Setup limit labels
-        seriesLimitLabel.text = "SERIES: \(currentGame.seriesLimit)"
-        foulLimitLabel.text = "FOULS: \(currentGame.foulLimit)"
-        techLimitLabel.text = "TECHS: \(currentGame.techLimit)"
-        // Setup game's won labels
-        playerOneGamesWon.text = String(currentGame.playerOne.gamesWonInSeries)
-        playerTwoGamesWon.text = String(currentGame.playerTwo.gamesWonInSeries)
-        // Setup player label names
-        playerOneName.text = currentGame.playerOne.name
-        playerTwoName.text = currentGame.playerTwo.name
-        // Remove set up page view controller
         if let navVc = self.parent as? UINavigationController {
             navVc.viewControllers.remove(at: 1)
         }
@@ -99,6 +89,16 @@ class GameViewController: UIViewController {
     
     deinit {
         print("Dipped out: GameViewController")
+    }
+    
+    func setupLabels() {
+        seriesLimitLabel.text = "SERIES: \(currentGame.seriesLimit)"
+        foulLimitLabel.text = "FOULS: \(currentGame.foulLimit)"
+        techLimitLabel.text = "TECHS: \(currentGame.techLimit)"
+        playerOneName.text = currentGame.playerOne.name
+        playerTwoName.text = currentGame.playerTwo.name
+        playerOneGamesWon.text = String(currentGame.playerOne.gamesWonInSeries)
+        playerTwoGamesWon.text = String(currentGame.playerTwo.gamesWonInSeries)
     }
 
     @IBAction func tappedTimer(_ sender: UITapGestureRecognizer) {
@@ -169,17 +169,20 @@ class GameViewController: UIViewController {
             timerLabel.isUserInteractionEnabled = false
             return
         }
+        
         currentTime = currentTime - 1
     }
     
     func alertUserAboutLosingStats(_ button: UIBarButtonItem) {
         // Alert the user their data won't be saved if they continue
         let alert = UIAlertController(title: "Oh no, the stats!", message: "You must finish the series for them to be saved.", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let continueAction = UIAlertAction(title: "Exit", style: .destructive, handler: { (alert) in
             // If the user presses continue the game view controller leaves the navigationvc
             if let navVc = self.parent as? UINavigationController {
-                navVc.viewControllers.removeLast()
+                if let twentyVc = navVc.viewControllers.first as? TwentyViewController {
+                    navVc.popToViewController(twentyVc, animated: true)
+                }
             }
         })
         alert.addAction(cancelAction)
@@ -189,8 +192,8 @@ class GameViewController: UIViewController {
     
     func alertUserAboutEndingGame(_ button: UIBarButtonItem) {
         let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        let yes = UIAlertAction(title: "Yes", style: .destructive, handler: handleUserEndingGame(_:))
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let yes = UIAlertAction(title: "Yes, I'm Sure", style: .default, handler: handleUserEndingGame(_:))
         alert.addAction(cancel)
         alert.addAction(yes)
         self.present(alert, animated: true, completion: nil)
@@ -298,8 +301,6 @@ class GameViewController: UIViewController {
         label.font = UIFont.systemFont(ofSize: 50, weight: UIFontWeightBold)
         label.textColor = .white
         label.numberOfLines = 0
-        //entireView.translatesAutoresizingMaskIntoConstraints = false
-        //label.translatesAutoresizingMaskIntoConstraints = false
         
         switch end {
         case .overtime: label.text = "OVERTIME"

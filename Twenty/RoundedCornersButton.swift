@@ -7,10 +7,13 @@
 //
 
 import UIKit
+
 class RoundedCornersButton: UIButton {
+    
     override func draw(_ rect: CGRect) {
         // Drawing code
         clipsToBounds = true
         layer.cornerRadius = 5
     }
+    
 }

@@ -9,6 +9,7 @@
 import UIKit
 
 class EmptyStatisticsViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Statistics"
@@ -23,4 +24,5 @@ class EmptyStatisticsViewController: UIViewController {
     deinit {
         print("Dipped out: EmptyStatisticsViewController.")
     }
+    
 }

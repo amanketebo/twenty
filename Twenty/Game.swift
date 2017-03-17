@@ -9,6 +9,7 @@
 import Foundation
 
 class Game {
+    
     var playerOne = Player()
     var playerTwo = Player()
     var gameNumber = 1
@@ -18,37 +19,49 @@ class Game {
     var winsNeeded = 0
     var isOvertime = false
     var shouldGoToOvertime: Bool {
+        var decision = false
+        
         if playerOne.points == playerTwo.points  && playerOne.isOverGameLimit == false && playerTwo.isOverGameLimit == false {
-            return true
+            decision = true
         }
         else if playerOne.points == playerTwo.points && playerOne.isOverGameLimit == true && playerTwo.isOverGameLimit == true {
-            return true
+            decision = true
         }
         else if playerOne.isOverGameLimit == true && playerTwo.isOverGameLimit == true  {
-            return true
+            decision = true
         }
         else {
-            return false
+            decision = false
         }
+        
+        return decision
     }
     var shouldEndSeries: Bool {
+        var decision = false
+        
         if playerOne.gamesWonInSeries == winsNeeded || playerTwo.gamesWonInSeries == winsNeeded {
-            return true
+            decision = true
         }
         else {
-            return false
+            decision = false
         }
+        
+        return decision
     }
     var wonSeries: String {
+        var winnerName = ""
+        
         if playerOne.gamesWonInSeries == winsNeeded {
-            return playerOne.name
+            winnerName = playerOne.name
         }
         else if playerTwo.gamesWonInSeries == winsNeeded {
-            return playerTwo.name
+            winnerName = playerTwo.name
         }
         else {
-            return ""
+            winnerName = ""
         }
+        
+        return winnerName
     }
     
     enum Stat: Int {
@@ -88,16 +101,22 @@ class Game {
     }
     
     func checkPlayerLimits(player: Player) -> (name: String, infraction: String)? {
+        var infractionInfo: (name: String, infraction: String)?
+        
         if player.fouls >= foulLimit {
             player.isOverGameLimit = true
-            return (player.name, Infraction.foul.rawValue)
+            infractionInfo = (player.name, Infraction.foul.rawValue)
         }
         else if player.techs >= techLimit {
             player.isOverGameLimit = true
-            return (player.name, Infraction.tech.rawValue)
+            infractionInfo =  (player.name, Infraction.tech.rawValue)
         }
-        player.isOverGameLimit = false
-        return nil
+        else {
+            player.isOverGameLimit = false
+            infractionInfo = nil
+        }
+        
+        return infractionInfo
     }
     
     func addTotals(for player: Player) {

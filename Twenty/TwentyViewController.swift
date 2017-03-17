@@ -12,6 +12,7 @@ import UIKit
 class TwentyViewController: UIViewController {
     
     let defaults = UserDefaults.standard
+    private let imageAlpha: CGFloat = 0.40
     
     @IBOutlet weak var newGame: UIImageView! {
         didSet {
@@ -30,8 +31,6 @@ class TwentyViewController: UIViewController {
             ))
         }
     }
-    
-    private let imageAlpha: CGFloat = 0.40
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,21 +58,15 @@ class TwentyViewController: UIViewController {
     }
     
     func segueToStatisticsVc(_ recognizer: UITapGestureRecognizer) {
-        if let _ = defaults.object(forKey: "allStats") {
-            performSegue(withIdentifier: "Statistics", sender: nil)
-        }
-        else {
-            performSegue(withIdentifier: "EmptyStatistics", sender: nil)
-        }
+        performSegue(withIdentifier: "Statistics", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Statistics" {
-            if let statsVC = segue.destination as? StatisticsViewController {
-                let statManager = StatsManager()
-                statsVC.averageStats = statManager.getStats()
-            }
+        if let statsVC = segue.destination as? StatisticsViewController {
+            let statManager = StatsManager()
+            statsVC.averageStats = statManager.getStats()
         }
     }
+    
 }
 

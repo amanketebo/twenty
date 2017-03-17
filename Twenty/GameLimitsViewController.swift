@@ -9,6 +9,9 @@
 import UIKit
 
 class GameLimitsViewController: UIViewController {
+    
+    var winsNeeded = 0
+    
     @IBOutlet weak var gameLimitsHolder: UIView!
     @IBOutlet weak var currentFoul: RoundedCornersButton!
     @IBOutlet weak var currentTech: RoundedCornersButton!
@@ -17,8 +20,6 @@ class GameLimitsViewController: UIViewController {
             winsNeeded = Int(currentSeries.currentTitle!)!/2 + 1
         }
     }
-
-    var winsNeeded = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,4 +95,5 @@ class GameLimitsViewController: UIViewController {
             }
         }
     }
+    
 }

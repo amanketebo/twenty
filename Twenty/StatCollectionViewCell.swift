@@ -16,12 +16,13 @@ class StatCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var averageTechs: UILabel!
     @IBOutlet weak var record: UILabel!
     
+    // Using coder init since its coming out of storyboard
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         layer.borderColor = UIColor(red: 0.29, green: 0.29, blue: 0.29, alpha: 1.0).cgColor
         layer.borderWidth = 1
         layer.cornerRadius = 5
-        backgroundColor = .lightBlack20
+        backgroundColor = .slightlyLightBlack
         clipsToBounds = true
     }
     

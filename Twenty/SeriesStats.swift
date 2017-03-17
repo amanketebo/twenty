@@ -23,14 +23,14 @@ struct SeriesStats {
     var playerTwo = PlayerStats()
     
     init(game: Game) {
-        // Setup player one
+        // Player one setup
         self.playerOne.name = game.playerOne.name
         self.playerOne.totalPoints = game.playerOne.totalPoints
         self.playerOne.totalFouls = game.playerOne.totalFouls
         self.playerOne.totalTechs = game.playerOne.totalTechs
         self.playerOne.gamesWon = game.playerOne.gamesWonInSeries
         self.playerOne.gamesLost = game.playerOne.gamesLostInSeries
-        // Setup player two
+        // Player two setup
         self.playerTwo.name = game.playerTwo.name
         self.playerTwo.totalPoints = game.playerTwo.totalPoints
         self.playerTwo.totalFouls = game.playerTwo.totalFouls

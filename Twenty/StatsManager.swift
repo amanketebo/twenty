@@ -10,11 +10,12 @@ import Foundation
 
 class StatsManager {
     
+    let defaults = UserDefaults.standard
     var playerOneStats = [String:[String:Double]]()
     var playerTwoStats = [String:[String:Double]]()
-    let defaults = UserDefaults.standard
     
     init(_ seriesStats: SeriesStats) {
+        // Player one setup
         playerOneStats[seriesStats.playerOne.name] = [
             "total points": Double(seriesStats.playerOne.totalPoints),
             "total fouls": Double(seriesStats.playerOne.totalFouls),
@@ -22,7 +23,7 @@ class StatsManager {
             "games won": Double(seriesStats.playerOne.gamesWon),
             "games lost": Double(seriesStats.playerOne.gamesLost)
         ]
-        
+        // Player two setup
         playerTwoStats[seriesStats.playerTwo.name] = [
             "total points": Double(seriesStats.playerTwo.totalPoints),
             "total fouls": Double(seriesStats.playerTwo.totalFouls),
@@ -33,11 +34,12 @@ class StatsManager {
     }
     
     init() {
-      // used to be able to get stats and return an array of AverageStats
+        
     }
     
     func saveStats() {
         if let allStats = defaults.object(forKey: "allStats") as? [[String:[String:Double]]] {
+            // Create mutable version of "allStats"
             var mutableStats = allStats
             saveStatsForPlayer(playerOneStats, statsTable: &mutableStats)
             saveStatsForPlayer(playerTwoStats, statsTable: &mutableStats)
@@ -49,10 +51,6 @@ class StatsManager {
             arrayOfPlayers.append(playerTwoStats)
             defaults.set(arrayOfPlayers, forKey: "allStats")
             
-        }
-        
-        if let savedStats = defaults.object(forKey: "allStats") as? [[String:[String:Double]]] {
-            print(savedStats)
         }
     }
     
@@ -68,12 +66,12 @@ class StatsManager {
         }
         
         if newPlayer {
-            // Meaning the player is new
             statsTable.append(player)
         }
         else {
-            // Meaning its an old player
-            // Note: too many "!"
+            // So many "!"'s, LIVING DANGEROUSLY!
+            // Limitation of UserDefaults?
+            // Get statDictionary from array of stats
             var certainPlayerDict = statsTable[foundPlayerIndex]
             var totalPoints = certainPlayerDict[certainPlayerDict.keys.first!]?["total points"]
             var totalFouls = certainPlayerDict[certainPlayerDict.keys.first!]?["total fouls"]
@@ -81,6 +79,7 @@ class StatsManager {
             var gamesWon = certainPlayerDict[certainPlayerDict.keys.first!]?["games won"]
             var gamesLost = certainPlayerDict[certainPlayerDict.keys.first!]?["games lost"]
             
+            // Add stats to the running total
             totalPoints = totalPoints! + (player[player.keys.first!]?["total points"]!)!
             totalFouls = totalFouls! + (player[player.keys.first!]?["total fouls"]!)!
             totalTechs = totalTechs! + (player[player.keys.first!]?["total techs"]!)!
@@ -98,6 +97,7 @@ class StatsManager {
     }
     
     func getStats() -> [AverageStats] {
+        // Create an average stats array so StatisticsViewController doesn't need to do the calculations
         var averageStats = [AverageStats]()
         
         if let allStats = defaults.object(forKey: "allStats") as? [[String:[String:Double]]] {
@@ -105,6 +105,7 @@ class StatsManager {
                 let averageStat = AverageStats()
                 let gamesPlayed = (playerStat[playerStat.keys.first!]?["games won"])! + (playerStat[playerStat.keys.first!]?["games lost"])!
                 averageStat.name = playerStat.keys.first!
+                // Round points, fouls, and techs to the tenths place
                 averageStat.points = ((playerStat[playerStat.keys.first!]?["total points"])! / gamesPlayed).roundTo(places: 1)
                 averageStat.fouls = ((playerStat[playerStat.keys.first!]?["total fouls"])! / gamesPlayed).roundTo(places: 1)
                 averageStat.techs = ((playerStat[playerStat.keys.first!]?["total techs"])! / gamesPlayed).roundTo(places: 1)
@@ -112,10 +113,12 @@ class StatsManager {
                 averageStat.gamesLost = Int((playerStat[playerStat.keys.first!]?["games lost"])!)
                 averageStats.append(averageStat)
             }
-            return averageStats
+        }
+        else {
+            averageStats = [AverageStats]()
         }
         
-        return []
+        return averageStats
     }
     
 }

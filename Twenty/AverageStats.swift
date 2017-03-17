@@ -9,10 +9,12 @@
 import Foundation
 
 class AverageStats {
+    
     var name = ""
     var points = 0.0
     var fouls = 0.0
     var techs = 0.0
     var gamesWon = 0
     var gamesLost = 0
+    
 }

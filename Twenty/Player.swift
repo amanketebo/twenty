@@ -9,6 +9,7 @@
 import Foundation
 
 class Player {
+    
     var name: String = ""
     var points: Int = 0
     var fouls: Int = 0
@@ -18,5 +19,6 @@ class Player {
     var gamesLostInSeries: Int = 0
     var totalPoints = 0
     var totalFouls = 0
+    
     var totalTechs = 0
 }

@@ -8,7 +8,8 @@
 
 import UIKit
 
-class PlayerNamesViewController: UIViewController, UITextFieldDelegate {
+class PlayerNamesViewController: UIViewController {
+    
     @IBOutlet weak var playerNamesHolder: UIView!
     @IBOutlet weak var playerNameTextFieldsHolder: RoundedCornersButton! {
         didSet {
@@ -36,6 +37,15 @@ class PlayerNamesViewController: UIViewController, UITextFieldDelegate {
     deinit {
         print("Dipped out: PlayerNamesViewController")
     }
+
+    func resignBothTextFields(_ recognizer: UITapGestureRecognizer) {
+        playerOneTextField.resignFirstResponder()
+        playerTwoTextField.resignFirstResponder()
+    }
+    
+}
+
+extension PlayerNamesViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == playerOneTextField {
@@ -44,11 +54,8 @@ class PlayerNamesViewController: UIViewController, UITextFieldDelegate {
         else {
             textField.resignFirstResponder()
         }
+        
         return true
     }
-
-    func resignBothTextFields(_ recognizer: UITapGestureRecognizer) {
-        playerOneTextField.resignFirstResponder()
-        playerTwoTextField.resignFirstResponder()
-    }
+    
 }

@@ -8,8 +8,9 @@
 
 import UIKit
 
-class PageManagerViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
-    private var pageControl = UIPageControl()
+class PageManagerViewController: UIPageViewController {
+    
+    var pageControl = UIPageControl()
     lazy var pageVcs: [UIViewController] = {
         let story = UIStoryboard(name: "Main", bundle: nil)
         let firstVc = story.instantiateViewController(withIdentifier: "Player Names")
@@ -25,6 +26,7 @@ class PageManagerViewController: UIPageViewController, UIPageViewControllerDataS
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         dataSource = self
         delegate = self
+        
         if let firstVc = pageVcs.first {
             setViewControllers([firstVc], direction: .forward, animated: true, completion: nil)
         }
@@ -59,8 +61,22 @@ class PageManagerViewController: UIPageViewController, UIPageViewControllerDataS
             }
         }
     }
+}
+
+extension PageManagerViewController: UIPageViewControllerDelegate {
     
-    // Datasource Methods
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if let currentVc = viewControllers?.first {
+            if let indexOfCurrentVc = pageVcs.index(of: currentVc) {
+                pageControl.currentPage = indexOfCurrentVc
+            }
+        }
+    }
+    
+}
+
+extension PageManagerViewController: UIPageViewControllerDataSource {
+    
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let indexOfVc = pageVcs.index(of: viewController) {
             let previousIndex = indexOfVc - 1
@@ -83,14 +99,6 @@ class PageManagerViewController: UIPageViewController, UIPageViewControllerDataS
         }
     }
     
-    // Delegate Methods
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if let currentVc = viewControllers?.first {
-            if let indexOfCurrentVc = pageVcs.index(of: currentVc) {
-                pageControl.currentPage = indexOfCurrentVc
-            }
-        }
-    }
 }
 
 

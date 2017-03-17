@@ -47,7 +47,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="301.5"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEW GAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9E-tv-0de">
-                                                <rect key="frame" x="111" y="132" width="153" height="36"/>
+                                                <rect key="frame" x="111.5" y="132" width="153" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -70,7 +70,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="301.5"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STATISTICS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdS-wo-N6H">
-                                                <rect key="frame" x="111.5" y="133" width="152" height="36"/>
+                                                <rect key="frame" x="112" y="133" width="152" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -100,7 +100,6 @@
                     <connections>
                         <outlet property="newGame" destination="gmh-xZ-Yf0" id="dnC-Yl-4kX"/>
                         <outlet property="statistics" destination="WIh-Ng-Tpg" id="Wfy-bJ-vqF"/>
-                        <segue destination="N4y-Dj-eB9" kind="show" identifier="EmptyStatistics" id="c0m-AR-S7Z"/>
                         <segue destination="8UJ-Vg-4AY" kind="show" identifier="New Game" id="Hfe-PA-5ME"/>
                         <segue destination="EoM-ak-uK3" kind="show" identifier="Statistics" id="J0F-47-ano"/>
                     </connections>
@@ -280,38 +279,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6wY-Wf-m80" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="720.79999999999995" y="482.60869565217394"/>
-        </scene>
-        <!--Empty Statistics View Controller-->
-        <scene sceneID="Lma-I5-mJ9">
-            <objects>
-                <viewController id="N4y-Dj-eB9" customClass="EmptyStatisticsViewController" customModule="Twenty" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Own-8O-N8S"/>
-                        <viewControllerLayoutGuide type="bottom" id="ewW-PQ-Cv0"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pGy-7O-zW1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No saved statistics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7V-tc-LnJ">
-                                <rect key="frame" x="94" y="320" width="187" height="27"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
-                                <color key="textColor" red="0.10980392156862745" green="0.10980392156862745" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" red="0.1803921568627451" green="0.1803921568627451" blue="0.1803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <size key="shadowOffset" width="1" height="1"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="y7V-tc-LnJ" firstAttribute="centerX" secondItem="pGy-7O-zW1" secondAttribute="centerX" id="C2i-Nl-Ewb"/>
-                            <constraint firstItem="y7V-tc-LnJ" firstAttribute="centerY" secondItem="pGy-7O-zW1" secondAttribute="centerY" id="Xv4-A9-8Ah"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="V9B-sd-G8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1430" y="483"/>
         </scene>
         <!--Page Manager View Controller-->
         <scene sceneID="kJf-bL-WnR">

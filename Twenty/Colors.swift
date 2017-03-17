@@ -14,7 +14,7 @@ extension UIColor {
         return UIColor(red:0.16, green:0.16, blue:0.16, alpha:1.0)
     }
     
-    class var lightBlack20: UIColor {
+    class var slightlyLightBlack: UIColor {
         return UIColor(red:0.14, green:0.14, blue:0.14, alpha:1.0)
     }
     

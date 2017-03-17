@@ -8,25 +8,50 @@
 
 import UIKit
 
-class StatisticsViewController: UIViewController, UICollectionViewDelegate {
+class StatisticsViewController: UIViewController {
     
     let defaults = UserDefaults.standard
-    var averageStats = [AverageStats]()
+    var noStats: UILabel?
+    var averageStats = [AverageStats]() {
+        didSet {
+            if averageStats.count == 0 {
+                noStats = UILabel()
+                noStats?.text = "No saved statistics"
+                noStats?.textAlignment = .center
+                noStats?.font = UIFont.systemFont(ofSize: 21, weight: UIFontWeightSemibold)
+                noStats?.textColor = UIColor(red: 28/255, green: 28/255, blue: 28/255, alpha: 1)
+                noStats?.shadowOffset = CGSize(width: 1, height: 1)
+                noStats?.shadowColor = UIColor(red: 46/255, green: 46/255, blue: 46/255, alpha: 1)
+                noStats?.translatesAutoresizingMaskIntoConstraints = false
+                self.view.addSubview(noStats!)
+                noStats?.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+                noStats?.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+                noStats?.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+                noStats?.heightAnchor.constraint(equalToConstant: 50).isActive = true
+                navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset Stats", style: .plain, target: self, action: #selector(StatisticsViewController.resetStats(_:)))
+                navigationItem.setRightBarButton(nil, animated: true)
+            }
+            else {
+                noStats?.removeFromSuperview()
+                noStats = nil
+                navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset Stats", style: .plain, target: self, action: #selector(StatisticsViewController.resetStats(_:)))
+            }
+        }
+    }
+    let edgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
     
     @IBOutlet weak var collectionView: UICollectionView!
-
-    let itemsPerRow = 1
-    let edgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         navigationItem.title = "Statistics"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset Stats", style: .plain, target: self, action: #selector(StatisticsViewController.resetStats(_:)))
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.showsVerticalScrollIndicator = false
-        print(averageStats)
+        collectionView.showsVerticalScrollIndicator = true
+        collectionView.backgroundColor = UIColor.lightBlack
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,9 +62,27 @@ class StatisticsViewController: UIViewController, UICollectionViewDelegate {
     deinit {
         print("Dipped out: Non-EmptyStatisticsViewController")
     }
+    
+    func resetStats(_ barButton: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let yes = UIAlertAction(title: "Yes, I'm Sure", style: .default) {
+            (alert) in
+            if let bundleName = Bundle.main.bundleIdentifier {
+                self.defaults.removePersistentDomain(forName: bundleName)
+                self.averageStats.removeAll()
+                self.collectionView.reloadData()
+            }
+        }
+        alert.addAction(cancel)
+        alert.addAction(yes)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }
 
 extension StatisticsViewController: UICollectionViewDataSource {
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -54,10 +97,11 @@ extension StatisticsViewController: UICollectionViewDataSource {
         cell.averagePoints.text = String(averageStats[indexPath.row].points)
         cell.averageFouls.text = String(averageStats[indexPath.row].fouls)
         cell.averageTechs.text = String(averageStats[indexPath.row].techs)
-        cell.record.text =  "11-25" /*"\(String(Int(averageStats[indexPath.row].gamesWon)))-\(String(Int(averageStats[indexPath.row].gamesLost)))"*/
+        cell.record.text =  "\(String(Int(averageStats[indexPath.row].gamesWon)))-\(String(Int(averageStats[indexPath.row].gamesLost)))"
         
         return cell
     }
+    
 }
 
 extension StatisticsViewController: UICollectionViewDelegateFlowLayout {
@@ -77,4 +121,5 @@ extension StatisticsViewController: UICollectionViewDelegateFlowLayout {
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         return edgeInsets
     }
+    
 }

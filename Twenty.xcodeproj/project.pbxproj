@@ -68,8 +68,8 @@
 		CA4DC0931E3045A6003D09AF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CA4DC0911E3044A1003D09AF /* Colors.swift */,
 				CA4AD2861E7A27D70072EB10 /* Double.swift */,
+				CA4DC0911E3044A1003D09AF /* Colors.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
