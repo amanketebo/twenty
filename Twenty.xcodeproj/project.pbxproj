@@ -15,7 +15,6 @@
 		CA4DC0921E3044A1003D09AF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4DC0911E3044A1003D09AF /* Extensions.swift */; };
 		CA528D061E7775F100685781 /* StatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA528D051E7775F100685781 /* StatsManager.swift */; };
 		CA746DC91E6FF1BA00E95130 /* SeriesStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA746DC81E6FF1BA00E95130 /* SeriesStats.swift */; };
-		CA7E0FF71E2B488000F94791 /* EmptyStatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7E0FF61E2B488000F94791 /* EmptyStatisticsViewController.swift */; };
 		CA8F6B6C1E39BE9F00E81FD7 /* RoundedCornersButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8F6B6B1E39BE9F00E81FD7 /* RoundedCornersButton.swift */; };
 		CAA72EAE1E5E7420006BB76C /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA72EAD1E5E7420006BB76C /* Player.swift */; };
 		CAACB2501E319BEB00223A7D /* PageManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAACB24F1E319BEB00223A7D /* PageManagerViewController.swift */; };
@@ -37,7 +36,6 @@
 		CA4DC0911E3044A1003D09AF /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CA528D051E7775F100685781 /* StatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsManager.swift; sourceTree = "<group>"; };
 		CA746DC81E6FF1BA00E95130 /* SeriesStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeriesStats.swift; sourceTree = "<group>"; };
-		CA7E0FF61E2B488000F94791 /* EmptyStatisticsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStatisticsViewController.swift; sourceTree = "<group>"; };
 		CA8F6B6B1E39BE9F00E81FD7 /* RoundedCornersButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCornersButton.swift; sourceTree = "<group>"; };
 		CAA72EAD1E5E7420006BB76C /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		CAACB24F1E319BEB00223A7D /* PageManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageManagerViewController.swift; sourceTree = "<group>"; };
@@ -68,7 +66,6 @@
 			children = (
 				CAF2EFEE1E1B482A008DD77A /* TwentyViewController.swift */,
 				CA4AD28A1E7A2C100072EB10 /* StatisticsViewController.swift */,
-				CA7E0FF61E2B488000F94791 /* EmptyStatisticsViewController.swift */,
 				CAACB24F1E319BEB00223A7D /* PageManagerViewController.swift */,
 				CA3CAD9E1E31F0600090DE7C /* PlayerNamesViewController.swift */,
 				CA3CADA01E31F0F90090DE7C /* GameLimitsViewController.swift */,
@@ -170,7 +167,7 @@
 				TargetAttributes = {
 					CAF2EFE81E1B482A008DD77A = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 6Z5EK2Z6N5;
+						DevelopmentTeam = WYET37TU46;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -222,7 +219,6 @@
 				CA4AD2851E7A1E600072EB10 /* AverageStats.swift in Sources */,
 				CAC28AE51E5A8818003C21DC /* GameViewController.swift in Sources */,
 				CAC380D71E62A732004A9096 /* Game.swift in Sources */,
-				CA7E0FF71E2B488000F94791 /* EmptyStatisticsViewController.swift in Sources */,
 				CA3CADA11E31F0F90090DE7C /* GameLimitsViewController.swift in Sources */,
 				CA4AD2831E7A1A750072EB10 /* StatCollectionViewCell.swift in Sources */,
 				CAF2EFEF1E1B482A008DD77A /* TwentyViewController.swift in Sources */,
@@ -350,12 +346,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6Z5EK2Z6N5;
+				DEVELOPMENT_TEAM = WYET37TU46;
 				INFOPLIST_FILE = Twenty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.unlv.keteboa.Twenty;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.unlv.amanketebo.Twenty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -365,12 +362,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6Z5EK2Z6N5;
+				DEVELOPMENT_TEAM = WYET37TU46;
 				INFOPLIST_FILE = Twenty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.unlv.keteboa.Twenty;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.unlv.amanketebo.Twenty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

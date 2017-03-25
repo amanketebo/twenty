@@ -1,5 +1,5 @@
 //
-//  UIColor+LightBlack.swift
+//  Extensions.swift
 //  Twenty
 //
 //  Created by Amanuel Ketebo on 1/18/17.

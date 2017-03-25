@@ -29,6 +29,7 @@ class GameViewController: UIViewController {
         }
     }
 
+    let defaults = UserDefaults.standard
     var currentGame: Game!
     var timer: Timer?
     var currentTime: Int {
@@ -79,6 +80,17 @@ class GameViewController: UIViewController {
             ))
         if let navVc = self.parent as? UINavigationController {
             navVc.viewControllers.remove(at: 1)
+        }
+        
+        setupLabels()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        defaults.set(false, forKey: "firstTime")
+        if !defaults.bool(forKey: "firstTime") {
+            let swipeUpDownNotice = swipeUpDownView()
+            view.addSubview(swipeUpDownNotice)
+            defaults.set(true, forKey: "firstTime")
         }
     }
     
@@ -222,16 +234,25 @@ class GameViewController: UIViewController {
         playerTwoPoints.text = "0"
         playerTwoFouls.text = "0"
         playerTwoTechs.text = "0"
-        timerLabel.text = "20.0"
+        
+        if currentGame.isOvertime {
+            timerLabel.text = "10.0"
+        }
+        else {
+            timerLabel.text = "20.0"
+        }
+        
+        timerLabel.backgroundColor = .fadedBrightGreen
         timerLabel.isUserInteractionEnabled = true
     }
     
     func handleUserEndingGame(_ alert: UIAlertAction) {
+        stopTimer()
         currentGame.addTotals(for: currentGame.playerOne)
         currentGame.addTotals(for: currentGame.playerTwo)
         
         if currentGame.shouldGoToOvertime {
-            
+            currentGame.isOvertime = true
             // Show and animate overtime view
             let endView = endGameView(end: Ending.overtime)
             view.addSubview(endView)
@@ -252,6 +273,7 @@ class GameViewController: UIViewController {
                 view.addSubview(endView)
                 self.navigationItem.leftBarButtonItem = nil
                 self.navigationItem.rightBarButtonItem = nil
+                currentGame.isOvertime = false
                 self.navigationItem.title = "Series Over"
                 self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Leave", style: .plain, target: self, action: #selector(GameViewController.popViewController(_:)))
                 UIView.animate(withDuration: 1, animations: { endView.alpha = 1 }, completion: nil)
@@ -265,6 +287,7 @@ class GameViewController: UIViewController {
             else {
                 // Show and an image "Game \(Whatever the next game is)"
                 currentGame.gameNumber += 1
+                currentGame.isOvertime = false
                 let endView = endGameView(end: Ending.game(currentGame.gameNumber))
                 view.addSubview(endView)
                 UIView.animate(withDuration: 1, animations: { endView.alpha = 1 }, completion: { (bool) in
@@ -279,7 +302,17 @@ class GameViewController: UIViewController {
                 })
             }
         }
+        print("Current game is an overtime game: \(currentGame.isOvertime)")
     
+    }
+    
+    func swipeUpDownView() -> UIView {
+        // Get screen shot of player one points section
+        // Get screen shot of entire view and blurr it
+        // Add player one points section to blurred screenshot
+        // Add label stating need for swiping up and down and "got it"
+        
+        return UIView()
     }
     
     func endGameView(end: Ending) -> UIView {
@@ -309,7 +342,7 @@ class GameViewController: UIViewController {
         }
         
         entireView.addSubview(label)
-        label.bottomAnchor.constraint(equalTo: entireView.centerYAnchor, constant: 30).isActive = true
+        label.centerYAnchor.constraint(equalTo: entireView.centerYAnchor, constant: 0).isActive = true
         label.leftAnchor.constraint(equalTo: entireView.leftAnchor).isActive = true
         label.rightAnchor.constraint(equalTo: entireView.rightAnchor).isActive = true
         label.translatesAutoresizingMaskIntoConstraints = false

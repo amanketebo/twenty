@@ -42,6 +42,7 @@ class TwentyViewController: UIViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
         newGame.alpha = imageAlpha
         statistics.alpha = imageAlpha
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
 
     override func didReceiveMemoryWarning() {
