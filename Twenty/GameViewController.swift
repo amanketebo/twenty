@@ -81,15 +81,14 @@ class GameViewController: UIViewController {
         if let navVc = self.parent as? UINavigationController {
             navVc.viewControllers.remove(at: 1)
         }
-        
         setupLabels()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         defaults.set(false, forKey: "firstTime")
         if !defaults.bool(forKey: "firstTime") {
-            let swipeUpDownNotice = swipeUpDownView()
-            view.addSubview(swipeUpDownNotice)
+            view.addSubview(swipeUpDownView())
+            navigationItem.rightBarButtonItem?.isEnabled = false
             defaults.set(true, forKey: "firstTime")
         }
     }
@@ -161,6 +160,39 @@ class GameViewController: UIViewController {
         }
     }
     
+    @IBAction func swippedTimerLabel(_ sender: UISwipeGestureRecognizer) {
+        let swipeDirection = sender.direction
+        switch swipeDirection {
+        case UISwipeGestureRecognizerDirection.left:
+            let newTime = currentTime - 10
+            
+            guard newTime > 0 else {
+                currentTime = 0
+                return
+            }
+            
+            currentTime = newTime
+        case UISwipeGestureRecognizerDirection.right:
+            let newTime = currentTime + 10
+            
+            if currentGame.isOvertime {
+                guard newTime <= 100 else {
+                    currentTime = 100
+                    return
+                }
+            }
+            else {
+                guard newTime <= 200 else {
+                    currentTime = 200
+                    return
+                }
+            }
+            
+            currentTime = newTime
+        default: break
+        }
+    }
+    
     private func startTimer() {
         guard timer == nil else { return }
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(GameViewController.tickTimer(_:)), userInfo: nil, repeats: true)
@@ -178,7 +210,6 @@ class GameViewController: UIViewController {
         // If the timer isn't greater than zero that means time has run out
         guard currentTime > 0 else {
             stopTimer()
-            timerLabel.isUserInteractionEnabled = false
             return
         }
         
@@ -243,7 +274,6 @@ class GameViewController: UIViewController {
         }
         
         timerLabel.backgroundColor = .fadedBrightGreen
-        timerLabel.isUserInteractionEnabled = true
     }
     
     func handleUserEndingGame(_ alert: UIAlertAction) {
@@ -302,38 +332,99 @@ class GameViewController: UIViewController {
                 })
             }
         }
-        print("Current game is an overtime game: \(currentGame.isOvertime)")
+    }
     
+    func popViewController(_ button: UIBarButtonItem) {
+        if let firstVc = navigationController?.viewControllers.first {
+            let _ = navigationController?.popToViewController(firstVc, animated: true)
+        }
+    }
+    
+    func blurEffectView() -> UIImageView {
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
+        let imageSize = CGSize(width: view.bounds.size.width, height: view.bounds.size.height)
+        let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        imageView.isUserInteractionEnabled = true
+        
+        UIGraphicsBeginImageContext(imageSize)
+        self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
+        imageView.image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        blurEffectView.frame = self.view.bounds
+        imageView.addSubview(blurEffectView)
+        
+        return imageView
+    }
+    
+    func playerPointsImageView() -> UIImageView {
+        let playerOnePointsFrameInView = playerOnePoints.convert(playerOnePoints.frame, to: view)
+        let playerOnePointsImageView = UIImageView(frame: playerOnePointsFrameInView)
+        let playerOnePointsImageSize = CGSize(width: playerOnePoints.bounds.width, height: playerOnePoints.bounds.height)
+        
+        playerOnePointsImageView.layer.borderWidth = 1
+        playerOnePointsImageView.layer.borderColor = UIColor.white.cgColor
+        playerOnePointsImageView.layer.cornerRadius = 10
+        
+        UIGraphicsBeginImageContext(playerOnePointsImageSize)
+        playerOnePoints.layer.render(in: UIGraphicsGetCurrentContext()!)
+        playerOnePointsImageView.image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return playerOnePointsImageView
     }
     
     func swipeUpDownView() -> UIView {
-        // Get screen shot of player one points section
-        // Get screen shot of entire view and blurr it
-        // Add player one points section to blurred screenshot
-        // Add label stating need for swiping up and down and "got it"
+        let entireView = blurEffectView()
+        let playerOnePointsImageView = playerPointsImageView()
+        playerOnePointsImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        return UIView()
+        let label = UILabel()
+        label.text = "Swipe up and down \n to change stats"
+        label.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightThin)
+        label.textColor = .white
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        let okGotItButton = UIButton()
+        okGotItButton.setTitle("Ok, got it", for: .normal)
+        okGotItButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightBold)
+        okGotItButton.titleLabel?.textColor = .white
+        okGotItButton.layer.cornerRadius = 5
+        okGotItButton.layer.borderWidth = 1
+        okGotItButton.layer.borderColor = UIColor.white.cgColor
+        okGotItButton.titleEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: -10)
+        okGotItButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 30)
+        okGotItButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightBold)
+        okGotItButton.addTarget(self, action: #selector(GameViewController.pressedOkGotIt(_:)), for: .touchUpInside)
+        okGotItButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        entireView.addSubview(playerOnePointsImageView)
+        entireView.addSubview(label)
+        entireView.addSubview(okGotItButton)
+        
+        playerOnePointsImageView.leftAnchor.constraint(equalTo: entireView.leftAnchor, constant: 10).isActive = true
+        playerOnePointsImageView.topAnchor.constraint(equalTo: entireView.topAnchor, constant: 30).isActive = true
+        label.centerYAnchor.constraint(equalTo: playerOnePointsImageView.centerYAnchor).isActive = true
+        label.rightAnchor.constraint(equalTo: entireView.rightAnchor).isActive = true
+        label.leftAnchor.constraint(equalTo: playerOnePointsImageView.rightAnchor, constant: 10).isActive = true
+        okGotItButton.centerXAnchor.constraint(equalTo: entireView.centerXAnchor).isActive = true
+        okGotItButton.bottomAnchor.constraint(equalTo: entireView.bottomAnchor, constant: -20).isActive = true
+        
+        return entireView
     }
     
     func endGameView(end: Ending) -> UIView {
-        let entireView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
+        let entireView = blurEffectView()
         entireView.alpha = 0
-        // Thanks stackoverflow lol.
-        let imageSize = CGSize(width: view.bounds.size.width, height: view.bounds.size.height)
-        UIGraphicsBeginImageContext(imageSize)
-        self.view.layer.render(in: UIGraphicsGetCurrentContext()!)
-        entireView.image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        let blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        blurEffectView.frame = self.view.bounds
-        // Ends here
-        entireView.addSubview(blurEffectView)
-        entireView.backgroundColor = .darkBlack
+        
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 50, weight: UIFontWeightBold)
         label.textColor = .white
         label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         switch end {
         case .overtime: label.text = "OVERTIME"
@@ -350,9 +441,10 @@ class GameViewController: UIViewController {
         return entireView
     }
     
-    func popViewController(_ button: UIBarButtonItem) {
-        if let firstVc = navigationController?.viewControllers.first {
-            let _ = navigationController?.popToViewController(firstVc, animated: true)
+    func pressedOkGotIt(_ button: UIButton) {
+        navigationItem.rightBarButtonItem?.isEnabled = true
+        if let top = button.superview as? UIImageView {
+            top.removeFromSuperview()
         }
     }
 }

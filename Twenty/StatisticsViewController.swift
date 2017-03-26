@@ -35,6 +35,7 @@ class StatisticsViewController: UIViewController {
         // Do any additional setup after loading the view.
         navigationItem.title = "Statistics"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(StatisticsViewController.resetStats(_:)))
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = true

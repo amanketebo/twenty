@@ -1118,6 +1118,8 @@
                                                 <nil key="highlightedColor"/>
                                                 <connections>
                                                     <outletCollection property="gestureRecognizers" destination="YVF-Ne-oYB" appends="YES" id="t3x-IO-rNG"/>
+                                                    <outletCollection property="gestureRecognizers" destination="tWC-LI-De8" appends="YES" id="iMS-qL-doe"/>
+                                                    <outletCollection property="gestureRecognizers" destination="C9E-2R-duZ" appends="YES" id="oVf-Fo-kml"/>
                                                 </connections>
                                             </label>
                                         </subviews>
@@ -1222,6 +1224,16 @@
                 <swipeGestureRecognizer direction="down" id="EeE-7R-qjT">
                     <connections>
                         <action selector="swippedStat:" destination="Eep-9h-0lZ" id="Slr-XS-cBd"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="tWC-LI-De8">
+                    <connections>
+                        <action selector="swippedTimerLabel:" destination="Eep-9h-0lZ" id="eRc-4D-9Aj"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="C9E-2R-duZ">
+                    <connections>
+                        <action selector="swippedTimerLabel:" destination="Eep-9h-0lZ" id="t2R-UL-ahZ"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
