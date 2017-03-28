@@ -19,6 +19,5 @@ class Player {
     var gamesLostInSeries: Int = 0
     var totalPoints = 0
     var totalFouls = 0
-    
     var totalTechs = 0
 }

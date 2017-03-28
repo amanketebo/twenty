@@ -35,14 +35,15 @@ class TwentyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.barTintColor = .darkBlack
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+        
         newGame.alpha = imageAlpha
         statistics.alpha = imageAlpha
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
 
     override func didReceiveMemoryWarning() {

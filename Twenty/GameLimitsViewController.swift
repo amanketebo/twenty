@@ -73,6 +73,12 @@ class GameLimitsViewController: UIViewController {
                     alert.addAction(action)
                     self.present(alert, animated: true, completion: nil)
                 }
+                else if playerNameVc.playerOneTextField.text == playerNameVc.playerTwoTextField.text {
+                    let alert = UIAlertController(title: "Same Names!", message: "Please make sure the players have different names." , preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(action)
+                    self.present(alert, animated: true, completion: nil)
+                }
                     // Since both names were entered the page view controller can segue
                     // Set up the model then segue from pagevc
                 else {

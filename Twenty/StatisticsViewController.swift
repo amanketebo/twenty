@@ -10,6 +10,8 @@ import UIKit
 
 class StatisticsViewController: UIViewController {
     
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     let defaults = UserDefaults.standard
     var noStats: UILabel?
     var averageStats = [AverageStats]() {
@@ -26,9 +28,7 @@ class StatisticsViewController: UIViewController {
             }
         }
     }
-    let edgeInsets = UIEdgeInsets(top: 6, left: 8, bottom: 6, right: 8)
-    
-    @IBOutlet weak var collectionView: UICollectionView!
+    let edgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ class StatisticsViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.showsVerticalScrollIndicator = true
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = UIColor.lightBlack
     }
     
@@ -52,7 +52,7 @@ class StatisticsViewController: UIViewController {
     }
     
     deinit {
-        print("Dipped out: Non-EmptyStatisticsViewController")
+        print("Dipped out: StatisticsViewController")
     }
     
     func createNoStatsLabelAndAddToView() {

@@ -11,9 +11,13 @@ import UIKit
 class StatCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var name: UILabel!
+    
     @IBOutlet weak var averagePoints: UILabel!
+    
     @IBOutlet weak var averageFouls: UILabel!
+    
     @IBOutlet weak var averageTechs: UILabel!
+    
     @IBOutlet weak var record: UILabel!
     
     // Using coder init since its coming out of storyboard
