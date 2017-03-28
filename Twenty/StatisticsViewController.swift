@@ -26,7 +26,7 @@ class StatisticsViewController: UIViewController {
             }
         }
     }
-    let edgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
+    let edgeInsets = UIEdgeInsets(top: 6, left: 8, bottom: 6, right: 8)
     
     @IBOutlet weak var collectionView: UICollectionView!
     

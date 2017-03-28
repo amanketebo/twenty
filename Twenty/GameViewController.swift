@@ -28,6 +28,7 @@ class GameViewController: UIViewController {
             timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 60, weight: UIFontWeightLight)
         }
     }
+    var timerHowToLabel: UILabel?
 
     let defaults = UserDefaults.standard
     var currentGame: Game!
@@ -35,7 +36,7 @@ class GameViewController: UIViewController {
     var currentTime: Int {
         get {
             // ! since there will aways be a number in the text label
-            var labelText = timerLabel.text!
+            var labelText = timerHowToLabel?.text ?? timerLabel.text!
             var number = ""
             for character in labelText.characters {
                 if character != "." {
@@ -50,7 +51,13 @@ class GameViewController: UIViewController {
                 number.insert("0", at: number.startIndex)
             }
             number.insert(".", at: number.index(before: number.endIndex))
-            timerLabel.text = number
+            if timerHowToLabel != nil {
+                timerHowToLabel?.text = number
+                print("yuhhhhh")
+            }
+            else {
+                timerLabel.text = number
+            }
         }
     }
     
@@ -142,7 +149,7 @@ class GameViewController: UIViewController {
                     currentGame.increaseStats(player: &currentGame.playerOne, sectionNumber: tagInfo.sectionNumber)
                     checkPlayerLimits(player: currentGame.playerOne)
                 }
-                else {
+                else if tagInfo.playerNumber == 2 {
                     currentGame.increaseStats(player: &currentGame.playerTwo, sectionNumber: tagInfo.sectionNumber)
                     checkPlayerLimits(player: currentGame.playerTwo)
                 }
@@ -152,7 +159,7 @@ class GameViewController: UIViewController {
                     currentGame.decreaseStats(player: &currentGame.playerOne, sectionNumber: tagInfo.sectionNumber)
                     checkPlayerLimits(player: currentGame.playerOne)
                 }
-                else {
+                else if tagInfo.playerNumber == 2 {
                     currentGame.decreaseStats(player: &currentGame.playerTwo, sectionNumber: tagInfo.sectionNumber)
                     checkPlayerLimits(player: currentGame.playerTwo)
                 }
@@ -357,35 +364,82 @@ class GameViewController: UIViewController {
         return imageView
     }
     
-    func playerPointsImageView() -> UIImageView {
-        let playerOnePointsFrameInView = playerOnePoints.convert(playerOnePoints.frame, to: view)
-        let playerOnePointsImageView = UIImageView(frame: playerOnePointsFrameInView)
-        let playerOnePointsImageSize = CGSize(width: playerOnePoints.bounds.width, height: playerOnePoints.bounds.height)
+    func playerPointsLabel() -> UILabel {
+        let playerPointsFrameInView = playerOnePoints.convert(playerOnePoints.frame, to: view)
+        let playerPointsLabel = UILabel()
         
-        playerOnePointsImageView.layer.borderWidth = 1
-        playerOnePointsImageView.layer.borderColor = UIColor.white.cgColor
-        playerOnePointsImageView.layer.cornerRadius = 10
+        playerPointsLabel.text = "0"
+        playerPointsLabel.font = UIFont.systemFont(ofSize: 50, weight: UIFontWeightMedium)
+        playerPointsLabel.textColor = .white
+        playerPointsLabel.textAlignment = .center
+        playerPointsLabel.backgroundColor = .lightBlack
+        playerPointsLabel.clipsToBounds = true
+        playerPointsLabel.layer.borderWidth = 1
+        playerPointsLabel.layer.borderColor = UIColor.white.cgColor
+        playerPointsLabel.layer.cornerRadius = 10
         
-        UIGraphicsBeginImageContext(playerOnePointsImageSize)
-        playerOnePoints.layer.render(in: UIGraphicsGetCurrentContext()!)
-        playerOnePointsImageView.image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(swippedStat(_:)))
+        swipeUp.direction = .up
+        playerPointsLabel.addGestureRecognizer(swipeUp)
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(swippedStat(_:)))
+        swipeDown.direction = .down
+        playerPointsLabel.addGestureRecognizer(swipeDown)
         
-        return playerOnePointsImageView
+        playerPointsLabel.isUserInteractionEnabled = true
+        playerPointsLabel.widthAnchor.constraint(equalToConstant: playerPointsFrameInView.size.width).isActive = true
+        playerPointsLabel.heightAnchor.constraint(equalToConstant: playerPointsFrameInView.size.height).isActive = true
+        playerPointsLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        return playerPointsLabel
+    }
+    
+    func timerInfoLabel() -> UILabel {
+        
+        timerHowToLabel = UILabel()
+        timerHowToLabel?.text = "20.0"
+        timerHowToLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: 60.0, weight: UIFontWeightLight)
+        timerHowToLabel?.textColor = .white
+        timerHowToLabel?.textAlignment = .center
+        timerHowToLabel?.backgroundColor = .fadedBrightGreen
+        timerHowToLabel?.clipsToBounds = true
+        timerHowToLabel?.layer.borderColor = UIColor.white.cgColor
+        timerHowToLabel?.layer.borderWidth = 1
+        timerHowToLabel?.layer.cornerRadius = 10
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swippedTimerLabel(_:)))
+        swipeLeft.direction = .left
+        timerHowToLabel?.addGestureRecognizer(swipeLeft)
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swippedTimerLabel(_:)))
+        swipeRight.direction = .right
+        timerHowToLabel?.addGestureRecognizer(swipeRight)
+        
+        timerHowToLabel?.isUserInteractionEnabled = true
+        timerHowToLabel?.heightAnchor.constraint(equalToConstant: timerLabel.bounds.size.height).isActive = true
+        timerHowToLabel?.translatesAutoresizingMaskIntoConstraints = false
+        
+        return timerHowToLabel!
     }
     
     func swipeUpDownView() -> UIView {
         let entireView = blurEffectView()
-        let playerOnePointsImageView = playerPointsImageView()
-        playerOnePointsImageView.translatesAutoresizingMaskIntoConstraints = false
+        let playerPointsHowToLabel = playerPointsLabel()
+        let timerHowToLabel = timerInfoLabel()
         
-        let label = UILabel()
-        label.text = "Swipe up and down \n to change stats"
-        label.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightThin)
-        label.textColor = .white
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
+        let statsInfoLabel = UILabel()
+        statsInfoLabel.text = "Swipe up and down \n to change stats"
+        statsInfoLabel.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightThin)
+        statsInfoLabel.textColor = .white
+        statsInfoLabel.numberOfLines = 0
+        statsInfoLabel.textAlignment = .center
+        statsInfoLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        let timerInfo = UILabel()
+        timerInfo.text = "Swipe left and right \n to change game clock"
+        timerInfo.font = UIFont.monospacedDigitSystemFont(ofSize: 20, weight: UIFontWeightThin)
+        timerInfo.textColor = .white
+        timerInfo.numberOfLines = 0
+        timerInfo.textAlignment = .center
+        timerInfo.translatesAutoresizingMaskIntoConstraints = false
         
         let okGotItButton = UIButton()
         okGotItButton.setTitle("Ok, got it", for: .normal)
@@ -400,17 +454,25 @@ class GameViewController: UIViewController {
         okGotItButton.addTarget(self, action: #selector(GameViewController.pressedOkGotIt(_:)), for: .touchUpInside)
         okGotItButton.translatesAutoresizingMaskIntoConstraints = false
         
-        entireView.addSubview(playerOnePointsImageView)
-        entireView.addSubview(label)
+        entireView.addSubview(playerPointsHowToLabel)
+        entireView.addSubview(statsInfoLabel)
         entireView.addSubview(okGotItButton)
+        entireView.addSubview(timerHowToLabel)
+        entireView.addSubview(timerInfo)
         
-        playerOnePointsImageView.leftAnchor.constraint(equalTo: entireView.leftAnchor, constant: 10).isActive = true
-        playerOnePointsImageView.topAnchor.constraint(equalTo: entireView.topAnchor, constant: 30).isActive = true
-        label.centerYAnchor.constraint(equalTo: playerOnePointsImageView.centerYAnchor).isActive = true
-        label.rightAnchor.constraint(equalTo: entireView.rightAnchor).isActive = true
-        label.leftAnchor.constraint(equalTo: playerOnePointsImageView.rightAnchor, constant: 10).isActive = true
+        playerPointsHowToLabel.leftAnchor.constraint(equalTo: entireView.leftAnchor, constant: 20).isActive = true
+        playerPointsHowToLabel.topAnchor.constraint(equalTo: entireView.topAnchor, constant: 30).isActive = true
+        statsInfoLabel.centerYAnchor.constraint(equalTo: playerPointsHowToLabel.centerYAnchor).isActive = true
+        statsInfoLabel.rightAnchor.constraint(equalTo: entireView.rightAnchor).isActive = true
+        statsInfoLabel.leftAnchor.constraint(equalTo: playerPointsHowToLabel.rightAnchor, constant: 10).isActive = true
         okGotItButton.centerXAnchor.constraint(equalTo: entireView.centerXAnchor).isActive = true
         okGotItButton.bottomAnchor.constraint(equalTo: entireView.bottomAnchor, constant: -20).isActive = true
+        timerHowToLabel.centerYAnchor.constraint(equalTo: entireView.centerYAnchor, constant: 30).isActive = true
+        timerHowToLabel.leftAnchor.constraint(equalTo: entireView.leftAnchor, constant: 20).isActive = true
+        timerHowToLabel.rightAnchor.constraint(equalTo: entireView.rightAnchor, constant: -20).isActive = true
+        timerInfo.topAnchor.constraint(equalTo: timerHowToLabel.bottomAnchor, constant: 20).isActive = true
+        timerInfo.leftAnchor.constraint(equalTo: entireView.leftAnchor).isActive = true
+        timerInfo.rightAnchor.constraint(equalTo: entireView.rightAnchor).isActive = true
         
         return entireView
     }
@@ -444,6 +506,7 @@ class GameViewController: UIViewController {
     func pressedOkGotIt(_ button: UIButton) {
         navigationItem.rightBarButtonItem?.isEnabled = true
         if let top = button.superview as? UIImageView {
+            timerHowToLabel = nil
             top.removeFromSuperview()
         }
     }
