@@ -20,4 +20,5 @@ class Player {
     var totalPoints = 0
     var totalFouls = 0
     var totalTechs = 0
+    
 }

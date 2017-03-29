@@ -45,6 +45,10 @@
                                         <subviews>
                                             <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newgame" translatesAutoresizingMaskIntoConstraints="NO" id="gmh-xZ-Yf0">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="301.5"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="VBR-5F-rQs" appends="YES" id="C5x-LP-izp"/>
+                                                </connections>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEW GAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9E-tv-0de">
                                                 <rect key="frame" x="111.5" y="132" width="153" height="36"/>
@@ -68,6 +72,10 @@
                                         <subviews>
                                             <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stats" translatesAutoresizingMaskIntoConstraints="NO" id="WIh-Ng-Tpg">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="301.5"/>
+                                                <gestureRecognizers/>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="WgT-Qc-WNX" appends="YES" id="zcU-gA-UN6"/>
+                                                </connections>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STATISTICS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdS-wo-N6H">
                                                 <rect key="frame" x="112" y="133" width="152" height="36"/>
@@ -105,6 +113,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="VBR-5F-rQs">
+                    <connections>
+                        <action selector="segueToNewGameVc:" destination="BYZ-38-t0r" id="2Cc-Pe-gWq"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="WgT-Qc-WNX">
+                    <connections>
+                        <action selector="segueToStatisticsVc:" destination="BYZ-38-t0r" id="3dC-a6-3iW"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-114.40000000000001" y="122.78860569715144"/>
         </scene>
@@ -131,7 +149,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="statCell" id="GmV-vG-Kwp" customClass="StatCollectionViewCell" customModule="Twenty" customModuleProvider="target">
-                                        <rect key="frame" x="0.5" y="0.0" width="374" height="148"/>
+                                        <rect key="frame" x="1" y="0.0" width="374" height="148"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="148"/>

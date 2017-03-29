@@ -77,8 +77,8 @@
 		CA8F6B6F1E39BF4000E81FD7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CA4AD2821E7A1A750072EB10 /* StatCollectionViewCell.swift */,
 				CA8F6B6B1E39BE9F00E81FD7 /* RoundedCornersButton.swift */,
+				CA4AD2821E7A1A750072EB10 /* StatCollectionViewCell.swift */,
 				CAF2EFF01E1B482A008DD77A /* Main.storyboard */,
 				CAF2EFF51E1B482A008DD77A /* LaunchScreen.storyboard */,
 			);

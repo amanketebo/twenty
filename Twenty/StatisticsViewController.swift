@@ -76,11 +76,9 @@ class StatisticsViewController: UIViewController {
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let yes = UIAlertAction(title: "Yes, I'm Sure", style: .default) {
             (alert) in
-            if let bundleName = Bundle.main.bundleIdentifier {
-                self.defaults.removePersistentDomain(forName: bundleName)
-                self.averageStats.removeAll()
-                self.collectionView.reloadData()
-            }
+            self.defaults.removeObject(forKey: "allStats")
+            self.averageStats.removeAll()
+            self.collectionView.reloadData()
         }
         alert.addAction(cancel)
         alert.addAction(yes)

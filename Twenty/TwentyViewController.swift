@@ -11,26 +11,12 @@ import UIKit
 
 class TwentyViewController: UIViewController {
     
+    @IBOutlet weak var newGame: UIImageView!
+    
+    @IBOutlet weak var statistics: UIImageView!
+    
     let defaults = UserDefaults.standard
     private let imageAlpha: CGFloat = 0.40
-    
-    @IBOutlet weak var newGame: UIImageView! {
-        didSet {
-            newGame.addGestureRecognizer(UITapGestureRecognizer(
-                target: self,
-                action: #selector(TwentyViewController.segueToNewGameVc(_:))
-            ))
-        }
-    }
-    @IBOutlet weak var statistics: UIImageView! {
-        didSet {
-            statistics.addGestureRecognizer(UITapGestureRecognizer(
-                target: self,
-                action: #selector(TwentyViewController.segueToStatisticsVc(_:)
-                )
-            ))
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,12 +41,13 @@ class TwentyViewController: UIViewController {
         print("Dipped out: TwentyViewController.")
     }
     
-    func segueToNewGameVc (_ recognizer: UITapGestureRecognizer) {
+    @IBAction func segueToNewGameVc(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "New Game", sender: nil)
     }
     
-    func segueToStatisticsVc(_ recognizer: UITapGestureRecognizer) {
+    @IBAction func segueToStatisticsVc(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "Statistics", sender: nil)
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

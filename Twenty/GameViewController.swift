@@ -114,7 +114,6 @@ class GameViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        defaults.set(false, forKey: "firstTime")
         if !defaults.bool(forKey: "firstTime") {
             view.addSubview(swipeUpDownView())
             navigationItem.rightBarButtonItem?.isEnabled = false

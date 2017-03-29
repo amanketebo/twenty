@@ -38,4 +38,5 @@ struct SeriesStats {
         self.playerTwo.gamesWon = game.playerTwo.gamesWonInSeries
         self.playerTwo.gamesLost = game.playerTwo.gamesLostInSeries
     }
+    
 }

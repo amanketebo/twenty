@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 extension UIColor {
+    
     class var lightBlack: UIColor {
         return UIColor(red:0.16, green:0.16, blue:0.16, alpha:1.0)
     }
@@ -45,6 +46,7 @@ extension UIColor {
     class var fadedBrightRed: UIColor {
         return UIColor(red:0.69, green:0.11, blue:0.18, alpha:0.75)
     }
+    
 }
 
 extension Double {
