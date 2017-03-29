@@ -54,6 +54,7 @@ class GameViewController: UIViewController {
             var labelText = timerHowToLabel?.text ?? timerLabel.text!
             var number = ""
             
+            // Remove the "." so currentTime can be read as an Int
             for character in labelText.characters {
                 if character != "." {
                     number.append(String(character))
@@ -127,7 +128,7 @@ class GameViewController: UIViewController {
     }
     
     deinit {
-        print("Dipped out: GameViewController")
+        // print("Dipped out: GameViewController")
     }
     
     func setupLabels() {

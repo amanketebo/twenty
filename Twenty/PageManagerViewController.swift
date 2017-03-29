@@ -12,6 +12,7 @@ class PageManagerViewController: UIPageViewController {
     
     var pageControl = UIPageControl()
     lazy var pageVcs: [UIViewController] = {
+        // Get VCs from storyboard
         let story = UIStoryboard(name: "Main", bundle: nil)
         let firstVc = story.instantiateViewController(withIdentifier: "Player Names")
         let secondVc = story.instantiateViewController(withIdentifier: "Game Limits")
@@ -39,7 +40,7 @@ class PageManagerViewController: UIPageViewController {
     }
     
     deinit {
-        print("Dipped out: PageViewController.")
+        // print("Dipped out: PageViewController.")
     }
     
     func setupPageControl() {
@@ -66,6 +67,7 @@ class PageManagerViewController: UIPageViewController {
 extension PageManagerViewController: UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        // Change page control to show current page dot
         if let currentVc = viewControllers?.first {
             if let indexOfCurrentVc = pageVcs.index(of: currentVc) {
                 pageControl.currentPage = indexOfCurrentVc

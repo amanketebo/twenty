@@ -12,9 +12,16 @@ class GameLimitsViewController: UIViewController {
     
     var winsNeeded = 0
     
-    @IBOutlet weak var gameLimitsHolder: UIView!
+    @IBOutlet weak var gameLimitsHolder: UIView! {
+        didSet {
+            gameLimitsHolder.layer.cornerRadius = 10
+        }
+    }
+    
     @IBOutlet weak var currentFoul: RoundedCornersButton!
+    
     @IBOutlet weak var currentTech: RoundedCornersButton!
+    
     @IBOutlet weak var currentSeries: RoundedCornersButton! {
         didSet {
             winsNeeded = Int(currentSeries.currentTitle!)!/2 + 1
@@ -24,7 +31,6 @@ class GameLimitsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        gameLimitsHolder.layer.cornerRadius = 10
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,7 +39,7 @@ class GameLimitsViewController: UIViewController {
     }
     
     deinit {
-        print("Dipped out: GameLimitsViewController")
+        // print("Dipped out: GameLimitsViewController")
     }
     
     @IBAction func touchedLimit(_ sender: RoundedCornersButton) {
@@ -67,12 +73,15 @@ class GameLimitsViewController: UIViewController {
         // Check to make sure the game can be started first by making sure both player names have been entered
         if let pageManager = self.parent as? PageManagerViewController {
             if let playerNameVc = pageManager.pageVcs.first as? PlayerNamesViewController {
+                
+                // Make sure all players have entered their names or else show an alert
                 if playerNameVc.playerOneTextField.text == "" || playerNameVc.playerTwoTextField.text == "" {
                     let alert = UIAlertController(title: "Not Enough Players!", message: "Please enter both player names." , preferredStyle: .alert)
                     let action = UIAlertAction(title: "OK", style: .default, handler: nil)
                     alert.addAction(action)
                     self.present(alert, animated: true, completion: nil)
                 }
+                // Make sure the player names are not the same or else show an alert
                 else if playerNameVc.playerOneTextField.text == playerNameVc.playerTwoTextField.text {
                     let alert = UIAlertController(title: "Same Names!", message: "Please make sure the players have different names." , preferredStyle: .alert)
                     let action = UIAlertAction(title: "OK", style: .default, handler: nil)

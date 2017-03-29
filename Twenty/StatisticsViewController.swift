@@ -52,7 +52,7 @@ class StatisticsViewController: UIViewController {
     }
     
     deinit {
-        print("Dipped out: StatisticsViewController")
+        // print("Dipped out: StatisticsViewController")
     }
     
     func createNoStatsLabelAndAddToView() {
@@ -99,6 +99,7 @@ extension StatisticsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "statCell", for: indexPath) as! StatCollectionViewCell
+        // Set up cell with information from average stats array
         cell.name.text = averageStats[indexPath.row].name
         cell.averagePoints.text = String(averageStats[indexPath.row].points)
         cell.averageFouls.text = String(averageStats[indexPath.row].fouls)
@@ -116,10 +117,6 @@ extension StatisticsViewController: UICollectionViewDelegateFlowLayout {
         let availableWidth = self.view.bounds.width - (edgeInsets.left * 2)
         
         return CGSize(width: availableWidth, height: 145)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView,

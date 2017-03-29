@@ -21,11 +21,11 @@ class TwentyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.barTintColor = .darkBlack
         navigationController?.navigationBar.isTranslucent = false
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
         
         newGame.alpha = imageAlpha
@@ -38,7 +38,7 @@ class TwentyViewController: UIViewController {
     }
     
     deinit {
-        print("Dipped out: TwentyViewController.")
+        // print("Dipped out: TwentyViewController.")
     }
     
     @IBAction func segueToNewGameVc(_ sender: UITapGestureRecognizer) {

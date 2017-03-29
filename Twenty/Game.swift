@@ -30,9 +30,6 @@ class Game {
         else if playerOne.isOverGameLimit == true && playerTwo.isOverGameLimit == true  {
             decision = true
         }
-        else {
-            decision = false
-        }
         
         return decision
     }
@@ -41,9 +38,6 @@ class Game {
         
         if playerOne.gamesWonInSeries == winsNeeded || playerTwo.gamesWonInSeries == winsNeeded {
             decision = true
-        }
-        else {
-            decision = false
         }
         
         return decision
@@ -56,9 +50,6 @@ class Game {
         }
         else if playerTwo.gamesWonInSeries == winsNeeded {
             winnerName = playerTwo.name
-        }
-        else {
-            winnerName = ""
         }
         
         return winnerName
@@ -81,6 +72,8 @@ class Game {
     }
     
     func increaseStats(player: inout Player, sectionNumber: Int) {
+        // sectionNumber is the section in IB that was tapped by user
+        // section 1 is for points, section 2 is for fouls, section 3 is for techs
         if let statType = Stat(rawValue: sectionNumber) {
             switch statType {
             case .point: player.points += 1
@@ -91,6 +84,8 @@ class Game {
     }
     
     func decreaseStats(player: inout Player, sectionNumber: Int) {
+        // sectionNumber is the section in IB that was tapped by user
+        // section 1 is for points, section 2 is for fouls, section 3 is for techs
         if let statType = Stat(rawValue: sectionNumber) {
             switch statType {
             case .point: player.points -= 1
@@ -126,7 +121,7 @@ class Game {
     }
     
     func decideWinner() {
-        if (playerOne.isOverGameLimit && playerTwo.isOverGameLimit) {
+        if playerOne.isOverGameLimit && playerTwo.isOverGameLimit {
             if playerOne.points > playerTwo.points {
                 playerOne.gamesWonInSeries += 1
                 playerTwo.gamesLostInSeries += 1

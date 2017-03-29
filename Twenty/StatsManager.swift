@@ -14,6 +14,10 @@ class StatsManager {
     var playerOneStats = [String:[String:Double]]()
     var playerTwoStats = [String:[String:Double]]()
     
+    init() {
+        
+    }
+    
     init(_ seriesStats: SeriesStats) {
         // Player one setup
         playerOneStats[seriesStats.playerOne.name] = [
@@ -33,10 +37,6 @@ class StatsManager {
         ]
     }
     
-    init() {
-        
-    }
-    
     func saveStats() {
         if let allStats = defaults.object(forKey: "allStats") as? [[String:[String:Double]]] {
             // Create mutable version of "allStats"
@@ -46,6 +46,7 @@ class StatsManager {
             defaults.set(mutableStats, forKey: "allStats")
         }
         else {
+            // Since there aren't any save stats just create an array of player stats and place in defaults
             var arrayOfPlayers = [[String:[String:Double]]]()
             arrayOfPlayers.append(playerOneStats)
             arrayOfPlayers.append(playerTwoStats)
@@ -58,6 +59,7 @@ class StatsManager {
         var newPlayer = true
         var foundPlayerIndex = 0
         
+        // Loop through player stats and see if player already has stats stored
         for (index, playerStats) in statsTable.enumerated() {
             if playerStats.keys.first! == player.keys.first! {
                 newPlayer = false
@@ -66,6 +68,7 @@ class StatsManager {
         }
         
         if newPlayer {
+            // Sinces it a new player just simply append it to the stats array
             statsTable.append(player)
         }
         else {

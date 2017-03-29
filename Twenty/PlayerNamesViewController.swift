@@ -10,11 +10,17 @@ import UIKit
 
 class PlayerNamesViewController: UIViewController {
     
-    @IBOutlet weak var playerNamesHolder: UIView!
-    @IBOutlet weak var playerNameTextFieldsHolder: RoundedCornersButton! {
+    @IBOutlet weak var playerNamesHolder: UIView! {
+        didSet {
+            playerNamesHolder.layer.cornerRadius = 10
+        }
+    }
+    @IBOutlet weak var playerNameTextFieldsHolder: UIView! {
         didSet {
             playerNameTextFieldsHolder.layer.borderWidth = 2
             playerNameTextFieldsHolder.layer.borderColor = UIColor.lightGray.cgColor
+            playerNameTextFieldsHolder.clipsToBounds = true
+            playerNameTextFieldsHolder.layer.cornerRadius = 5
         }
     }
     @IBOutlet weak var playerOneTextField: UITextField!
@@ -23,10 +29,9 @@ class PlayerNamesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        playerNamesHolder.layer.cornerRadius = 10
         playerOneTextField.delegate = self
         playerTwoTextField.delegate = self
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PlayerNamesViewController.resignBothTextFields(_:))))
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PlayerNamesViewController.tappedView(_:))))
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,10 +40,10 @@ class PlayerNamesViewController: UIViewController {
     }
     
     deinit {
-        print("Dipped out: PlayerNamesViewController")
+        // print("Dipped out: PlayerNamesViewController")
     }
 
-    func resignBothTextFields(_ recognizer: UITapGestureRecognizer) {
+    func tappedView(_ recognizer: UITapGestureRecognizer) {
         playerOneTextField.resignFirstResponder()
         playerTwoTextField.resignFirstResponder()
     }
