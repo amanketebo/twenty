@@ -174,11 +174,11 @@ class GameViewController: UIViewController {
                 
                 // Depending on the player increase their stats
                 if tagInfo.playerNumber == 1 {
-                    currentGame.increaseStats(player: &currentGame.playerOne, sectionNumber: tagInfo.sectionNumber)
+                    currentGame.increaseStats(player: currentGame.playerOne, sectionNumber: tagInfo.sectionNumber)
                     checkPlayerLimits(player: currentGame.playerOne)
                 }
                 else if tagInfo.playerNumber == 2 {
-                    currentGame.increaseStats(player: &currentGame.playerTwo, sectionNumber: tagInfo.sectionNumber)
+                    currentGame.increaseStats(player: currentGame.playerTwo, sectionNumber: tagInfo.sectionNumber)
                     checkPlayerLimits(player: currentGame.playerTwo)
                 }
             case UISwipeGestureRecognizerDirection.down:
@@ -188,11 +188,11 @@ class GameViewController: UIViewController {
                 
                 // Depending on the player decrease their stats
                 if tagInfo.playerNumber == 1 {
-                    currentGame.decreaseStats(player: &currentGame.playerOne, sectionNumber: tagInfo.sectionNumber)
+                    currentGame.decreaseStats(player: currentGame.playerOne, sectionNumber: tagInfo.sectionNumber)
                     checkPlayerLimits(player: currentGame.playerOne)
                 }
                 else if tagInfo.playerNumber == 2 {
-                    currentGame.decreaseStats(player: &currentGame.playerTwo, sectionNumber: tagInfo.sectionNumber)
+                    currentGame.decreaseStats(player: currentGame.playerTwo, sectionNumber: tagInfo.sectionNumber)
                     checkPlayerLimits(player: currentGame.playerTwo)
                 }
             default: break

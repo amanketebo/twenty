@@ -71,7 +71,7 @@ class Game {
         self.playerTwo = playerTwo
     }
     
-    func increaseStats(player: inout Player, sectionNumber: Int) {
+    func increaseStats(player: Player, sectionNumber: Int) {
         // sectionNumber is the section in IB that was tapped by user
         // section 1 is for points, section 2 is for fouls, section 3 is for techs
         if let statType = Stat(rawValue: sectionNumber) {
@@ -83,7 +83,7 @@ class Game {
         }
     }
     
-    func decreaseStats(player: inout Player, sectionNumber: Int) {
+    func decreaseStats(player: Player, sectionNumber: Int) {
         // sectionNumber is the section in IB that was tapped by user
         // section 1 is for points, section 2 is for fouls, section 3 is for techs
         if let statType = Stat(rawValue: sectionNumber) {
@@ -154,6 +154,7 @@ class Game {
         playerOne.fouls = 0
         playerOne.techs = 0
         playerOne.isOverGameLimit = false
+        
         playerTwo.points = 0
         playerTwo.fouls = 0
         playerTwo.techs = 0
