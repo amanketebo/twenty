@@ -16,15 +16,13 @@ class StatisticsViewController: UIViewController {
     var noStats: UILabel?
     var averageStats = [AverageStats]() {
         didSet {
-            if averageStats.count == 0 {
+            if averageStats.isEmpty {
                 createNoStatsLabelAndAddToView()
-                navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset Stats", style: .plain, target: self, action: #selector(StatisticsViewController.resetStats(_:)))
                 navigationItem.setRightBarButton(nil, animated: true)
             }
             else {
                 noStats?.removeFromSuperview()
-                noStats = nil
-                navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset Stats", style: .plain, target: self, action: #selector(StatisticsViewController.resetStats(_:)))
+                navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset Stats", style: .plain, target: self, action: #selector(self.resetStats(_:)))
             }
         }
     }
@@ -34,7 +32,7 @@ class StatisticsViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         navigationItem.title = "Statistics"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(StatisticsViewController.resetStats(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(self.resetStats(_:)))
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -60,9 +58,9 @@ class StatisticsViewController: UIViewController {
         noStats?.text = "No saved statistics"
         noStats?.textAlignment = .center
         noStats?.font = UIFont.systemFont(ofSize: 21, weight: UIFontWeightSemibold)
-        noStats?.textColor = UIColor(red: 28/255, green: 28/255, blue: 28/255, alpha: 1)
+        noStats?.textColor = UIColor.slightlyLightBlack
         noStats?.shadowOffset = CGSize(width: 1, height: 1)
-        noStats?.shadowColor = UIColor(red: 46/255, green: 46/255, blue: 46/255, alpha: 1)
+        noStats?.shadowColor = UIColor.slightlyGray
         noStats?.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(noStats!)
         noStats?.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
@@ -74,8 +72,7 @@ class StatisticsViewController: UIViewController {
     func resetStats(_ barButton: UIBarButtonItem) {
         let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let yes = UIAlertAction(title: "Yes, I'm Sure", style: .default) {
-            (alert) in
+        let yes = UIAlertAction(title: "Yes, I'm Sure", style: .default) { (alert) in
             self.defaults.removeObject(forKey: "allStats")
             self.averageStats.removeAll()
             self.collectionView.reloadData()
@@ -119,9 +116,7 @@ extension StatisticsViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: availableWidth, height: 145)
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return edgeInsets
     }
     

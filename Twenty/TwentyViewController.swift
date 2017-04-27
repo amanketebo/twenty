@@ -21,9 +21,9 @@ class TwentyViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.barTintColor = .darkBlack
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
         
         newGame.alpha = imageAlpha

@@ -10,23 +10,20 @@ import UIKit
 
 class GameLimitsViewController: UIViewController {
     
-    var winsNeeded = 0
-    
     @IBOutlet weak var gameLimitsHolder: UIView! {
         didSet {
             gameLimitsHolder.layer.cornerRadius = 10
         }
     }
-    
     @IBOutlet weak var currentFoul: RoundedCornersButton!
-    
     @IBOutlet weak var currentTech: RoundedCornersButton!
-    
     @IBOutlet weak var currentSeries: RoundedCornersButton! {
         didSet {
             winsNeeded = Int(currentSeries.currentTitle!)!/2 + 1
         }
     }
+    
+    var winsNeeded = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()

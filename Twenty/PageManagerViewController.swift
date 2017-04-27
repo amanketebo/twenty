@@ -22,7 +22,7 @@ class PageManagerViewController: UIPageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         navigationItem.title = "New Game"
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         dataSource = self

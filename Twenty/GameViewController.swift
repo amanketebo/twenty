@@ -11,31 +11,18 @@ import UIKit
 class GameViewController: UIViewController {
     
     @IBOutlet weak var playerOnePoints: UILabel!
-    
     @IBOutlet weak var playerOneFouls: UILabel!
-    
     @IBOutlet weak var playerOneTechs: UILabel!
-    
     @IBOutlet weak var playerTwoPoints: UILabel!
-    
     @IBOutlet weak var playerTwoFouls: UILabel!
-    
     @IBOutlet weak var playerTwoTechs: UILabel!
-    
     @IBOutlet weak var seriesLimitLabel: UILabel!
-    
     @IBOutlet weak var foulLimitLabel: UILabel!
-    
     @IBOutlet weak var techLimitLabel: UILabel!
-    
     @IBOutlet weak var playerOneGamesWon: UILabel!
-    
     @IBOutlet weak var playerTwoGamesWon: UILabel!
-    
     @IBOutlet weak var playerOneName: UILabel!
-    
     @IBOutlet weak var playerTwoName: UILabel!
-    
     @IBOutlet weak var timerLabel: UILabel! {
         didSet {
             // Couldn't give timerLabel a monpspaced font in storyboard so had to do it here
