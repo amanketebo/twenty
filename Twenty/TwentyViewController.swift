@@ -12,7 +12,6 @@ import UIKit
 class TwentyViewController: UIViewController {
     
     @IBOutlet weak var newGame: UIImageView!
-    
     @IBOutlet weak var statistics: UIImageView!
     
     let defaults = UserDefaults.standard
@@ -20,9 +19,8 @@ class TwentyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.barTintColor = .darkBlack
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
@@ -34,7 +32,6 @@ class TwentyViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     deinit {

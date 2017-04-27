@@ -14,10 +14,6 @@ class StatsManager {
     var playerOneStats = [String:[String:Double]]()
     var playerTwoStats = [String:[String:Double]]()
     
-    init() {
-        
-    }
-    
     init(_ seriesStats: SeriesStats) {
         // Player one setup
         playerOneStats[seriesStats.playerOne.name] = [
@@ -37,12 +33,15 @@ class StatsManager {
         ]
     }
     
+    init() { }
+    
     func saveStats() {
         if let allStats = defaults.object(forKey: "allStats") as? [[String:[String:Double]]] {
             // Create mutable version of "allStats"
             var mutableStats = allStats
-            saveStatsForPlayer(playerOneStats, statsTable: &mutableStats)
-            saveStatsForPlayer(playerTwoStats, statsTable: &mutableStats)
+            // Save each players stats individually
+            saveStatsForPlayer(playerOneStats, savedStats: &mutableStats)
+            saveStatsForPlayer(playerTwoStats, savedStats: &mutableStats)
             defaults.set(mutableStats, forKey: "allStats")
         }
         else {
@@ -51,17 +50,15 @@ class StatsManager {
             arrayOfPlayers.append(playerOneStats)
             arrayOfPlayers.append(playerTwoStats)
             defaults.set(arrayOfPlayers, forKey: "allStats")
-            
         }
     }
     
-    func saveStatsForPlayer (_ player: [String:[String:Double]], statsTable: inout [[String:[String:Double]]]) {
+    func saveStatsForPlayer (_ newPlayerStats: [String:[String:Double]], savedStats: inout [[String:[String:Double]]]) {
         var newPlayer = true
         var foundPlayerIndex = 0
-        
-        // Loop through player stats and see if player already has stats stored
-        for (index, playerStats) in statsTable.enumerated() {
-            if playerStats.keys.first! == player.keys.first! {
+        // Loop through stats and see if player already has stats stored
+        for (index, playerStats) in savedStats.enumerated() {
+            if playerStats.keys.first! == newPlayerStats.keys.first! {
                 newPlayer = false
                 foundPlayerIndex = index
             }
@@ -69,46 +66,51 @@ class StatsManager {
         
         if newPlayer {
             // Sinces it a new player just simply append it to the stats array
-            statsTable.append(player)
+            savedStats.append(newPlayerStats)
         }
         else {
-            // So many "!"'s, LIVING DANGEROUSLY!
-            // Limitation of UserDefaults?
-            // Get statDictionary from array of stats
-            var certainPlayerDict = statsTable[foundPlayerIndex]
-            if let playerName = certainPlayerDict.keys.first {
+            // Add newPlayerStats to the saved stats
+            var savedPlayerStats = savedStats[foundPlayerIndex]
+            if let playerName = savedPlayerStats.keys.first {
                 
-                var totalPoints = certainPlayerDict[playerName]?["total points"]
-                var totalFouls = certainPlayerDict[playerName]?["total fouls"]
-                var totalTechs = certainPlayerDict[playerName]?["total techs"]
-                var gamesWon = certainPlayerDict[playerName]?["games won"]
-                var gamesLost = certainPlayerDict[playerName]?["games lost"]
+                var savedTotalPoints = savedPlayerStats[playerName]?["total points"]
+                var savedTotalFouls = savedPlayerStats[playerName]?["total fouls"]
+                var savedTotalTechs = savedPlayerStats[playerName]?["total techs"]
+                var savedGamesWon = savedPlayerStats[playerName]?["games won"]
+                var savedGamesLost = savedPlayerStats[playerName]?["games lost"]
+                let newTotalPoints = newPlayerStats[playerName]?["total points"]
+                let newTotalFouls = newPlayerStats[playerName]?["total fouls"]
+                let newTotalTechs = newPlayerStats[playerName]?["total techs"]
+                let newGamesWon = newPlayerStats[playerName]?["games won"]
+                let newGamesLost = newPlayerStats[playerName]?["games lost"]
                 
-                guard totalPoints != nil && totalFouls != nil && totalTechs != nil && gamesWon != nil && gamesLost != nil else {
+                guard savedTotalPoints != nil && savedTotalFouls != nil && savedTotalTechs != nil && savedGamesWon != nil && savedGamesLost != nil && newTotalPoints != nil && newTotalFouls != nil && newTotalTechs != nil && newGamesWon != nil && newGamesLost != nil else {
                     return
                 }
                 
                 // Add stats to the running total
-                totalPoints = totalPoints! + (player[player.keys.first!]?["total points"]!)!
-                totalFouls = totalFouls! + (player[player.keys.first!]?["total fouls"]!)!
-                totalTechs = totalTechs! + (player[player.keys.first!]?["total techs"]!)!
-                gamesWon = gamesWon! + (player[player.keys.first!]?["games won"]!)!
-                gamesLost = gamesLost! + (player[player.keys.first!]?["games lost"]!)!
+                savedTotalPoints = savedTotalPoints! + newTotalPoints!
+                savedTotalFouls = savedTotalFouls! + newTotalFouls!
+                savedTotalTechs = savedTotalTechs! + newTotalTechs!
+                savedGamesWon = savedGamesWon! + newGamesWon!
+                savedGamesLost = savedGamesLost! + newGamesLost!
                 
-                certainPlayerDict[playerName]?["total points"] = totalPoints
-                certainPlayerDict[playerName]?["total fouls"] = totalFouls
-                certainPlayerDict[playerName]?["total techs"] = totalTechs
-                certainPlayerDict[playerName]?["games won"] = gamesWon
-                certainPlayerDict[playerName]?["games lost"] = gamesLost
+                savedPlayerStats[playerName]?["total points"] = savedTotalPoints
+                savedPlayerStats[playerName]?["total fouls"] = savedTotalFouls
+                savedPlayerStats[playerName]?["total techs"] = savedTotalTechs
+                savedPlayerStats[playerName]?["games won"] = savedGamesWon
+                savedPlayerStats[playerName]?["games lost"] = savedGamesLost
                 
-                statsTable[foundPlayerIndex] = certainPlayerDict
-                print("We are happy and we know it!")
+                savedStats[foundPlayerIndex] = savedPlayerStats
             }
             
         }
     }
     
     func getStats() -> [AverageStats] {
+        // TODO:
+        // - Figure out a way to use less "!" w/o having to use the pyramid of doom
+        
         // Create an average stats array so StatisticsViewController doesn't need to do the calculations
         var averageStats = [AverageStats]()
         
@@ -139,7 +141,6 @@ class StatsManager {
                 }
                 else {
                     return []
-                    
                 }
             }
         }

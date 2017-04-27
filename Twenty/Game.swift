@@ -72,7 +72,7 @@ class Game {
     }
     
     func increaseStats(player: Player, sectionNumber: Int) {
-        // sectionNumber is the section in IB that was tapped by user
+        // sectionNumber is the section in the storyboard that was tapped by user
         // section 1 is for points, section 2 is for fouls, section 3 is for techs
         if let statType = Stat(rawValue: sectionNumber) {
             switch statType {
@@ -84,7 +84,7 @@ class Game {
     }
     
     func decreaseStats(player: Player, sectionNumber: Int) {
-        // sectionNumber is the section in IB that was tapped by user
+        // sectionNumber is the section in the storyboard that was tapped by user
         // section 1 is for points, section 2 is for fouls, section 3 is for techs
         if let statType = Stat(rawValue: sectionNumber) {
             switch statType {
