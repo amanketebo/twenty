@@ -93,6 +93,7 @@
 				CA746DC81E6FF1BA00E95130 /* SeriesStats.swift */,
 				CA528D051E7775F100685781 /* StatsManager.swift */,
 				CA4AD2841E7A1E600072EB10 /* AverageStats.swift */,
+				CA4DC0911E3044A1003D09AF /* Extensions.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -129,7 +130,6 @@
 				CAA72EAC1E5E7394006BB76C /* Models */,
 				CA8F6B6F1E39BF4000E81FD7 /* Views */,
 				CA8F6B6E1E39BF3000E81FD7 /* Controllers */,
-				CA4DC0911E3044A1003D09AF /* Extensions.swift */,
 				CACEC66F1E1B520B00FB1F5C /* Support Files */,
 			);
 			path = Twenty;
