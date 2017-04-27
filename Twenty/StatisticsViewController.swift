@@ -58,9 +58,9 @@ class StatisticsViewController: UIViewController {
         noStats?.text = "No saved statistics"
         noStats?.textAlignment = .center
         noStats?.font = UIFont.systemFont(ofSize: 21, weight: UIFontWeightSemibold)
-        noStats?.textColor = UIColor.slightlyLightBlack
+        noStats?.textColor = UIColor(red: 28/255, green: 28/255, blue: 28/255, alpha: 1)
         noStats?.shadowOffset = CGSize(width: 1, height: 1)
-        noStats?.shadowColor = UIColor.slightlyGray
+        noStats?.shadowColor = UIColor(red: 48/255, green: 48/255, blue: 48/255, alpha: 1)
         noStats?.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(noStats!)
         noStats?.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
