@@ -36,6 +36,8 @@ class StatsManager {
     init() { }
     
     func saveStats() {
+        // Definitely want to use CoreData instead later down the line
+        
         if let allStats = defaults.object(forKey: "allStats") as? [[String:[String:Double]]] {
             // Create mutable version of "allStats"
             var mutableStats = allStats

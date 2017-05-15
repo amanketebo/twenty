@@ -71,7 +71,7 @@
 				CA3CADA01E31F0F90090DE7C /* GameLimitsViewController.swift */,
 				CAC28AE41E5A8818003C21DC /* GameViewController.swift */,
 			);
-			name = Controllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		CA8F6B6F1E39BF4000E81FD7 /* Views */ = {
@@ -82,7 +82,7 @@
 				CAF2EFF01E1B482A008DD77A /* Main.storyboard */,
 				CAF2EFF51E1B482A008DD77A /* LaunchScreen.storyboard */,
 			);
-			name = Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CAA72EAC1E5E7394006BB76C /* Models */ = {
@@ -95,7 +95,7 @@
 				CA4AD2841E7A1E600072EB10 /* AverageStats.swift */,
 				CA4DC0911E3044A1003D09AF /* Extensions.swift */,
 			);
-			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		CACEC66F1E1B520B00FB1F5C /* Support Files */ = {
