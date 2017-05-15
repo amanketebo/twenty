@@ -75,10 +75,27 @@ class GameViewController: UIViewController {
         case series(String)
     }
     
+    // MARK: - Life Cycle Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        // Set up navigation bar
+        setupNavigationBar()
+        setupLabels()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let usedAppBefore = defaults.bool(forKey: "usedAppBefore")
+        
+        if !usedAppBefore {
+            view.addSubview(firstTimeInstructionalView())
+            navigationItem.rightBarButtonItem?.isEnabled = false
+            defaults.set(true, forKey: "usedAppBefore")
+        }
+    }
+    
+    //MARK: - Setup Functions
+    
+    func setupNavigationBar() {
         navigationItem.title = "Game \(currentGame.gameNumber)"
         navigationItem.setHidesBackButton(true, animated: true)
         navigationItem.leftBarButtonItem = UIBarButtonItem(
@@ -94,28 +111,10 @@ class GameViewController: UIViewController {
             action: #selector(GameViewController.alertUserAboutEndingGame(_:)
             ))
         
+        // Remove GameLimitsViewController from navigation controller
         if let navVc = self.parent as? UINavigationController {
             navVc.viewControllers.remove(at: 1)
         }
-        
-        setupLabels()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if !defaults.bool(forKey: "firstTime") {
-            view.addSubview(swipeUpDownView())
-            navigationItem.rightBarButtonItem?.isEnabled = false
-            defaults.set(true, forKey: "firstTime")
-        }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    deinit {
-        // print("Dipped out: GameViewController")
     }
     
     func setupLabels() {
@@ -148,47 +147,34 @@ class GameViewController: UIViewController {
     }
     
     @IBAction func swippedStat(_ sender: UISwipeGestureRecognizer) {
-        if let statLabel = sender.view as? UILabel {
+        if let statsLabel = sender.view as? UILabel {
             stopTimer()
             // Check the direction of the swipe to increase/decrease the stat
             let swipeDirection = sender.direction
-            let tagInfo = getTagInformation(tag: statLabel.tag)
+            // Tag on the label indicates the player and what type of stat was swiped
+            let tagInfo = getTagInformation(tag: statsLabel.tag)
             
             switch swipeDirection {
             case UISwipeGestureRecognizerDirection.up:
-                let newStat = Int(statLabel.text!)! + 1
-                statLabel.text = String(newStat)
+                let newStat = Int(statsLabel.text!)! + 1
                 
-                // Depending on the player increase their stats
-                if tagInfo.playerNumber == 1 {
-                    currentGame.increaseStats(player: currentGame.playerOne, sectionNumber: tagInfo.sectionNumber)
-                    checkPlayerLimits(player: currentGame.playerOne)
-                }
-                else if tagInfo.playerNumber == 2 {
-                    currentGame.increaseStats(player: currentGame.playerTwo, sectionNumber: tagInfo.sectionNumber)
-                    checkPlayerLimits(player: currentGame.playerTwo)
-                }
+                statsLabel.text = String(newStat)
+                currentGame.increaseStats(tagInfo: tagInfo)
+                checkGameLimits(player: currentGame.playerOne)
             case UISwipeGestureRecognizerDirection.down:
-                let newStat = Int(statLabel.text!)! - 1
+                let newStat = Int(statsLabel.text!)! - 1
                 guard newStat >= 0 else { return }
-                statLabel.text = String(newStat)
                 
-                // Depending on the player decrease their stats
-                if tagInfo.playerNumber == 1 {
-                    currentGame.decreaseStats(player: currentGame.playerOne, sectionNumber: tagInfo.sectionNumber)
-                    checkPlayerLimits(player: currentGame.playerOne)
-                }
-                else if tagInfo.playerNumber == 2 {
-                    currentGame.decreaseStats(player: currentGame.playerTwo, sectionNumber: tagInfo.sectionNumber)
-                    checkPlayerLimits(player: currentGame.playerTwo)
-                }
+                statsLabel.text = String(newStat)
+                currentGame.decreaseStats(tagInfo: tagInfo)
+                checkGameLimits(player: currentGame.playerOne)
             default: break
             }
-            
         }
     }
     
     @IBAction func swippedTimerLabel(_ sender: UISwipeGestureRecognizer) {
+        // Check the direction of the swipe to increase/decrease the time
         let swipeDirection = sender.direction
         
         switch swipeDirection {
@@ -205,14 +191,14 @@ class GameViewController: UIViewController {
             let newTime = currentTime + 10
             
             if currentGame.isOvertime {
-                if newTime >= 100 {
-                    currentTime = 100
+                if newTime >= currentGame.overtimeAllottedTime {
+                    currentTime = currentGame.overtimeAllottedTime
                     return
                 }
             }
             else {
-                if newTime >= 200 {
-                    currentTime = 200
+                if newTime >= currentGame.regularAllottedTime {
+                    currentTime = currentGame.regularAllottedTime
                     return
                 }
             }
@@ -297,7 +283,7 @@ class GameViewController: UIViewController {
         return (Int(String(readableTag[readableTag.startIndex]))!, Int(String(readableTag[readableTag.index(before: readableTag.endIndex)]))!)
     }
     
-    private func checkPlayerLimits(player: Player) {
+    private func checkGameLimits(player: Player) {
         if let infractionInfo = currentGame.checkPlayerInfractions(player: player) {
             changeInfractionStatsLabelsToRed(for: player, with: infractionInfo)
             
@@ -439,7 +425,7 @@ class GameViewController: UIViewController {
         return timerHowToLabel!
     }
     
-    func swipeUpDownView() -> UIView {
+    func firstTimeInstructionalView() -> UIView {
         let entireView = blurEffectView()
         let playerPointsHowToLabel = playerPointsLabel()
         let timerHowToLabel = timerInfoLabel()
@@ -536,7 +522,7 @@ class GameViewController: UIViewController {
         }
     }
     
-    // MARK: Helper functions
+    // MARK: - Helper functions
     
     private func changeInfractionStatsLabelsToRed(for player: Player, with infractionInfo: (infraction: Infraction, title: String)) {
         switch (player.name, infractionInfo.infraction) {

@@ -22,6 +22,8 @@ class Game {
     var foulLimit = 0
     var techLimit = 0
     var seriesLimit = 0
+    var regularAllottedTime = 200
+    var overtimeAllottedTime = 100
     var winsNeeded = 0
     var isOvertime = false
     var shouldGoToOvertime: Bool {
@@ -72,26 +74,48 @@ class Game {
         self.playerTwo = playerTwo
     }
     
-    func increaseStats(player: Player, sectionNumber: Int) {
+    func increaseStats(tagInfo: (playerNumber: Int, sectionNumber: Int)) {
         // sectionNumber is the section in the storyboard that was tapped by user
         // section 1 is for points, section 2 is for fouls, section 3 is for techs
-        if let statType = Stat(rawValue: sectionNumber) {
-            switch statType {
-            case .point: player.points += 1
-            case .foul: player.fouls += 1
-            case .tech: player.techs += 1
+        if tagInfo.playerNumber == 1 {
+            if let statType = Stat(rawValue: tagInfo.sectionNumber) {
+                switch statType {
+                case .point: playerOne.points += 1
+                case .foul: playerOne.fouls += 1
+                case .tech: playerOne.techs += 1
+                }
+            }
+        }
+        else if tagInfo.playerNumber == 2 {
+            if let statType = Stat(rawValue: tagInfo.sectionNumber) {
+                switch statType {
+                case .point: playerTwo.points += 1
+                case .foul: playerTwo.fouls += 1
+                case .tech: playerTwo.techs += 1
+                }
             }
         }
     }
     
-    func decreaseStats(player: Player, sectionNumber: Int) {
+    func decreaseStats(tagInfo: (playerNumber: Int, sectionNumber: Int)) {
         // sectionNumber is the section in the storyboard that was tapped by user
         // section 1 is for points, section 2 is for fouls, section 3 is for techs
-        if let statType = Stat(rawValue: sectionNumber) {
-            switch statType {
-            case .point: player.points -= 1
-            case .foul: player.fouls -= 1
-            case .tech: player.techs -= 1
+        if tagInfo.playerNumber == 1 {
+            if let statType = Stat(rawValue: tagInfo.sectionNumber) {
+                switch statType {
+                case .point: playerOne.points -= 1
+                case .foul: playerOne.fouls -= 1
+                case .tech: playerOne.techs -= 1
+                }
+            }
+        }
+        else if tagInfo.playerNumber == 2 {
+            if let statType = Stat(rawValue: tagInfo.sectionNumber) {
+                switch statType {
+                case .point: playerTwo.points -= 1
+                case .foul: playerTwo.fouls -= 1
+                case .tech: playerTwo.techs -= 1
+                }
             }
         }
     }
