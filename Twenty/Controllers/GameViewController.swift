@@ -298,8 +298,10 @@ class GameViewController: UIViewController {
     }
     
     private func checkPlayerLimits(player: Player) {
-        if let infractionInfo = currentGame.checkPlayerLimits(player: player) {
-            let alert = UIAlertController(title: "\(infractionInfo.name) has reached the \(infractionInfo.infraction) limit!", message: "Feel free to end the game.", preferredStyle: .alert)
+        if let infractionInfo = currentGame.checkPlayerInfractions(player: player) {
+            changeInfractionStatsLabelsToRed(for: player, with: infractionInfo)
+            
+            let alert = UIAlertController(title: infractionInfo.title, message: "Feel free to end the game.", preferredStyle: .alert)
             let okay = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(okay)
             self.present(alert, animated: true, completion: nil)
@@ -534,6 +536,28 @@ class GameViewController: UIViewController {
         }
     }
     
+    // MARK: Helper functions
+    
+    private func changeInfractionStatsLabelsToRed(for player: Player, with infractionInfo: (infraction: Infraction, title: String)) {
+        switch (player.name, infractionInfo.infraction) {
+        case (currentGame.playerOne.name, Infraction.foul):
+            playerOneFouls.textColor = UIColor.warningRed
+        case (currentGame.playerOne.name, Infraction.tech):
+            playerOneTechs.textColor = UIColor.warningRed
+        case (currentGame.playerOne.name, Infraction.both):
+            playerOneFouls.textColor = UIColor.warningRed
+            playerOneTechs.textColor = UIColor.warningRed
+        case (currentGame.playerTwo.name, Infraction.foul):
+            playerTwoFouls.textColor = UIColor.warningRed
+        case (currentGame.playerTwo.name, Infraction.tech):
+            playerTwoTechs.textColor = UIColor.warningRed
+        case (currentGame.playerTwo.name, Infraction.both):
+            playerTwoFouls.textColor = UIColor.warningRed
+            playerTwoTechs.textColor = UIColor.warningRed
+        default: break
+        }
+    }
+    
     private func resetStatLabels() {
         playerOnePoints.text = "0"
         playerOneFouls.text = "0"
@@ -541,6 +565,11 @@ class GameViewController: UIViewController {
         playerTwoPoints.text = "0"
         playerTwoFouls.text = "0"
         playerTwoTechs.text = "0"
+        
+        playerOneFouls.textColor = UIColor.white
+        playerOneTechs.textColor = UIColor.white
+        playerTwoFouls.textColor = UIColor.white
+        playerTwoTechs.textColor = UIColor.white
         
         if currentGame.isOvertime {
             timerLabel.text = "10.0"

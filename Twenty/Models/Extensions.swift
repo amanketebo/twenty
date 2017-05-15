@@ -51,6 +51,10 @@ extension UIColor {
         return UIColor(red:0.69, green:0.11, blue:0.18, alpha:0.75)
     }
     
+    class var warningRed: UIColor {
+        return UIColor(red:0.98, green:0.08, blue:0.18, alpha:1.0)
+    }
+    
 }
 
 extension Double {

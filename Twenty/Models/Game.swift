@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum Infraction: String {
+    case foul = "foul"
+    case tech = "tech"
+    case both = "foul and tech"
+}
+
 class Game {
     
     var playerOne = Player()
@@ -61,11 +67,6 @@ class Game {
         case tech
     }
     
-    enum Infraction: String {
-        case foul = "foul"
-        case tech = "tech"
-    }
-    
     init(playerOne: Player, playerTwo: Player) {
         self.playerOne = playerOne
         self.playerTwo = playerTwo
@@ -95,20 +96,23 @@ class Game {
         }
     }
     
-    func checkPlayerLimits(player: Player) -> (name: String, infraction: String)? {
-        var infractionInfo: (name: String, infraction: String)?
+    func checkPlayerInfractions(player: Player) -> (infraction: Infraction, title: String)? {
+        var infractionInfo: (infraction: Infraction, title: String)?
         
-        if player.fouls >= foulLimit {
+        if player.fouls >= foulLimit && player.techs >= techLimit {
             player.isOverGameLimit = true
-            infractionInfo = (player.name, Infraction.foul.rawValue)
+            infractionInfo = (Infraction.both, "\(player.name) has reached the \(Infraction.both.rawValue) limit!")
+        }
+        else if player.fouls >= foulLimit {
+            player.isOverGameLimit = true
+            infractionInfo = (Infraction.foul, "\(player.name) has reached the \(Infraction.foul.rawValue) limit!")
         }
         else if player.techs >= techLimit {
             player.isOverGameLimit = true
-            infractionInfo =  (player.name, Infraction.tech.rawValue)
+            infractionInfo = (Infraction.tech, "\(player.name) has reached the \(Infraction.tech.rawValue) limit!")
         }
         else {
             player.isOverGameLimit = false
-            infractionInfo = nil
         }
         
         return infractionInfo
