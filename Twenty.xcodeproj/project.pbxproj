@@ -235,6 +235,7 @@
 				CAF2EFF11E1B482A008DD77A /* Base */,
 			);
 			name = Main.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		CAF2EFF51E1B482A008DD77A /* LaunchScreen.storyboard */ = {
@@ -243,6 +244,7 @@
 				CAF2EFF61E1B482A008DD77A /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
