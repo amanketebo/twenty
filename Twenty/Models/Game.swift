@@ -14,6 +14,12 @@ enum Infraction: String {
     case both = "foul and tech"
 }
 
+enum Ending {
+    case overtime
+    case game(Int)
+    case series(String)
+}
+
 class Game {
     
     var playerOne = Player()
@@ -95,6 +101,7 @@ class Game {
                 }
             }
         }
+        printPlayers()
     }
     
     func decreaseStats(tagInfo: (playerNumber: Int, sectionNumber: Int)) {
@@ -118,6 +125,8 @@ class Game {
                 }
             }
         }
+        
+        printPlayers()
     }
     
     func checkPlayerInfractions(player: Player) -> (infraction: Infraction, title: String)? {
@@ -189,17 +198,27 @@ class Game {
         playerTwo.isOverGameLimit = false
     }
     
-    func printPlayer(_ player: Player) {
-        print("Player : \(player.name)")
-        print("   Points: \(player.points)")
-        print("   Fouls: \(player.fouls)")
-        print("   Techs: \(player.techs)")
-        print("   Is Over Game Limit: \(player.isOverGameLimit)")
-        print("   Games Won In Series: \(player.gamesWonInSeries)")
-        print("   Games Lost In Series: \(player.gamesLostInSeries)")
-        print("   Total Points: \(player.totalPoints)")
-        print("   Total Fouls: \(player.totalFouls)")
-        print("   Total Techs: \(player.totalTechs)")
+    func printPlayers() {
+        print("Player : \(playerOne.name)")
+        print("   Points: \(playerOne.points)")
+        print("   Fouls: \(playerOne.fouls)")
+        print("   Techs: \(playerOne.techs)")
+        print("   Is Over Game Limit: \(playerOne.isOverGameLimit)")
+        print("   Games Won In Series: \(playerOne.gamesWonInSeries)")
+        print("   Games Lost In Series: \(playerOne.gamesLostInSeries)")
+        print("   Total Points: \(playerOne.totalPoints)")
+        print("   Total Fouls: \(playerOne.totalFouls)")
+        print("   Total Techs: \(playerOne.totalTechs)")
+        print("Player : \(playerTwo.name)")
+        print("   Points: \(playerTwo.points)")
+        print("   Fouls: \(playerTwo.fouls)")
+        print("   Techs: \(playerTwo.techs)")
+        print("   Is Over Game Limit: \(playerTwo.isOverGameLimit)")
+        print("   Games Won In Series: \(playerTwo.gamesWonInSeries)")
+        print("   Games Lost In Series: \(playerTwo.gamesLostInSeries)")
+        print("   Total Points: \(playerTwo.totalPoints)")
+        print("   Total Fouls: \(playerTwo.totalFouls)")
+        print("   Total Techs: \(playerTwo.totalTechs)")
     }
     
 }
