@@ -254,7 +254,7 @@ class GameViewController: UIViewController {
     }
     
     func tickTimer(_ timer: Timer) {
-        // If the timer isn't greater than zero that means time has run out
+        // If the timer is less than zero that means time has run out
         guard currentTime > 0 else {
             stopTimer()
             return
