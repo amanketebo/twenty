@@ -20,6 +20,12 @@ enum Ending {
     case series(String)
 }
 
+enum Stat: Int {
+    case point = 1
+    case foul
+    case tech
+}
+
 class Game {
     
     var playerOne = Player()
@@ -67,12 +73,6 @@ class Game {
         }
         
         return winnerName
-    }
-    
-    enum Stat: Int {
-        case point = 1
-        case foul
-        case tech
     }
     
     init(playerOne: Player, playerTwo: Player) {
