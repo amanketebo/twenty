@@ -27,4 +27,12 @@ class StatCollectionViewCell: UICollectionViewCell {
         clipsToBounds = true
     }
     
+    func configureCell(with averageStat: AverageStats) {
+        name.text = averageStat.name
+        averagePoints.text = String(averageStat.points)
+        averageFouls.text = String(averageStat.fouls)
+        averageTechs.text = String(averageStat.techs)
+        record.text = "\(String(Int(averageStat.gamesWon)))-\(String(Int(averageStat.gamesLost)))"
+    }
+    
 }

@@ -96,12 +96,7 @@ extension StatisticsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "statCell", for: indexPath) as! StatCollectionViewCell
-        // Set up cell with information from average stats array
-        cell.name.text = averageStats[indexPath.row].name
-        cell.averagePoints.text = String(averageStats[indexPath.row].points)
-        cell.averageFouls.text = String(averageStats[indexPath.row].fouls)
-        cell.averageTechs.text = String(averageStats[indexPath.row].techs)
-        cell.record.text =  "\(String(Int(averageStats[indexPath.row].gamesWon)))-\(String(Int(averageStats[indexPath.row].gamesLost)))"
+        cell.configureCell(with: averageStats[indexPath.row])
         
         return cell
     }
