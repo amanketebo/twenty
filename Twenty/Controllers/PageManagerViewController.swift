@@ -39,10 +39,6 @@ class PageManagerViewController: UIPageViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    deinit {
-        // print("Dipped out: PageViewController.")
-    }
-    
     func setupPageControl() {
         pageControl.numberOfPages = pageVcs.count
         pageControl.currentPage = 0

@@ -34,10 +34,6 @@ class TwentyViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    deinit {
-        // print("Dipped out: TwentyViewController.")
-    }
-    
     @IBAction func segueToNewGameVc(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "New Game", sender: nil)
     }

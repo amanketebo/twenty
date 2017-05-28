@@ -35,10 +35,6 @@ class GameLimitsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    deinit {
-        // print("Dipped out: GameLimitsViewController")
-    }
-    
     @IBAction func touchedLimit(_ sender: RoundedCornersButton) {
         // The buttons tag corresponds to the section its in
         // Fouls = Section 1, Techs = Section 2, Series = Section 3

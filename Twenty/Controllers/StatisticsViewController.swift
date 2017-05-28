@@ -10,7 +10,12 @@ import UIKit
 
 class StatisticsViewController: UIViewController {
     
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    
+    // MARK: - Properties
     
     let defaults = UserDefaults.standard
     var noStats: UILabel?
@@ -27,6 +32,8 @@ class StatisticsViewController: UIViewController {
         }
     }
     let edgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
+    
+    // MARK: - Life Cycle Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,9 +56,22 @@ class StatisticsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    deinit {
-        // print("Dipped out: StatisticsViewController")
+    // MARK: - Action functions
+    
+    func resetStats(_ barButton: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let yes = UIAlertAction(title: "Yes, I'm Sure", style: .default) { (alert) in
+            self.defaults.removeObject(forKey: "allStats")
+            self.averageStats.removeAll()
+            self.collectionView.reloadData()
+        }
+        alert.addAction(cancel)
+        alert.addAction(yes)
+        self.present(alert, animated: true, completion: nil)
     }
+    
+    // MARK: - View returning functions
     
     func createNoStatsLabelAndAddToView() {
         noStats = UILabel()
@@ -68,21 +88,9 @@ class StatisticsViewController: UIViewController {
         noStats?.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         noStats?.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
-    
-    func resetStats(_ barButton: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let yes = UIAlertAction(title: "Yes, I'm Sure", style: .default) { (alert) in
-            self.defaults.removeObject(forKey: "allStats")
-            self.averageStats.removeAll()
-            self.collectionView.reloadData()
-        }
-        alert.addAction(cancel)
-        alert.addAction(yes)
-        self.present(alert, animated: true, completion: nil)
-    }
-    
 }
+
+// MARK: - Datasource & Delegate functions
 
 extension StatisticsViewController: UICollectionViewDataSource {
     
