@@ -10,6 +10,8 @@ import UIKit
 
 class StatCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var averagePoints: UILabel!
     @IBOutlet weak var averageFouls: UILabel!

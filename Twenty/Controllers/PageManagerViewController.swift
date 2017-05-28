@@ -10,6 +10,8 @@ import UIKit
 
 class PageManagerViewController: UIPageViewController {
     
+    // MARK: - Properties
+    
     var pageControl = UIPageControl()
     lazy var pageVcs: [UIViewController] = {
         // Get VCs from storyboard
@@ -19,6 +21,8 @@ class PageManagerViewController: UIPageViewController {
         
         return [firstVc, secondVc]
     }()
+    
+    // MARK: - Life cycle functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +43,8 @@ class PageManagerViewController: UIPageViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Setup functions
+    
     func setupPageControl() {
         pageControl.numberOfPages = pageVcs.count
         pageControl.currentPage = 0
@@ -48,30 +54,19 @@ class PageManagerViewController: UIPageViewController {
         pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15).isActive = true
     }
     
+    // MARK: - Segue functions
+    
     func segueToGameVc(game: Game) {
         if let navVc = parent as? UINavigationController {
-            if let destinationVc = storyboard?.instantiateViewController(withIdentifier: "Game") {
-                if let gameVc = destinationVc as? GameViewController {
-                    gameVc.currentGame = game
-                    navVc.pushViewController(gameVc, animated: true)
-                }
+            if let gameVc = (storyboard?.instantiateViewController(withIdentifier: "Game")) as? GameViewController {
+                gameVc.currentGame = game
+                navVc.pushViewController(gameVc, animated: true)
             }
         }
     }
 }
 
-extension PageManagerViewController: UIPageViewControllerDelegate {
-    
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        // Change page control to show current page dot
-        if let currentVc = viewControllers?.first {
-            if let indexOfCurrentVc = pageVcs.index(of: currentVc) {
-                pageControl.currentPage = indexOfCurrentVc
-            }
-        }
-    }
-    
-}
+// MARK: - Datasource and delegate functions
 
 extension PageManagerViewController: UIPageViewControllerDataSource {
     
@@ -94,6 +89,19 @@ extension PageManagerViewController: UIPageViewControllerDataSource {
         }
         else {
             return nil
+        }
+    }
+    
+}
+
+extension PageManagerViewController: UIPageViewControllerDelegate {
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        // Change page control to show current page dot
+        if let currentVc = viewControllers?.first {
+            if let indexOfCurrentVc = pageVcs.index(of: currentVc) {
+                pageControl.currentPage = indexOfCurrentVc
+            }
         }
     }
     

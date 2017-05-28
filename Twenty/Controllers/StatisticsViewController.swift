@@ -14,7 +14,6 @@ class StatisticsViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    
     // MARK: - Properties
     
     let defaults = UserDefaults.standard
@@ -33,13 +32,18 @@ class StatisticsViewController: UIViewController {
     }
     let edgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
     
-    // MARK: - Life Cycle Functions
+    // MARK: - Life cycle Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         navigationItem.title = "Statistics"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(self.resetStats(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Reset",
+            style: .plain,
+            target: self,
+            action: #selector(self.resetStats(_:))
+        )
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -90,7 +94,7 @@ class StatisticsViewController: UIViewController {
     }
 }
 
-// MARK: - Datasource & Delegate functions
+// MARK: - Datasource & delegate functions
 
 extension StatisticsViewController: UICollectionViewDataSource {
     

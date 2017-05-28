@@ -11,11 +11,17 @@ import UIKit
 
 class TwentyViewController: UIViewController {
     
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var newGame: UIImageView!
     @IBOutlet weak var statistics: UIImageView!
     
+    // MARK: - Properties
+    
     let defaults = UserDefaults.standard
     private let imageAlpha: CGFloat = 0.40
+    
+    // MARK: - Life cycle functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +40,8 @@ class TwentyViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    // MARK: - Action functions
+    
     @IBAction func segueToNewGameVc(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "New Game", sender: nil)
     }
@@ -42,6 +50,8 @@ class TwentyViewController: UIViewController {
         performSegue(withIdentifier: "Statistics", sender: nil)
 
     }
+    
+    // MARK: - Segue functions
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let statsVC = segue.destination as? StatisticsViewController {

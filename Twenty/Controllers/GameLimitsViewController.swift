@@ -10,6 +10,8 @@ import UIKit
 
 class GameLimitsViewController: UIViewController {
     
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var gameLimitsHolder: UIView! {
         didSet {
             gameLimitsHolder.layer.cornerRadius = 10
@@ -23,7 +25,12 @@ class GameLimitsViewController: UIViewController {
         }
     }
     
+    // MARK: - Properties
+    
     var winsNeeded = 0
+    
+    
+    // MARK: - Life cycle functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +41,8 @@ class GameLimitsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Action functions
     
     @IBAction func touchedLimit(_ sender: RoundedCornersButton) {
         // The buttons tag corresponds to the section its in

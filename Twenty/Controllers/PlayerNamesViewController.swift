@@ -10,6 +10,8 @@ import UIKit
 
 class PlayerNamesViewController: UIViewController {
     
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var playerNamesHolder: UIView! {
         didSet {
             playerNamesHolder.layer.cornerRadius = 10
@@ -26,6 +28,8 @@ class PlayerNamesViewController: UIViewController {
     @IBOutlet weak var playerOneTextField: UITextField!
     @IBOutlet weak var playerTwoTextField: UITextField!
     
+    // MARK: - Life cycle functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -38,6 +42,8 @@ class PlayerNamesViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Action functions
 
     func tappedView(_ recognizer: UITapGestureRecognizer) {
         playerOneTextField.resignFirstResponder()
@@ -45,6 +51,8 @@ class PlayerNamesViewController: UIViewController {
     }
     
 }
+
+// MARK: - Delegate functions
 
 extension PlayerNamesViewController: UITextFieldDelegate {
     

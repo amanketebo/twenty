@@ -101,7 +101,6 @@ class Game {
                 }
             }
         }
-        printPlayers()
     }
     
     func decreaseStats(tagInfo: (playerNumber: Int, sectionNumber: Int)) {
@@ -126,7 +125,6 @@ class Game {
             }
         }
         
-        printPlayers()
     }
     
     func checkPlayerInfractions(player: Player) -> (infraction: Infraction, title: String)? {
