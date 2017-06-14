@@ -18,7 +18,7 @@ class TwentyViewController: UIViewController {
     
     // MARK: - Properties
     
-    let defaults = UserDefaults.standard
+    private let defaults = UserDefaults.standard
     private let imageAlpha: CGFloat = 0.40
     
     // MARK: - Life cycle functions
@@ -57,6 +57,7 @@ class TwentyViewController: UIViewController {
         if let statsVC = segue.destination as? StatisticsViewController {
             let statManager = StatsManager()
             statsVC.averageStats = statManager.getStats()
+            statsVC.statsOrdering = StatsOrdering(rawValue: defaults.integer(forKey: "savedStatsOrdering"))
         }
     }
     

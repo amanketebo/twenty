@@ -8,6 +8,17 @@
 
 import UIKit
 
+enum StatsOrdering: Int {
+    case pointsLeastToGreatest = 1
+    case pointsGreatestToLeast
+    case techsLeastToGreatest
+    case techsGreatestToLeast
+    case foulsLeastToGreatest
+    case foulsGreatestToLeast
+    case recordLeastToGreatest
+    case recordGreatestToLeast
+}
+
 class StatisticsViewController: UIViewController {
     
     // MARK: - IBOutlets
@@ -16,54 +27,113 @@ class StatisticsViewController: UIViewController {
     
     // MARK: - Properties
     
-    let defaults = UserDefaults.standard
-    var noStats: UILabel?
     var averageStats = [AverageStats]() {
         didSet {
             if averageStats.isEmpty {
                 createNoStatsLabelAndAddToView()
-                navigationItem.setRightBarButton(nil, animated: true)
+                navigationItem.rightBarButtonItems?.removeAll()
             }
             else {
                 noStats?.removeFromSuperview()
-                navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset Stats", style: .plain, target: self, action: #selector(self.resetStats(_:)))
+                navigationItem.rightBarButtonItems = [resetBarButton, sortBarButton]
             }
         }
     }
-    let edgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
+    var statsOrdering: StatsOrdering?
+    private var showingStatsOrderingOptions = false
+    private let defaults = UserDefaults.standard
+    fileprivate let edgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
     
-    // MARK: - Life cycle Functions
+    // MARK: - Views
+    
+    private var noStats: UILabel?
+    private lazy var sortBarButton: UIBarButtonItem = {
+        return UIBarButtonItem(
+            image: UIImage(named: "sort"),
+            style: .plain,
+            target: self,
+            action: #selector(presentOrderingOptions(_:)))
+    }()
+    private lazy var resetBarButton: UIBarButtonItem = {
+        return UIBarButtonItem(
+            image: UIImage(named: "reset"),
+            style: .plain,
+            target: self,
+            action: #selector(resetStats(_:)))
+    }()
+    private lazy var orderingOptionsView: UIView = {
+        let optionsView = UIView()
+        optionsView.backgroundColor = .darkBlack
+        optionsView.layer.cornerRadius = 10
+        optionsView.clipsToBounds = true
+        optionsView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(optionsView)
+        
+        NSLayoutConstraint.activate([
+            optionsView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            optionsView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            optionsView.heightAnchor.constraint(equalToConstant: 300),
+            optionsView.widthAnchor.constraint(equalToConstant: 200)
+            ])
+        
+        let firstButton = self.orderingOptionsButton(title: "Points: Least to greatest", ordering: StatsOrdering.pointsLeastToGreatest)
+        let secondButon = self.orderingOptionsButton(title: "Points: Greatest to least", ordering:  StatsOrdering.pointsGreatestToLeast)
+        let thirdButton = self.orderingOptionsButton(title: "Fouls: Least to greatest", ordering: StatsOrdering.foulsLeastToGreatest)
+        let fourthButton = self.orderingOptionsButton(title: "Fouls: Greatest to least", ordering: StatsOrdering.foulsGreatestToLeast)
+        let fifthButton = self.orderingOptionsButton(title: "Techs: Least to greatest", ordering: StatsOrdering.techsLeastToGreatest)
+        let sixthButton = self.orderingOptionsButton(title: "Techs: Least to greatest", ordering:StatsOrdering.techsGreatestToLeast)
+        let buttonStackView = UIStackView(arrangedSubviews: [firstButton, secondButon, thirdButton, fourthButton, fifthButton])
+        
+        buttonStackView.axis = .vertical
+        buttonStackView.distribution = .fillEqually
+        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
+        optionsView.addSubview(buttonStackView)
+        
+        NSLayoutConstraint.activate([
+            buttonStackView.leftAnchor.constraint(equalTo: optionsView.leftAnchor),
+            buttonStackView.rightAnchor.constraint(equalTo: optionsView.rightAnchor),
+            buttonStackView.topAnchor.constraint(equalTo: optionsView.topAnchor),
+            buttonStackView.bottomAnchor.constraint(equalTo: optionsView.bottomAnchor)
+            ])
+        
+        return optionsView
+    }()
+    private var currentStatsOrderingButton: UIButton?
+    private lazy var seeThroughLayer: CALayer = {
+        let seeThrough = CALayer()
+        seeThrough.frame = CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height)
+        seeThrough.backgroundColor = UIColor(red:0.16, green:0.16, blue:0.16, alpha:0.8).cgColor
+        
+        return seeThrough
+    }()
+    
+    // MARK: - Life cycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        navigationItem.title = "Statistics"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Reset",
-            style: .plain,
-            target: self,
-            action: #selector(self.resetStats(_:))
-        )
         
+        navigationItem.title = "Statistics"
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = UIColor.lightBlack
+        sortStats()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillDisappear(_ animated: Bool) {
+        if let setOrdering = statsOrdering {
+            defaults.set(setOrdering.rawValue, forKey: "savedStatsOrdering")
+        }
     }
     
-    // MARK: - Action functions
+    // MARK: - Action methods
     
-    func resetStats(_ barButton: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .alert)
+    @objc private func resetStats(_ barButton: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Are you sure you want to reset all the stats?", message: nil, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let yes = UIAlertAction(title: "Yes, I'm Sure", style: .default) { (alert) in
             self.defaults.removeObject(forKey: "allStats")
@@ -75,9 +145,126 @@ class StatisticsViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    // MARK: - View returning functions
+    @IBAction func tappedView(_ sender: UITapGestureRecognizer) {
+        if showingStatsOrderingOptions {
+            orderingOptionsView.isHidden = true
+            showingStatsOrderingOptions = false
+            seeThroughLayer.removeFromSuperlayer()
+        }
+    }
     
-    func createNoStatsLabelAndAddToView() {
+    @objc private func presentOrderingOptions(_ barButton: UIBarButtonItem) {
+        if showingStatsOrderingOptions {
+            orderingOptionsView.isHidden = true
+            showingStatsOrderingOptions = false
+            seeThroughLayer.removeFromSuperlayer()
+        }
+        else {
+            view.layer.addSublayer(seeThroughLayer)
+            view.addSubview(orderingOptionsView)
+            orderingOptionsView.isHidden = false
+            showingStatsOrderingOptions = true
+        }
+    }
+    
+    @objc private func changeStatsOrdering(_ button: UIButton) {
+        if currentStatsOrderingButton != button {
+            button.backgroundColor = .darkBlue
+            currentStatsOrderingButton?.backgroundColor = nil
+            currentStatsOrderingButton = button
+            statsOrdering = StatsOrdering(rawValue: button.tag)
+            sortStats()
+            collectionView.reloadData()
+        }
+    }
+    
+    // MARK: - Helper methods
+    
+    // TODO: Is there a more efficent way to do this?
+    private func sortStats() {
+        if let ordering = statsOrdering {
+            switch ordering {
+            case .pointsLeastToGreatest:
+                averageStats.sort(by: { (firstStat, secondStat) -> Bool in
+                    if firstStat.points < secondStat.points {
+                        return true
+                    }
+                    else {
+                        return false
+                    }
+                })
+            case .pointsGreatestToLeast:
+                averageStats.sort(by: { (firstStat, secondStat) -> Bool in
+                    if firstStat.points > secondStat.points {
+                        return true
+                    }
+                    else {
+                        return false
+                    }
+                })
+            case .foulsLeastToGreatest:
+                averageStats.sort(by: { (firstStat, secondStat) -> Bool in
+                    if firstStat.fouls < secondStat.fouls {
+                        return true
+                    }
+                    else {
+                        return false
+                    }
+                })
+            case .foulsGreatestToLeast:
+                averageStats.sort(by: { (firstStat, secondStat) -> Bool in
+                    if firstStat.fouls > secondStat.fouls {
+                        return true
+                    }
+                    else {
+                        return false
+                    }
+                })
+            case .techsLeastToGreatest:
+                averageStats.sort(by: { (firstStat, secondStat) -> Bool in
+                    if firstStat.techs < secondStat.techs {
+                        return true
+                    }
+                    else {
+                        return false
+                    }
+                })
+            case .techsGreatestToLeast:
+                averageStats.sort(by: { (firstStat, secondStat) -> Bool in
+                    if firstStat.techs > secondStat.techs {
+                        return true
+                    }
+                    else {
+                        return false
+                    }
+                })
+            case .recordLeastToGreatest:
+                averageStats.sort(by: { (firstStat, secondStat) -> Bool in
+                    if firstStat.winPercentage < secondStat.winPercentage {
+                        return true
+                    }
+                    else {
+                        return false
+                    }
+                })
+            case .recordGreatestToLeast:
+                averageStats.sort(by: { (firstStat, secondStat) -> Bool in
+                    if firstStat.winPercentage > secondStat.winPercentage {
+                        return true
+                    }
+                    else {
+                        return false
+                    }
+                })
+            }
+            
+            collectionView.reloadData()
+        }
+    }
+    
+    // MARK: - View related methods
+    
+    private func createNoStatsLabelAndAddToView() {
         noStats = UILabel()
         noStats?.text = "No saved statistics"
         noStats?.textAlignment = .center
@@ -91,6 +278,24 @@ class StatisticsViewController: UIViewController {
         noStats?.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         noStats?.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         noStats?.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    }
+    
+    private func orderingOptionsButton(title: String, ordering: StatsOrdering) -> UIButton {
+        let orderingButton = UIButton(type: .system)
+        orderingButton.setTitle(title, for: .normal)
+        orderingButton.setTitleColor(.white, for: .normal)
+        orderingButton.tag = ordering.rawValue
+        
+        if let setOrdering = statsOrdering {
+            if setOrdering == ordering {
+                orderingButton.backgroundColor = .darkBlue
+                currentStatsOrderingButton = orderingButton
+            }
+        }
+        
+        orderingButton.addTarget(self, action: #selector(changeStatsOrdering(_:)), for: .touchUpInside)
+        
+        return orderingButton
     }
 }
 

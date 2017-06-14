@@ -45,7 +45,7 @@ class PageManagerViewController: UIPageViewController {
     
     // MARK: - Setup functions
     
-    func setupPageControl() {
+    private func setupPageControl() {
         pageControl.numberOfPages = pageVcs.count
         pageControl.currentPage = 0
         view.addSubview(pageControl)

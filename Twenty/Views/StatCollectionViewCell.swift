@@ -18,6 +18,8 @@ class StatCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var averageTechs: UILabel!
     @IBOutlet weak var record: UILabel!
     
+    // MARK: - Initializer
+    
     // Using coder init since its coming out of storyboard
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -28,6 +30,8 @@ class StatCollectionViewCell: UICollectionViewCell {
         backgroundColor = .slightlyLightBlack
         clipsToBounds = true
     }
+    
+    // MARK: - Methods
     
     func configureCell(with averageStat: AverageStats) {
         name.text = averageStat.name

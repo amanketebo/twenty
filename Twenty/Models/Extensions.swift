@@ -19,6 +19,10 @@ extension UIColor {
         return UIColor(red:0.14, green:0.14, blue:0.14, alpha:1.0)
     }
     
+    class var darkBlue: UIColor {
+        return UIColor(red:0.17, green:0.44, blue:0.64, alpha:1.0)
+    }
+    
     class var slightlyGray: UIColor {
         return UIColor(red: 0.29, green: 0.29, blue: 0.29, alpha: 1.0)
     }
