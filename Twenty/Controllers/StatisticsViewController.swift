@@ -35,7 +35,7 @@ class StatisticsViewController: UIViewController {
             }
             else {
                 noStats?.removeFromSuperview()
-                navigationItem.rightBarButtonItems = [resetBarButton, sortBarButton]
+                navigationItem.rightBarButtonItems = [resetStatsBarButton, sortBarButton]
             }
         }
     }
@@ -54,14 +54,14 @@ class StatisticsViewController: UIViewController {
             target: self,
             action: #selector(presentOrderingOptions(_:)))
     }()
-    private lazy var resetBarButton: UIBarButtonItem = {
+    private lazy var resetStatsBarButton: UIBarButtonItem = {
         return UIBarButtonItem(
             image: UIImage(named: "reset"),
             style: .plain,
             target: self,
             action: #selector(resetStats(_:)))
     }()
-    private lazy var orderingOptionsView: UIView = {
+    private lazy var statsOrderingOptionsView: UIView = {
         let optionsView = UIView()
         optionsView.backgroundColor = .darkBlack
         optionsView.layer.cornerRadius = 10
@@ -81,8 +81,8 @@ class StatisticsViewController: UIViewController {
         let thirdButton = self.orderingOptionsButton(title: "Fouls: Least to greatest", ordering: StatsOrdering.foulsLeastToGreatest)
         let fourthButton = self.orderingOptionsButton(title: "Fouls: Greatest to least", ordering: StatsOrdering.foulsGreatestToLeast)
         let fifthButton = self.orderingOptionsButton(title: "Techs: Least to greatest", ordering: StatsOrdering.techsLeastToGreatest)
-        let sixthButton = self.orderingOptionsButton(title: "Techs: Least to greatest", ordering:StatsOrdering.techsGreatestToLeast)
-        let buttonStackView = UIStackView(arrangedSubviews: [firstButton, secondButon, thirdButton, fourthButton, fifthButton])
+        let sixthButton = self.orderingOptionsButton(title: "Techs: Greatest to least", ordering:StatsOrdering.techsGreatestToLeast)
+        let buttonStackView = UIStackView(arrangedSubviews: [firstButton, secondButon, thirdButton, fourthButton, fifthButton, sixthButton])
         
         buttonStackView.axis = .vertical
         buttonStackView.distribution = .fillEqually
@@ -98,7 +98,7 @@ class StatisticsViewController: UIViewController {
         
         return optionsView
     }()
-    private var currentStatsOrderingButton: UIButton?
+    private var currentlySelectedStatsOrderingButton: UIButton?
     private lazy var seeThroughLayer: CALayer = {
         let seeThrough = CALayer()
         seeThrough.frame = CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height)
@@ -106,6 +106,7 @@ class StatisticsViewController: UIViewController {
         
         return seeThrough
     }()
+    var cellsViewed = [Int : Bool]()
     
     // MARK: - Life cycle methods
     
@@ -147,7 +148,7 @@ class StatisticsViewController: UIViewController {
     
     @IBAction func tappedView(_ sender: UITapGestureRecognizer) {
         if showingStatsOrderingOptions {
-            orderingOptionsView.isHidden = true
+            statsOrderingOptionsView.isHidden = true
             showingStatsOrderingOptions = false
             seeThroughLayer.removeFromSuperlayer()
         }
@@ -155,23 +156,23 @@ class StatisticsViewController: UIViewController {
     
     @objc private func presentOrderingOptions(_ barButton: UIBarButtonItem) {
         if showingStatsOrderingOptions {
-            orderingOptionsView.isHidden = true
+            statsOrderingOptionsView.isHidden = true
             showingStatsOrderingOptions = false
             seeThroughLayer.removeFromSuperlayer()
         }
         else {
             view.layer.addSublayer(seeThroughLayer)
-            view.addSubview(orderingOptionsView)
-            orderingOptionsView.isHidden = false
+            view.addSubview(statsOrderingOptionsView)
+            statsOrderingOptionsView.isHidden = false
             showingStatsOrderingOptions = true
         }
     }
     
     @objc private func changeStatsOrdering(_ button: UIButton) {
-        if currentStatsOrderingButton != button {
+        if currentlySelectedStatsOrderingButton != button {
             button.backgroundColor = .darkBlue
-            currentStatsOrderingButton?.backgroundColor = nil
-            currentStatsOrderingButton = button
+            currentlySelectedStatsOrderingButton?.backgroundColor = nil
+            currentlySelectedStatsOrderingButton = button
             statsOrdering = StatsOrdering(rawValue: button.tag)
             sortStats()
             collectionView.reloadData()
@@ -289,7 +290,7 @@ class StatisticsViewController: UIViewController {
         if let setOrdering = statsOrdering {
             if setOrdering == ordering {
                 orderingButton.backgroundColor = .darkBlue
-                currentStatsOrderingButton = orderingButton
+                currentlySelectedStatsOrderingButton = orderingButton
             }
         }
         
@@ -299,7 +300,7 @@ class StatisticsViewController: UIViewController {
     }
 }
 
-// MARK: - Datasource & delegate functions
+// MARK: - Datasource & delegate methods
 
 extension StatisticsViewController: UICollectionViewDataSource {
     
@@ -312,8 +313,27 @@ extension StatisticsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "statCell", for: indexPath) as! StatCollectionViewCell
         cell.configureCell(with: averageStats[indexPath.row])
+        
+        guard cellsViewed[indexPath.row] != nil else {
+            cell.alpha = 0.5
+            let endingFrame = cell.frame
+            cell.frame = CGRect(x: endingFrame.minX, y: endingFrame.minY + 15, width: endingFrame.size.width, height: endingFrame.size.height)
+            let timeOfAnimation = (Double(indexPath.row) * 0.10) + 0.2
+            UIView.animate(withDuration: timeOfAnimation, animations: { [weak cell] in
+                cell?.alpha = 1
+                cell?.frame = endingFrame
+                }, completion: nil)
+            cellsViewed[indexPath.row] = true
+            return cell
+        }
+        
+        
+        
+//        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panLeftRight(_:)))
+//        cell.addGestureRecognizer(panGesture)
         
         return cell
     }

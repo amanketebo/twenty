@@ -1,4 +1,3 @@
-
 //
 //  ViewController.swift
 //  Twenty
@@ -21,7 +20,7 @@ class TwentyViewController: UIViewController {
     private let defaults = UserDefaults.standard
     private let imageAlpha: CGFloat = 0.40
     
-    // MARK: - Life cycle functions
+    // MARK: - Life cycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +39,7 @@ class TwentyViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: - Action functions
+    // MARK: - Action methods
     
     @IBAction func segueToNewGameVc(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "New Game", sender: nil)

@@ -105,7 +105,7 @@ class GameViewController: UIViewController {
             action: #selector(GameViewController.showLosingStatsAlert(_:)
             ))
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "End Game",
+            title: "Next Game",
             style: .plain,
             target: self,
             action: #selector(GameViewController.showEndingGameAlert(_:)
@@ -314,7 +314,7 @@ class GameViewController: UIViewController {
             currentGame.decideWinner()
             if currentGame.shouldEndSeries {
                 // Show and animate "Joe Mendiola Has Won The Series!"
-                let endView = endOfGameView(typeOfEnding: Ending.series("\(currentGame.wonSeries)"))
+                let endView = endOfGameView(typeOfEnding: Ending.series("\(currentGame.winnersName)"))
                 view.addSubview(endView)
                 self.navigationItem.leftBarButtonItem = nil
                 self.navigationItem.rightBarButtonItem = nil
