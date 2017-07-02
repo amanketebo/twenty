@@ -44,7 +44,7 @@ class GameViewController: UIViewController {
         get {
             // firstTimeTimerLabel!.text since if the information view is being displayed
             //      the firstTimeTimerLabel! is not nil
-            // timerLabel.text! since there will aways be a number in the text label
+            // timerLabel.text! since there will always be a number in the text label
             var timerText = currentlyDisplayingInformationalView ? firstTimeTimerLabel!.text! : timerLabel.text!
             var time = ""
             
@@ -74,7 +74,7 @@ class GameViewController: UIViewController {
         }
     }
     
-    // MARK: - Life Cycle Functions
+    // MARK: - Life cycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,7 +93,7 @@ class GameViewController: UIViewController {
         }
     }
     
-    //MARK: - Setup Functions
+    //MARK: - Setup methods
     
     func setupNavigationBar() {
         navigationItem.title = "Game \(currentGame.gameNumber)"
@@ -105,7 +105,7 @@ class GameViewController: UIViewController {
             action: #selector(GameViewController.showLosingStatsAlert(_:)
             ))
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "End Game",
+            title: "Next Game",
             style: .plain,
             target: self,
             action: #selector(GameViewController.showEndingGameAlert(_:)
@@ -127,7 +127,7 @@ class GameViewController: UIViewController {
         playerTwoGamesWon.text = String(currentGame.playerTwo.gamesWonInSeries)
     }
     
-    // MARK: - Action functions
+    // MARK: - Action methods
     
     @IBAction func swippedStat(_ sender: UISwipeGestureRecognizer) {
         if let statsLabel = sender.view as? UILabel {
@@ -200,7 +200,7 @@ class GameViewController: UIViewController {
         }
     }
     
-    // MARK: - Timer functions
+    // MARK: - Timer methods
     
     @IBAction func tappedTimer(_ sender: UITapGestureRecognizer) {
         if currentlyDisplayingInformationalView {
@@ -263,7 +263,7 @@ class GameViewController: UIViewController {
         currentTime = currentTime - 1
     }
     
-    // MARK: - Alert functions
+    // MARK: - Alert methods
     
     func showLosingStatsAlert(_ button: UIBarButtonItem) {
         // Alert the user their data won't be saved if they continue
@@ -314,7 +314,7 @@ class GameViewController: UIViewController {
             currentGame.decideWinner()
             if currentGame.shouldEndSeries {
                 // Show and animate "Joe Mendiola Has Won The Series!"
-                let endView = endOfGameView(typeOfEnding: Ending.series("\(currentGame.wonSeries)"))
+                let endView = endOfGameView(typeOfEnding: Ending.series("\(currentGame.winnersName)"))
                 view.addSubview(endView)
                 self.navigationItem.leftBarButtonItem = nil
                 self.navigationItem.rightBarButtonItem = nil
@@ -355,7 +355,7 @@ class GameViewController: UIViewController {
         }
     }
     
-    // MARK: - Helper functions
+    // MARK: - Helper methods
     
     private func getTagInformation(tag: Int) -> (playerNumber: Int, sectionNumber: Int) {
         // The first element will be the player number so 1 or 2
@@ -421,7 +421,7 @@ class GameViewController: UIViewController {
         timerLabel.backgroundColor = .fadedBrightGreen
     }
     
-    // MARK: - View returning functions
+    // MARK: - View returning methods
     
     func blurredView() -> UIImageView {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))

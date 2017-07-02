@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum Stat: Int {
+    case point = 1
+    case foul
+    case tech
+}
+
 enum Infraction: String {
     case foul = "foul"
     case tech = "tech"
@@ -18,12 +24,6 @@ enum Ending {
     case overtime
     case game(Int)
     case series(String)
-}
-
-enum Stat: Int {
-    case point = 1
-    case foul
-    case tech
 }
 
 class Game {
@@ -38,6 +38,7 @@ class Game {
     var overtimeAllottedTime = 100
     var winsNeeded = 0
     var isOvertime = false
+    
     var shouldGoToOvertime: Bool {
         var decision = false
         
@@ -53,6 +54,7 @@ class Game {
         
         return decision
     }
+    
     var shouldEndSeries: Bool {
         var decision = false
         
@@ -62,7 +64,8 @@ class Game {
         
         return decision
     }
-    var wonSeries: String {
+    
+    var winnersName: String {
         var winnerName = ""
         
         if playerOne.gamesWonInSeries == winsNeeded {

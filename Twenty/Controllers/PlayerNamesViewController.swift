@@ -28,22 +28,17 @@ class PlayerNamesViewController: UIViewController {
     @IBOutlet weak var playerOneTextField: UITextField!
     @IBOutlet weak var playerTwoTextField: UITextField!
     
-    // MARK: - Life cycle functions
+    // MARK: - Life cycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         playerOneTextField.delegate = self
         playerTwoTextField.delegate = self
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(PlayerNamesViewController.tappedView(_:))))
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-    // MARK: - Action functions
+    // MARK: - Action methods
 
     func tappedView(_ recognizer: UITapGestureRecognizer) {
         playerOneTextField.resignFirstResponder()
@@ -52,7 +47,7 @@ class PlayerNamesViewController: UIViewController {
     
 }
 
-// MARK: - Delegate functions
+// MARK: - Delegate methods
 
 extension PlayerNamesViewController: UITextFieldDelegate {
     

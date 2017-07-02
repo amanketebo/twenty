@@ -22,7 +22,7 @@ class PageManagerViewController: UIPageViewController {
         return [firstVc, secondVc]
     }()
     
-    // MARK: - Life cycle functions
+    // MARK: - Life cycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,18 +43,18 @@ class PageManagerViewController: UIPageViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Setup functions
+    // MARK: - Setup methods
     
-    func setupPageControl() {
+    private func setupPageControl() {
         pageControl.numberOfPages = pageVcs.count
         pageControl.currentPage = 0
-        view.addSubview(pageControl)
         pageControl.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(pageControl)
         pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15).isActive = true
     }
     
-    // MARK: - Segue functions
+    // MARK: - Segue methods
     
     func segueToGameVc(game: Game) {
         if let navVc = parent as? UINavigationController {
@@ -66,14 +66,14 @@ class PageManagerViewController: UIPageViewController {
     }
 }
 
-// MARK: - Datasource and delegate functions
+// MARK: - Datasource and delegate methods
 
 extension PageManagerViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let indexOfVc = pageVcs.index(of: viewController) {
             let previousIndex = indexOfVc - 1
-            guard previousIndex >= 0 else { return nil }
+            guard previousIndex >= 0 else { return nil}
             return pageVcs[previousIndex]
         }
         else {
@@ -88,7 +88,7 @@ extension PageManagerViewController: UIPageViewControllerDataSource {
             return pageVcs[nextIndex]
         }
         else {
-            return nil
+            return pageVcs[1]
         }
     }
     

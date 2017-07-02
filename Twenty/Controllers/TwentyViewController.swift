@@ -1,4 +1,3 @@
-
 //
 //  ViewController.swift
 //  Twenty
@@ -18,10 +17,10 @@ class TwentyViewController: UIViewController {
     
     // MARK: - Properties
     
-    let defaults = UserDefaults.standard
+    private let defaults = UserDefaults.standard
     private let imageAlpha: CGFloat = 0.40
     
-    // MARK: - Life cycle functions
+    // MARK: - Life cycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +39,7 @@ class TwentyViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: - Action functions
+    // MARK: - Action methods
     
     @IBAction func segueToNewGameVc(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "New Game", sender: nil)
@@ -57,6 +56,7 @@ class TwentyViewController: UIViewController {
         if let statsVC = segue.destination as? StatisticsViewController {
             let statManager = StatsManager()
             statsVC.averageStats = statManager.getStats()
+            statsVC.statsOrdering = StatsOrdering(rawValue: defaults.integer(forKey: "savedStatsOrdering"))
         }
     }
     

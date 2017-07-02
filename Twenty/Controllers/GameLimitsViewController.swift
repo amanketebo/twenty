@@ -27,20 +27,7 @@ class GameLimitsViewController: UIViewController {
     
     // MARK: - Properties
     
-    var winsNeeded = 0
-    
-    
-    // MARK: - Life cycle functions
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    private var winsNeeded = 0
     
     // MARK: - Action functions
     

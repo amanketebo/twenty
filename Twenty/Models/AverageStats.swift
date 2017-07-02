@@ -16,5 +16,8 @@ class AverageStats {
     var techs = 0.0
     var gamesWon = 0
     var gamesLost = 0
+    var winPercentage: Double {
+        return (Double(gamesWon)/Double(gamesLost)).roundTo(places: 2)
+    }
     
 }
