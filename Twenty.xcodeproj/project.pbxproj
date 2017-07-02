@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD2845FFCB8307D9EDE4157F /* Pods_Twenty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8B3FFCE022C815E3893A9BD /* Pods_Twenty.framework */; };
 		CA3CAD9F1E31F0600090DE7C /* PlayerNamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3CAD9E1E31F0600090DE7C /* PlayerNamesViewController.swift */; };
 		CA3CADA11E31F0F90090DE7C /* GameLimitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3CADA01E31F0F90090DE7C /* GameLimitsViewController.swift */; };
 		CA4AD2831E7A1A750072EB10 /* StatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AD2821E7A1A750072EB10 /* StatCollectionViewCell.swift */; };
@@ -28,6 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11BC4132793DDE05728739A8 /* Pods-Twenty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twenty.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twenty/Pods-Twenty.release.xcconfig"; sourceTree = "<group>"; };
+		4A9A05DAD2C75B629E78C608 /* Pods-Twenty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twenty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twenty/Pods-Twenty.debug.xcconfig"; sourceTree = "<group>"; };
+		B8B3FFCE022C815E3893A9BD /* Pods_Twenty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twenty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA3CAD9E1E31F0600090DE7C /* PlayerNamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerNamesViewController.swift; sourceTree = "<group>"; };
 		CA3CADA01E31F0F90090DE7C /* GameLimitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLimitsViewController.swift; sourceTree = "<group>"; };
 		CA4AD2821E7A1A750072EB10 /* StatCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -55,12 +59,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD2845FFCB8307D9EDE4157F /* Pods_Twenty.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6756EBE18FA38085CA45C54E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4A9A05DAD2C75B629E78C608 /* Pods-Twenty.debug.xcconfig */,
+				11BC4132793DDE05728739A8 /* Pods-Twenty.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C8986CDCACECA71C0C3B5C32 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B8B3FFCE022C815E3893A9BD /* Pods_Twenty.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CA8F6B6E1E39BF3000E81FD7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +135,8 @@
 			children = (
 				CAF2EFEB1E1B482A008DD77A /* Twenty */,
 				CAF2EFEA1E1B482A008DD77A /* Products */,
+				6756EBE18FA38085CA45C54E /* Pods */,
+				C8986CDCACECA71C0C3B5C32 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,9 +166,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CAF2EFFB1E1B482A008DD77A /* Build configuration list for PBXNativeTarget "Twenty" */;
 			buildPhases = (
+				2DA0E4B0D71A4C4A95FD7C75 /* [CP] Check Pods Manifest.lock */,
 				CAF2EFE51E1B482A008DD77A /* Sources */,
 				CAF2EFE61E1B482A008DD77A /* Frameworks */,
 				CAF2EFE71E1B482A008DD77A /* Resources */,
+				57A8BDCE0C7CE455E1DBAE0D /* [CP] Embed Pods Frameworks */,
+				941950C33B3A9D527EFA5C72 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -202,6 +229,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2DA0E4B0D71A4C4A95FD7C75 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		57A8BDCE0C7CE455E1DBAE0D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Twenty/Pods-Twenty-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		941950C33B3A9D527EFA5C72 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Twenty/Pods-Twenty-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CAF2EFE51E1B482A008DD77A /* Sources */ = {
@@ -345,6 +420,7 @@
 		};
 		CAF2EFFC1E1B482A008DD77A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A9A05DAD2C75B629E78C608 /* Pods-Twenty.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -362,6 +438,7 @@
 		};
 		CAF2EFFD1E1B482A008DD77A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11BC4132793DDE05728739A8 /* Pods-Twenty.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
