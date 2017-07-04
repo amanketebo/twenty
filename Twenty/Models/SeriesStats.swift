@@ -28,15 +28,15 @@ struct SeriesStats {
         self.playerOne.totalPoints = game.playerOne.totalPoints
         self.playerOne.totalFouls = game.playerOne.totalFouls
         self.playerOne.totalTechs = game.playerOne.totalTechs
-        self.playerOne.gamesWon = game.playerOne.gamesWonInSeries
-        self.playerOne.gamesLost = game.playerOne.gamesLostInSeries
+        self.playerOne.gamesWon = game.playerOne.gamesWon
+        self.playerOne.gamesLost = game.playerOne.gamesLost
         // Player two setup
         self.playerTwo.name = game.playerTwo.name
         self.playerTwo.totalPoints = game.playerTwo.totalPoints
         self.playerTwo.totalFouls = game.playerTwo.totalFouls
         self.playerTwo.totalTechs = game.playerTwo.totalTechs
-        self.playerTwo.gamesWon = game.playerTwo.gamesWonInSeries
-        self.playerTwo.gamesLost = game.playerTwo.gamesLostInSeries
+        self.playerTwo.gamesWon = game.playerTwo.gamesWon
+        self.playerTwo.gamesLost = game.playerTwo.gamesLost
     }
     
 }

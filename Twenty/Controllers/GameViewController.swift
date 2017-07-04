@@ -83,13 +83,17 @@ class GameViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let usedAppBefore = defaults.bool(forKey: "usedAppBefore")
-        
+        var usedAppBefore = defaults.bool(forKey: "usedAppBefore")
+        usedAppBefore = false
         if !usedAppBefore {
-            view.addSubview(instructionalView())
-            currentlyDisplayingInformationalView = true
-            navigationItem.rightBarButtonItem?.isEnabled = false
-            defaults.set(true, forKey: "usedAppBefore")
+            if let howToView = Bundle.main.loadNibNamed("HowToView", owner: nil, options: nil)?.first as? HowToView {
+                view.addSubview(howToView)
+                howToView.fillSuperView()
+                howToView.configureView()
+                currentlyDisplayingInformationalView = true
+                navigationItem.rightBarButtonItem?.isEnabled = false
+                defaults.set(true, forKey: "usedAppBefore")
+            }
         }
     }
     
@@ -123,8 +127,8 @@ class GameViewController: UIViewController {
         techLimitLabel.text = "TECHS: \(currentGame.techLimit)"
         playerOneName.text = currentGame.playerOne.name
         playerTwoName.text = currentGame.playerTwo.name
-        playerOneGamesWon.text = String(currentGame.playerOne.gamesWonInSeries)
-        playerTwoGamesWon.text = String(currentGame.playerTwo.gamesWonInSeries)
+        playerOneGamesWon.text = String(currentGame.playerOne.gamesWon)
+        playerTwoGamesWon.text = String(currentGame.playerTwo.gamesWon)
     }
     
     // MARK: - Action methods
@@ -174,14 +178,14 @@ class GameViewController: UIViewController {
             let newTime = currentTime + 10
             
             if currentGame.isOvertime {
-                if newTime >= currentGame.overtimeAllottedTime {
-                    currentTime = currentGame.overtimeAllottedTime
+                if newTime >= Game.overtimeTimeLimit {
+                    currentTime = Game.overtimeTimeLimit
                     return
                 }
             }
             else {
-                if newTime >= currentGame.regularAllottedTime {
-                    currentTime = currentGame.regularAllottedTime
+                if newTime >= Game.regularTimeLimit {
+                    currentTime = Game.regularTimeLimit
                     return
                 }
             }
@@ -193,7 +197,7 @@ class GameViewController: UIViewController {
     
     func pressedOkGotIt(_ button: UIButton) {
         navigationItem.rightBarButtonItem?.isEnabled = true
-        if let top = button.superview as? UIImageView {
+        if let top = button.superview as? HowToView {
             firstTimeTimerLabel = nil
             top.removeFromSuperview()
             currentlyDisplayingInformationalView = false
@@ -337,8 +341,8 @@ class GameViewController: UIViewController {
                 view.addSubview(endView)
                 UIView.animate(withDuration: 1, animations: { endView.alpha = 1 }, completion: { (bool) in
                     self.navigationItem.title = "Game \(self.currentGame.gameNumber)"
-                    self.playerOneGamesWon.text = String(self.currentGame.playerOne.gamesWonInSeries)
-                    self.playerTwoGamesWon.text = String(self.currentGame.playerTwo.gamesWonInSeries)
+                    self.playerOneGamesWon.text = String(self.currentGame.playerOne.gamesWon)
+                    self.playerTwoGamesWon.text = String(self.currentGame.playerTwo.gamesWon)
                     self.currentGame.resetStats()
                     self.resetStatLabels()
                     UIView.animate(withDuration: 1, delay: 1, options: UIViewAnimationOptions.curveLinear, animations: { endView.alpha = 0 }, completion: { (bool) in
@@ -496,67 +500,6 @@ class GameViewController: UIViewController {
         firstTimeTimerLabel?.translatesAutoresizingMaskIntoConstraints = false
         
         return firstTimeTimerLabel!
-    }
-    
-    
-    func instructionalView() -> UIView {
-        let entireView = blurredView()
-        let playerStatsHowToLabel = instructionalPlayerStatsLabel()
-        let firstTimeTimerLabel = instructionalTimerLabel()
-        
-        let swipeUpDownInstructionLabel = UILabel()
-        swipeUpDownInstructionLabel.text = "Swipe up/down \n to change the stats"
-        swipeUpDownInstructionLabel.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightThin)
-        swipeUpDownInstructionLabel.textColor = .white
-        swipeUpDownInstructionLabel.numberOfLines = 0
-        swipeUpDownInstructionLabel.textAlignment = .center
-        swipeUpDownInstructionLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        let swipeLeftRightInstructionLabel = UILabel()
-        swipeLeftRightInstructionLabel.text = "Tap or swipe left/right \n to change game clock"
-        swipeLeftRightInstructionLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 20, weight: UIFontWeightThin)
-        swipeLeftRightInstructionLabel.textColor = .white
-        swipeLeftRightInstructionLabel.numberOfLines = 0
-        swipeLeftRightInstructionLabel.textAlignment = .center
-        swipeLeftRightInstructionLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        let okGotItButton = UIButton()
-        okGotItButton.setTitle("Ok, got it", for: .normal)
-        okGotItButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightBold)
-        okGotItButton.titleLabel?.textColor = .white
-        okGotItButton.layer.cornerRadius = 5
-        okGotItButton.layer.borderWidth = 1
-        okGotItButton.layer.borderColor = UIColor.white.cgColor
-        okGotItButton.titleEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: -10)
-        okGotItButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 30)
-        okGotItButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: UIFontWeightBold)
-        okGotItButton.addTarget(self, action: #selector(GameViewController.pressedOkGotIt(_:)), for: .touchUpInside)
-        okGotItButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        entireView.addSubview(playerStatsHowToLabel)
-        entireView.addSubview(swipeUpDownInstructionLabel)
-        entireView.addSubview(okGotItButton)
-        entireView.addSubview(firstTimeTimerLabel)
-        entireView.addSubview(swipeLeftRightInstructionLabel)
-        
-        
-        NSLayoutConstraint.activate([
-            playerStatsHowToLabel.leftAnchor.constraint(equalTo: entireView.leftAnchor, constant: 20),
-            playerStatsHowToLabel.topAnchor.constraint(equalTo: entireView.topAnchor, constant: 30),
-            swipeUpDownInstructionLabel.centerYAnchor.constraint(equalTo: playerStatsHowToLabel.centerYAnchor),
-            swipeUpDownInstructionLabel.rightAnchor.constraint(equalTo: entireView.rightAnchor),
-            swipeUpDownInstructionLabel.leftAnchor.constraint(equalTo: playerStatsHowToLabel.rightAnchor, constant: 10),
-            okGotItButton.centerXAnchor.constraint(equalTo: entireView.centerXAnchor),
-            okGotItButton.bottomAnchor.constraint(equalTo: entireView.bottomAnchor, constant: -20),
-            firstTimeTimerLabel.centerYAnchor.constraint(equalTo: entireView.centerYAnchor, constant: 10),
-            firstTimeTimerLabel.leftAnchor.constraint(equalTo: entireView.leftAnchor, constant: 20),
-            firstTimeTimerLabel.rightAnchor.constraint(equalTo: entireView.rightAnchor, constant: -20),
-            swipeLeftRightInstructionLabel.topAnchor.constraint(equalTo: firstTimeTimerLabel.bottomAnchor, constant: 20),
-            swipeLeftRightInstructionLabel.leftAnchor.constraint(equalTo: entireView.leftAnchor),
-            swipeLeftRightInstructionLabel.rightAnchor.constraint(equalTo: entireView.rightAnchor)
-            ])
-        
-        return entireView
     }
     
     func endOfGameView(typeOfEnding: Ending) -> UIView {

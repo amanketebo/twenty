@@ -280,8 +280,6 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <userDefinedRuntimeAttributes>
-                                </userDefinedRuntimeAttributes>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="deviceRGB"/>
@@ -705,10 +703,10 @@
             </objects>
             <point key="canvasLocation" x="2118" y="-219"/>
         </scene>
-        <!--Game View Controller-->
+        <!--File's Owner-->
         <scene sceneID="poa-LJ-OWp">
             <objects>
-                <viewController storyboardIdentifier="Game" id="Eep-9h-0lZ" customClass="GameViewController" customModule="Twenty" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Game" id="Eep-9h-0lZ" userLabel="File's Owner" customClass="GameViewController" customModule="Twenty" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bbj-IU-VD5"/>
                         <viewControllerLayoutGuide type="bottom" id="tDY-od-ghr"/>
