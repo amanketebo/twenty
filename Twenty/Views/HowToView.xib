@@ -38,9 +38,10 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3O-hT-GKo">
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3O-hT-GKo" customClass="TimerLabel" customModule="Twenty" customModuleProvider="target">
                             <rect key="frame" x="20" y="336" width="335" height="75"/>
                             <color key="backgroundColor" red="0.1529411765" green="0.90980392160000001" blue="0.20000000000000001" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="75" id="1GZ-rN-rm6"/>
                             </constraints>
@@ -114,11 +115,7 @@
                 <constraint firstItem="xoR-GP-QxR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ljO-mQ-5dh"/>
             </constraints>
             <connections>
-                <outlet property="okGotIt" destination="WEc-TZ-SEF" id="8gJ-6a-6Fp"/>
-                <outlet property="statLabel" destination="3hj-I6-J2r" id="5WD-zs-0zx"/>
-                <outlet property="statsLabelMessage" destination="LSy-A5-xO6" id="NDg-KA-Gwy"/>
-                <outlet property="timerLabel" destination="s3O-hT-GKo" id="E9S-RK-Iez"/>
-                <outlet property="timerLabelMessage" destination="8fj-mG-8br" id="BYf-io-MXg"/>
+                <outlet property="okGotItLabel" destination="WEc-TZ-SEF" id="hM4-Yg-XcV"/>
             </connections>
             <point key="canvasLocation" x="-516.5" y="485.5"/>
         </view>

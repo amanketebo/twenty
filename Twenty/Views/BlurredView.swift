@@ -8,11 +8,11 @@
 
 import UIKit
 
-class BlurredView: UIVisualEffectView {
-    
-    required init?(coder aDecoder: NSCoder) {
+class BlurredView: UIVisualEffectView
+{
+    required init?(coder aDecoder: NSCoder)
+    {
         super.init(coder: aDecoder)
         effect = UIBlurEffect.init(style: .dark)
     }
-
 }

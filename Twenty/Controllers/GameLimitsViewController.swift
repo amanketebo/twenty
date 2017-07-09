@@ -17,9 +17,9 @@ class GameLimitsViewController: UIViewController {
             gameLimitsHolder.layer.cornerRadius = 10
         }
     }
-    @IBOutlet weak var currentFoul: RoundedCornersButton!
-    @IBOutlet weak var currentTech: RoundedCornersButton!
-    @IBOutlet weak var currentSeries: RoundedCornersButton! {
+    @IBOutlet weak var currentFoul: RoundedButton!
+    @IBOutlet weak var currentTech: RoundedButton!
+    @IBOutlet weak var currentSeries: RoundedButton! {
         didSet {
             winsNeeded = Int(currentSeries.currentTitle!)!/2 + 1
         }
@@ -31,7 +31,7 @@ class GameLimitsViewController: UIViewController {
     
     // MARK: - Action functions
     
-    @IBAction func touchedLimit(_ sender: RoundedCornersButton) {
+    @IBAction func touchedLimit(_ sender: RoundedButton) {
         // The buttons tag corresponds to the section its in
         // Fouls = Section 1, Techs = Section 2, Series = Section 3
         let section = sender.tag

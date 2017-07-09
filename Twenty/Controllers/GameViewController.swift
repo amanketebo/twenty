@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, TimerLabelDelegate {
     
     // MARK: - IBOutlets
     
@@ -25,12 +25,13 @@ class GameViewController: UIViewController {
     @IBOutlet weak var playerTwoGamesWon: UILabel!
     @IBOutlet weak var playerOneName: UILabel!
     @IBOutlet weak var playerTwoName: UILabel!
-    @IBOutlet weak var timerLabel: UILabel! {
+    @IBOutlet weak var timerLabel: TimerLabel! {
         didSet {
             // Couldn't give timerLabel a monpspaced font in storyboard so had to do it here.
             timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 60, weight: UIFontWeightLight)
         }
     }
+    
     
     // MARK: - Properties
     
@@ -78,6 +79,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        timerLabel.delegate = self
         setupNavigationBar()
         setupLabels()
     }
@@ -89,7 +91,6 @@ class GameViewController: UIViewController {
             if let howToView = Bundle.main.loadNibNamed("HowToView", owner: nil, options: nil)?.first as? HowToView {
                 view.addSubview(howToView)
                 howToView.fillSuperView()
-                howToView.configureView()
                 currentlyDisplayingInformationalView = true
                 navigationItem.rightBarButtonItem?.isEnabled = false
                 defaults.set(true, forKey: "usedAppBefore")
@@ -160,6 +161,18 @@ class GameViewController: UIViewController {
         }
     }
     
+    func currentTimeLimit() -> Int
+    {
+        if currentGame.isOvertime
+        {
+            return Game.overtimeTimeLimit
+        }
+        else
+        {
+            return Game.regularTimeLimit
+        }
+    }
+    
     @IBAction func swippedTimerLabel(_ sender: UISwipeGestureRecognizer) {
         // Check the direction of the swipe to increase/decrease the time
         let swipeDirection = sender.direction
@@ -197,11 +210,11 @@ class GameViewController: UIViewController {
     
     func pressedOkGotIt(_ button: UIButton) {
         navigationItem.rightBarButtonItem?.isEnabled = true
-        if let top = button.superview as? HowToView {
-            firstTimeTimerLabel = nil
-            top.removeFromSuperview()
-            currentlyDisplayingInformationalView = false
-        }
+//        if let top = button.superview as? HowToView {
+//            firstTimeTimerLabel = nil
+//            top.removeFromSuperview()
+//            currentlyDisplayingInformationalView = false
+//        }
     }
     
     // MARK: - Timer methods
