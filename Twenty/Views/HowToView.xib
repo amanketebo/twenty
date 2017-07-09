@@ -20,7 +20,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qbA-ZU-hSb" customClass="BlurredView" customModule="Twenty" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         </view>
-                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hj-I6-J2r">
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hj-I6-J2r" customClass="StatLabel" customModule="Twenty" customModuleProvider="target">
                             <rect key="frame" x="20" y="106" width="110" height="180"/>
                             <color key="backgroundColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="deviceRGB"/>
                             <gestureRecognizers/>

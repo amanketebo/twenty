@@ -15,10 +15,8 @@ protocol TimerLabelDelegate
 
 class TimerLabel: UILabel
 {
-    
-    var timer: Timer?
-    var delegate: TimerLabelDelegate?
-    var currentTime: Int
+    private var timer: Timer?
+    private var currentTime: Int
     {
         get
         {
@@ -40,13 +38,14 @@ class TimerLabel: UILabel
             text = newTime
         }
     }
+    var delegate: TimerLabelDelegate?
     
     override func awakeFromNib()
     {
         addGestureRecognizers()
     }
     
-    func tappedTimer()
+    @objc private func tappedTimer()
     {
         if (timer == nil)
         {
@@ -59,7 +58,7 @@ class TimerLabel: UILabel
         }
     }
     
-    func swippedTimer(_ sender: UISwipeGestureRecognizer)
+    @objc private func swippedTimer(_ sender: UISwipeGestureRecognizer)
     {
         let direction = sender.direction
         switch direction
@@ -131,5 +130,4 @@ class TimerLabel: UILabel
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swippedTimer(_:)))
         self.addGestureRecognizer(swipeRight)
     }
-
 }

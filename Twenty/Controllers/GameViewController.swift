@@ -8,158 +8,113 @@
 
 import UIKit
 
-class GameViewController: UIViewController, TimerLabelDelegate {
-    
-    // MARK: - IBOutlets
-    
-    @IBOutlet weak var playerOnePoints: UILabel!
-    @IBOutlet weak var playerOneFouls: UILabel!
-    @IBOutlet weak var playerOneTechs: UILabel!
-    @IBOutlet weak var playerTwoPoints: UILabel!
-    @IBOutlet weak var playerTwoFouls: UILabel!
-    @IBOutlet weak var playerTwoTechs: UILabel!
-    @IBOutlet weak var seriesLimitLabel: UILabel!
-    @IBOutlet weak var foulLimitLabel: UILabel!
-    @IBOutlet weak var techLimitLabel: UILabel!
-    @IBOutlet weak var playerOneGamesWon: UILabel!
-    @IBOutlet weak var playerTwoGamesWon: UILabel!
-    @IBOutlet weak var playerOneName: UILabel!
-    @IBOutlet weak var playerTwoName: UILabel!
-    @IBOutlet weak var timerLabel: TimerLabel! {
-        didSet {
-            // Couldn't give timerLabel a monpspaced font in storyboard so had to do it here.
+class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegate
+{
+    @IBOutlet weak var playerOnePoints: StatLabel!
+    @IBOutlet weak var playerOneFouls: StatLabel!
+    @IBOutlet weak var playerOneTechs: StatLabel!
+    @IBOutlet weak var playerTwoPoints: StatLabel!
+    @IBOutlet weak var playerTwoFouls: StatLabel!
+    @IBOutlet weak var playerTwoTechs: StatLabel!
+    @IBOutlet weak var seriesLimitLabel: StatLabel!
+    @IBOutlet weak var foulLimitLabel: StatLabel!
+    @IBOutlet weak var techLimitLabel: StatLabel!
+    @IBOutlet weak var playerOneGamesWon: StatLabel!
+    @IBOutlet weak var playerTwoGamesWon: StatLabel!
+    @IBOutlet weak var playerOneName: StatLabel!
+    @IBOutlet weak var playerTwoName: StatLabel!
+    @IBOutlet weak var timerLabel: TimerLabel!
+        {
+        didSet
+        {
             timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 60, weight: UIFontWeightLight)
         }
     }
     
-    
-    // MARK: - Properties
-    
     let defaults = UserDefaults.standard
     var currentGame: Game!
-    var firstTimeTimer: Timer?
-    var firstTimeTimerLabel: UILabel?
-    var currentlyDisplayingInformationalView = false
-    var timer: Timer?
-    var currentTime: Int {
-        get {
-            // firstTimeTimerLabel!.text since if the information view is being displayed
-            //      the firstTimeTimerLabel! is not nil
-            // timerLabel.text! since there will always be a number in the text label
-            var timerText = currentlyDisplayingInformationalView ? firstTimeTimerLabel!.text! : timerLabel.text!
-            var time = ""
-            
-            // Remove the "." so currentTime can be read as an Int
-            for character in timerText.characters {
-                if character != "." {
-                    time.append(String(character))
-                }
-            }
-            
-            return Int(time)!
-        }
-        set {
-            var number = String(newValue)
-            
-            if newValue < 10 {
-                number.insert("0", at: number.startIndex)
-            }
-            number.insert(".", at: number.index(before: number.endIndex))
-            
-            if currentlyDisplayingInformationalView {
-                firstTimeTimerLabel?.text = number
-            }
-            else {
-                timerLabel.text = number
-            }
-        }
-    }
-    
-    // MARK: - Life cycle methods
+    var playerOne: Player!
+    var playerTwo: Player!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupNavBar()
+        setupGameInformation()
+        setupStatLabelDelegates()
         timerLabel.delegate = self
-        setupNavigationBar()
-        setupLabels()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        var usedAppBefore = defaults.bool(forKey: "usedAppBefore")
-        usedAppBefore = false
-        if !usedAppBefore {
-            if let howToView = Bundle.main.loadNibNamed("HowToView", owner: nil, options: nil)?.first as? HowToView {
-                view.addSubview(howToView)
-                howToView.fillSuperView()
-                currentlyDisplayingInformationalView = true
-                navigationItem.rightBarButtonItem?.isEnabled = false
-                defaults.set(true, forKey: "usedAppBefore")
-            }
+    override func viewDidAppear(_ animated: Bool)
+    {
+        defaults.set(true, forKey: "firstTimeUsingApp")
+        let firstTimeUsingApp = defaults.bool(forKey: "firstTimeUsingApp")
+        
+        if firstTimeUsingApp
+        {
+            presentHowToView()
+            defaults.set(false, forKey: "firstTimeUsingApp")
         }
     }
     
-    //MARK: - Setup methods
-    
-    func setupNavigationBar() {
-        navigationItem.title = "Game \(currentGame.gameNumber)"
+    // MARK: - Setup methods
+
+    func setupNavBar()
+    {
         navigationItem.setHidesBackButton(true, animated: true)
+        navigationItem.title = "Game \(currentGame.gameNumber)"
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             title: "Exit",
             style: .plain,
             target: self,
-            action: #selector(GameViewController.showLosingStatsAlert(_:)
+            action: #selector(GameViewController.presentLosingStatsAlert(_:)
             ))
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Next Game",
             style: .plain,
             target: self,
-            action: #selector(GameViewController.showEndingGameAlert(_:)
+            action: #selector(GameViewController.presentEndingGameAlert(_:)
             ))
         
-        // Remove previous view controller aka the GameLimitsViewController from navigation controller
-        if let navVc = self.parent as? UINavigationController {
+        if let navVc = self.parent as? UINavigationController
+        {
             navVc.viewControllers.remove(at: 1)
         }
     }
     
-    func setupLabels() {
+    func setupGameInformation()
+    {
+        playerOneName.text = currentGame.playerOne.name
+        playerTwoName.text = currentGame.playerTwo.name
         seriesLimitLabel.text = "SERIES: \(currentGame.seriesLimit)"
         foulLimitLabel.text = "FOULS: \(currentGame.foulLimit)"
         techLimitLabel.text = "TECHS: \(currentGame.techLimit)"
-        playerOneName.text = currentGame.playerOne.name
-        playerTwoName.text = currentGame.playerTwo.name
-        playerOneGamesWon.text = String(currentGame.playerOne.gamesWon)
-        playerTwoGamesWon.text = String(currentGame.playerTwo.gamesWon)
+        playerOneGamesWon.text = String(playerOne.gamesWon)
+        playerTwoGamesWon.text = String(playerTwo.gamesWon)
     }
     
-    // MARK: - Action methods
-    
-    @IBAction func swippedStat(_ sender: UISwipeGestureRecognizer) {
-        if let statsLabel = sender.view as? UILabel {
-            stopTimer()
-            // Check the direction of the swipe to increase/decrease the stat
-            let swipeDirection = sender.direction
-            // Tag on the label indicates the player and what type of stat was swiped
-            let tagInfo = getTagInformation(tag: statsLabel.tag)
-            
-            switch swipeDirection {
-            case UISwipeGestureRecognizerDirection.up:
-                let newStat = Int(statsLabel.text!)! + 1
-                
-                statsLabel.text = String(newStat)
-                currentGame.increaseStats(tagInfo: tagInfo)
-                checkGameLimits(playerNumber: tagInfo.playerNumber)
-            case UISwipeGestureRecognizerDirection.down:
-                let newStat = Int(statsLabel.text!)! - 1
-                guard newStat >= 0 else { return }
-                
-                statsLabel.text = String(newStat)
-                currentGame.decreaseStats(tagInfo: tagInfo)
-                checkGameLimits(playerNumber: tagInfo.playerNumber)
-            default: break
+    func setupStatLabelDelegates()
+    {
+        for view in view.subviews
+        {
+            if let statLabel = view as? StatLabel
+            {
+                statLabel.delegate = self
             }
         }
     }
+    
+    func presentHowToView()
+    {
+        if let howToView = Bundle.main.loadNibNamed("HowToView", owner: nil, options: nil)?.first as? HowToView
+        {
+            print("Hey im bout to add the HowToView to my subview")
+            view.addSubview(howToView)
+            howToView.fillSuperView()
+        }
+    }
+    
+    // MARK: - Protocol methods
     
     func currentTimeLimit() -> Int
     {
@@ -173,116 +128,24 @@ class GameViewController: UIViewController, TimerLabelDelegate {
         }
     }
     
-    @IBAction func swippedTimerLabel(_ sender: UISwipeGestureRecognizer) {
-        // Check the direction of the swipe to increase/decrease the time
-        let swipeDirection = sender.direction
-        
-        switch swipeDirection {
-        case UISwipeGestureRecognizerDirection.left:
-            let newTime = currentTime - 10
+    func updatedPlayerStat(playerNumber: Int?, typeOfStat: Stat?, stat: Int) {
+        if let playerNumber = playerNumber, let typeOfStat = typeOfStat
+        {
+            let player = playerNumber == 1 ? playerOne : playerTwo
             
-            if newTime < 0 {
-                currentTime = 0
-                return
-            }
-            
-            currentTime = newTime
-        case UISwipeGestureRecognizerDirection.right:
-            let newTime = currentTime + 10
-            
-            if currentGame.isOvertime {
-                if newTime >= Game.overtimeTimeLimit {
-                    currentTime = Game.overtimeTimeLimit
-                    return
-                }
-            }
-            else {
-                if newTime >= Game.regularTimeLimit {
-                    currentTime = Game.regularTimeLimit
-                    return
-                }
-            }
-            
-            currentTime = newTime
-        default: break
-        }
-    }
-    
-    func pressedOkGotIt(_ button: UIButton) {
-        navigationItem.rightBarButtonItem?.isEnabled = true
-//        if let top = button.superview as? HowToView {
-//            firstTimeTimerLabel = nil
-//            top.removeFromSuperview()
-//            currentlyDisplayingInformationalView = false
-//        }
-    }
-    
-    // MARK: - Timer methods
-    
-    @IBAction func tappedTimer(_ sender: UITapGestureRecognizer) {
-        if currentlyDisplayingInformationalView {
-            if firstTimeTimer == nil {
-                startTimer()
-            }
-            else {
-                stopTimer()
-            }
-        }
-        else {
-            if timer == nil {
-                startTimer()
-            }
-            else {
-                stopTimer()
+            switch typeOfStat
+            {
+            case .point: player?.points = stat
+            case .foul: player?.fouls = stat
+            case .tech: player?.techs = stat
             }
         }
     }
-    
-    private func startTimer() {
-        if currentlyDisplayingInformationalView {
-            guard firstTimeTimer == nil else { return }
-            
-            firstTimeTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(GameViewController.tickTimer(_:)), userInfo: nil, repeats: true)
-            firstTimeTimerLabel?.backgroundColor = .fadedBrightRed
-        }
-        else {
-            guard timer == nil else { return }
-            
-            timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(GameViewController.tickTimer(_:)), userInfo: nil, repeats: true)
-            timerLabel.backgroundColor = .fadedBrightRed
-        }
-    }
-    
-    private func stopTimer() {
-        if currentlyDisplayingInformationalView {
-            guard firstTimeTimer != nil else { return }
-            
-            firstTimeTimerLabel?.backgroundColor = .fadedBrightGreen
-            firstTimeTimer?.invalidate()
-            firstTimeTimer = nil
-        }
-        else {
-            guard timer != nil else { return }
-            
-            timerLabel.backgroundColor = .fadedBrightGreen
-            timer?.invalidate()
-            timer = nil
-        }
-    }
-    
-    func tickTimer(_ timer: Timer) {
-        // If the timer is less than zero that means time has run out
-        guard currentTime > 0 else {
-            stopTimer()
-            return
-        }
-        
-        currentTime = currentTime - 1
-    }
+
     
     // MARK: - Alert methods
     
-    func showLosingStatsAlert(_ button: UIBarButtonItem) {
+    func presentLosingStatsAlert(_ button: UIBarButtonItem) {
         // Alert the user their data won't be saved if they continue
         let alert = UIAlertController(title: "Oh no, the stats!", message: "You must finish the series for them to be saved.", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -299,7 +162,7 @@ class GameViewController: UIViewController, TimerLabelDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func showEndingGameAlert(_ button: UIBarButtonItem) {
+    func presentEndingGameAlert(_ button: UIBarButtonItem) {
         let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let yes = UIAlertAction(title: "Yes, I'm Sure", style: .default, handler: handleUserEndingGame(_:))
@@ -309,7 +172,7 @@ class GameViewController: UIViewController, TimerLabelDelegate {
     }
     
     func handleUserEndingGame(_ alert: UIAlertAction) {
-        stopTimer()
+        timerLabel.stopTimer()
         currentGame.addTotals(for: currentGame.playerOne)
         currentGame.addTotals(for: currentGame.playerTwo)
         
@@ -440,83 +303,9 @@ class GameViewController: UIViewController, TimerLabelDelegate {
     
     // MARK: - View returning methods
     
-    func blurredView() -> UIImageView {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
-        let imageSize = CGSize(width: view.bounds.size.width, height: view.bounds.size.height)
-        let blurredView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        
-        UIGraphicsBeginImageContext(imageSize)
-        view.layer.render(in: UIGraphicsGetCurrentContext()!)
-        imageView.image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        blurredView.frame = imageView.frame
-        imageView.isUserInteractionEnabled = true
-        imageView.addSubview(blurredView)
-        
-        return imageView
-    }
-    
-    func instructionalPlayerStatsLabel() -> UILabel {
-        let playerPointsFrameInView = playerOnePoints.convert(playerOnePoints.frame, to: view)
-        let firstTimePlayerStatsLabel = UILabel()
-        
-        firstTimePlayerStatsLabel.text = "0"
-        firstTimePlayerStatsLabel.font = UIFont.systemFont(ofSize: 50, weight: UIFontWeightMedium)
-        firstTimePlayerStatsLabel.textColor = .white
-        firstTimePlayerStatsLabel.textAlignment = .center
-        firstTimePlayerStatsLabel.backgroundColor = .lightBlack
-        firstTimePlayerStatsLabel.clipsToBounds = true
-        firstTimePlayerStatsLabel.layer.borderWidth = 1
-        firstTimePlayerStatsLabel.layer.borderColor = UIColor.white.cgColor
-        firstTimePlayerStatsLabel.layer.cornerRadius = 10
-        
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(swippedStat(_:)))
-        swipeUp.direction = .up
-        firstTimePlayerStatsLabel.addGestureRecognizer(swipeUp)
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(swippedStat(_:)))
-        swipeDown.direction = .down
-        firstTimePlayerStatsLabel.addGestureRecognizer(swipeDown)
-        
-        firstTimePlayerStatsLabel.isUserInteractionEnabled = true
-        NSLayoutConstraint.activate([
-            firstTimePlayerStatsLabel.widthAnchor.constraint(equalToConstant: playerPointsFrameInView.size.width),
-            firstTimePlayerStatsLabel.heightAnchor.constraint(equalToConstant: playerPointsFrameInView.size.height)
-            ])
-        firstTimePlayerStatsLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        return firstTimePlayerStatsLabel
-    }
-    
-    func instructionalTimerLabel() -> UILabel {
-        firstTimeTimerLabel = UILabel()
-        firstTimeTimerLabel?.text = "20.0"
-        firstTimeTimerLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: 60.0, weight: UIFontWeightLight)
-        firstTimeTimerLabel?.textColor = .white
-        firstTimeTimerLabel?.textAlignment = .center
-        firstTimeTimerLabel?.backgroundColor = .fadedBrightGreen
-        firstTimeTimerLabel?.clipsToBounds = true
-        firstTimeTimerLabel?.layer.borderColor = UIColor.white.cgColor
-        firstTimeTimerLabel?.layer.borderWidth = 1
-        firstTimeTimerLabel?.layer.cornerRadius = 10
-        
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swippedTimerLabel(_:)))
-        swipeLeft.direction = .left
-        firstTimeTimerLabel?.addGestureRecognizer(swipeLeft)
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swippedTimerLabel(_:)))
-        swipeRight.direction = .right
-        firstTimeTimerLabel?.addGestureRecognizer(swipeRight)
-        firstTimeTimerLabel?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tappedTimer(_:))))
-        
-        firstTimeTimerLabel?.isUserInteractionEnabled = true
-        firstTimeTimerLabel?.heightAnchor.constraint(equalToConstant: timerLabel.bounds.size.height).isActive = true
-        firstTimeTimerLabel?.translatesAutoresizingMaskIntoConstraints = false
-        
-        return firstTimeTimerLabel!
-    }
     
     func endOfGameView(typeOfEnding: Ending) -> UIView {
-        let entireView = blurredView()
+        let entireView = UIView()
         entireView.alpha = 0
         
         let endingDescription = UILabel()
