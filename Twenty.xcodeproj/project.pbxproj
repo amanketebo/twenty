@@ -120,7 +120,6 @@
 		CACEC66F1E1B520B00FB1F5C /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				CADCA7501EC95C460044302E /* AppDelegate.swift */,
 				CAF2EFF31E1B482A008DD77A /* Assets.xcassets */,
 				CAF2EFF81E1B482A008DD77A /* Info.plist */,
 			);
@@ -164,6 +163,7 @@
 		CAF2EFEB1E1B482A008DD77A /* Twenty */ = {
 			isa = PBXGroup;
 			children = (
+				CADCA7501EC95C460044302E /* AppDelegate.swift */,
 				CAA72EAC1E5E7394006BB76C /* Models */,
 				CA8F6B6F1E39BF4000E81FD7 /* Views */,
 				CA8F6B6E1E39BF3000E81FD7 /* Controllers */,

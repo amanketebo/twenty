@@ -103,10 +103,8 @@ extension UILabel {
 extension UIView {
     
     @IBInspectable var cornerRadius: CGFloat {
-        
         get { return 0 }
         set { self.layer.cornerRadius = newValue }
-        
     }
     
     func fillSuperView() {

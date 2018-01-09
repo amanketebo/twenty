@@ -221,5 +221,4 @@ class Game {
         print("   Total Fouls: \(playerTwo.totalFouls)")
         print("   Total Techs: \(playerTwo.totalTechs)")
     }
-    
 }
