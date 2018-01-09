@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="EndOfGameView" customModule="Twenty" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S1P-SI-vdP">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QW0-gT-m7a" customClass="BlurredView" customModule="Twenty" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overtime" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8b-3a-2Gh">
+                            <rect key="frame" x="15" y="303" width="345" height="60"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="QW0-gT-m7a" secondAttribute="trailing" id="3Gw-el-nC6"/>
+                        <constraint firstItem="QW0-gT-m7a" firstAttribute="leading" secondItem="S1P-SI-vdP" secondAttribute="leading" id="HLb-Ln-jN9"/>
+                        <constraint firstItem="T8b-3a-2Gh" firstAttribute="centerY" secondItem="S1P-SI-vdP" secondAttribute="centerY" id="L1y-We-4Su"/>
+                        <constraint firstItem="T8b-3a-2Gh" firstAttribute="leading" secondItem="S1P-SI-vdP" secondAttribute="leading" constant="15" id="MpA-ck-X1h"/>
+                        <constraint firstAttribute="trailing" secondItem="T8b-3a-2Gh" secondAttribute="trailing" constant="15" id="aTX-wf-512"/>
+                        <constraint firstAttribute="bottom" secondItem="QW0-gT-m7a" secondAttribute="bottom" id="bNX-mc-THK"/>
+                        <constraint firstItem="T8b-3a-2Gh" firstAttribute="centerX" secondItem="S1P-SI-vdP" secondAttribute="centerX" id="cIo-r0-ICO"/>
+                        <constraint firstItem="QW0-gT-m7a" firstAttribute="top" secondItem="S1P-SI-vdP" secondAttribute="top" id="ckI-cx-B7I"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.79000000000000004" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="S1P-SI-vdP" secondAttribute="bottom" id="JfM-0I-j4y"/>
+                <constraint firstAttribute="trailing" secondItem="S1P-SI-vdP" secondAttribute="trailing" id="Sgx-i2-wKX"/>
+                <constraint firstItem="S1P-SI-vdP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bu5-hv-7ad"/>
+                <constraint firstItem="S1P-SI-vdP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pcB-6v-3PY"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="T8b-3a-2Gh" id="Ncd-iC-a57"/>
+            </connections>
+            <point key="canvasLocation" x="25.5" y="51.5"/>
+        </view>
+    </objects>
+</document>

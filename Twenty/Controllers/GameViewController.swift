@@ -170,8 +170,16 @@ class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegat
         if currentGame.shouldGoToOvertime {
             currentGame.isOvertime = true
             // Show and animate overtime view
-            let endView = endOfGameView(typeOfEnding: Ending.overtime)
+            let endView = setupEndOfGameView(gameEnding: GameEnding.overtime)
             view.addSubview(endView)
+            endView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                endView.leftAnchor.constraint(equalTo: view.leftAnchor),
+                endView.rightAnchor.constraint(equalTo: view.rightAnchor),
+                endView.topAnchor.constraint(equalTo: view.topAnchor),
+                endView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                ])
+        
             UIView.animate(withDuration: 1, animations: { endView.alpha = 1 }, completion: { (bool) in
                 self.navigationItem.title = "Game \(self.currentGame.gameNumber) OT"
                 self.currentGame.resetStats()
@@ -185,8 +193,15 @@ class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegat
             currentGame.decideWinner()
             if currentGame.shouldEndSeries {
                 // Show and animate "Joe Mendiola Has Won The Series!"
-                let endView = endOfGameView(typeOfEnding: Ending.series("\(currentGame.winnersName)"))
+                let endView = setupEndOfGameView(gameEnding: GameEnding.series("\(currentGame.winnersName)"))
                 view.addSubview(endView)
+                endView.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
+                    endView.leftAnchor.constraint(equalTo: view.leftAnchor),
+                    endView.rightAnchor.constraint(equalTo: view.rightAnchor),
+                    endView.topAnchor.constraint(equalTo: view.topAnchor),
+                    endView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                    ])
                 self.navigationItem.leftBarButtonItem = nil
                 self.navigationItem.rightBarButtonItem = nil
                 currentGame.isOvertime = false
@@ -204,8 +219,15 @@ class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegat
                 // Show and an image "Game \(Whatever the next game is)"
                 currentGame.gameNumber += 1
                 currentGame.isOvertime = false
-                let endView = endOfGameView(typeOfEnding: Ending.game(currentGame.gameNumber))
+                let endView = setupEndOfGameView(gameEnding: GameEnding.game(currentGame.gameNumber))
                 view.addSubview(endView)
+                endView.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
+                    endView.leftAnchor.constraint(equalTo: view.leftAnchor),
+                    endView.rightAnchor.constraint(equalTo: view.rightAnchor),
+                    endView.topAnchor.constraint(equalTo: view.topAnchor),
+                    endView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                    ])
                 UIView.animate(withDuration: 1, animations: { endView.alpha = 1 }, completion: { (bool) in
                     self.navigationItem.title = "Game \(self.currentGame.gameNumber)"
                     self.playerOneGamesWon.text = String(self.currentGame.playerOne.gamesWon)
@@ -225,8 +247,6 @@ class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegat
             let _ = navigationController?.popToViewController(firstVc, animated: true)
         }
     }
-    
-    // MARK: - Helper methods
     
     private func getTagInformation(tag: Int) -> (playerNumber: Int, sectionNumber: Int) {
         // The first element will be the player number so 1 or 2
@@ -292,34 +312,20 @@ class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegat
         timerLabel.backgroundColor = .fadedBrightGreen
     }
     
-    // MARK: - View returning methods
+    // MARK: - Helper methods
     
-    
-    func endOfGameView(typeOfEnding: Ending) -> UIView {
-        let entireView = UIView()
-        entireView.alpha = 0
+    private func setupEndOfGameView(gameEnding: GameEnding) -> UIView {
+        let endOfGameView = Bundle.main.loadNibNamed("EndOfGameView", owner: nil, options: nil)?.first as! EndOfGameView
+        var endOfGameDescription = ""
         
-        let endingDescription = UILabel()
-        endingDescription.textAlignment = .center
-        endingDescription.font = UIFont.systemFont(ofSize: 50, weight: UIFont.Weight.bold)
-        endingDescription.textColor = .white
-        endingDescription.numberOfLines = 0
-        endingDescription.translatesAutoresizingMaskIntoConstraints = false
-        
-        switch typeOfEnding {
-        case .overtime: endingDescription.text = "OVERTIME"
-        case .game(let game): endingDescription.text = "GAME \(game)"
-        case .series(let name): endingDescription.text = "\(name) \n HAS WON!".uppercased()
+        switch gameEnding {
+        case .overtime: endOfGameDescription = "overtime".uppercased()
+        case .game(let game): endOfGameDescription = "game \(game)".uppercased()
+        case .series(let name): endOfGameDescription = "\(name) \n has won!".uppercased()
         }
         
-        entireView.addSubview(endingDescription)
-        NSLayoutConstraint.activate([
-            endingDescription.centerYAnchor.constraint(equalTo: entireView.centerYAnchor, constant: 0),
-            endingDescription.leftAnchor.constraint(equalTo: entireView.leftAnchor),
-            endingDescription.rightAnchor.constraint(equalTo: entireView.rightAnchor)
-            ])
-        endingDescription.translatesAutoresizingMaskIntoConstraints = false
+        endOfGameView.descriptionLabel.text = endOfGameDescription
         
-        return entireView
+        return endOfGameView
     }
 }

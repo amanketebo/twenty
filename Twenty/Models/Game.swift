@@ -20,7 +20,7 @@ enum Infraction: String {
     case both = "foul and tech"
 }
 
-enum Ending {
+enum GameEnding {
     case overtime
     case game(Int)
     case series(String)
