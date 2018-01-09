@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,7 +21,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qbA-ZU-hSb" customClass="BlurredView" customModule="Twenty" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         </view>
-                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hj-I6-J2r">
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hj-I6-J2r" customClass="StatLabel" customModule="Twenty" customModuleProvider="target">
                             <rect key="frame" x="20" y="106" width="110" height="180"/>
                             <color key="backgroundColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="deviceRGB"/>
                             <gestureRecognizers/>
@@ -38,9 +39,10 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3O-hT-GKo">
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3O-hT-GKo" customClass="TimerLabel" customModule="Twenty" customModuleProvider="target">
                             <rect key="frame" x="20" y="336" width="335" height="75"/>
                             <color key="backgroundColor" red="0.1529411765" green="0.90980392160000001" blue="0.20000000000000001" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="75" id="1GZ-rN-rm6"/>
                             </constraints>
@@ -77,7 +79,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap or swipe left/right to change game clock" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fj-mG-8br">
-                            <rect key="frame" x="5" y="421" width="365" height="48"/>
+                            <rect key="frame" x="5" y="421" width="365" height="24"/>
                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -106,7 +108,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.79422624139999998" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.79000000000000004" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="xoR-GP-QxR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="J7t-Ad-lKY"/>
                 <constraint firstAttribute="bottom" secondItem="xoR-GP-QxR" secondAttribute="bottom" id="Oxr-lK-WF5"/>
@@ -114,11 +116,7 @@
                 <constraint firstItem="xoR-GP-QxR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ljO-mQ-5dh"/>
             </constraints>
             <connections>
-                <outlet property="okGotIt" destination="WEc-TZ-SEF" id="8gJ-6a-6Fp"/>
-                <outlet property="statLabel" destination="3hj-I6-J2r" id="5WD-zs-0zx"/>
-                <outlet property="statsLabelMessage" destination="LSy-A5-xO6" id="NDg-KA-Gwy"/>
-                <outlet property="timerLabel" destination="s3O-hT-GKo" id="E9S-RK-Iez"/>
-                <outlet property="timerLabelMessage" destination="8fj-mG-8br" id="BYf-io-MXg"/>
+                <outlet property="okGotItLabel" destination="WEc-TZ-SEF" id="hM4-Yg-XcV"/>
             </connections>
             <point key="canvasLocation" x="-516.5" y="485.5"/>
         </view>

@@ -9,7 +9,6 @@
 import Foundation
 
 class AverageStats {
-    
     var name = ""
     var points = 0.0
     var fouls = 0.0
@@ -19,5 +18,4 @@ class AverageStats {
     var winPercentage: Double {
         return (Double(gamesWon)/Double(gamesLost)).roundTo(places: 2)
     }
-    
 }

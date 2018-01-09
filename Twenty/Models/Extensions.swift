@@ -121,5 +121,16 @@ extension UIView {
         }
     }
     
+    func fadeIn(duration: TimeInterval, delay: TimeInterval, completion: ((Bool) -> Void)?) {
+        alpha = 0
+        UIView.animate(withDuration: duration, delay: delay, options: .curveLinear, animations: { [weak self] in
+            self?.alpha = 1
+        }, completion: completion)
+    }
+    
+    func fadeOut(duration: TimeInterval, delay: TimeInterval, completion: ((Bool) -> Void)?) {        
+        UIView.animate(withDuration: duration, delay: delay, options: .curveLinear, animations: { [weak self] in
+            self?.alpha = 0
+        }, completion: completion)
+    }
 }
-

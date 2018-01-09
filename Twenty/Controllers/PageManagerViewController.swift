@@ -60,6 +60,8 @@ class PageManagerViewController: UIPageViewController {
         if let navVc = parent as? UINavigationController {
             if let gameVc = (storyboard?.instantiateViewController(withIdentifier: "Game")) as? GameViewController {
                 gameVc.currentGame = game
+                gameVc.playerOne = game.playerOne
+                gameVc.playerTwo = game.playerTwo
                 navVc.pushViewController(gameVc, animated: true)
             }
         }
