@@ -46,7 +46,6 @@ class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegat
     
     override func viewDidAppear(_ animated: Bool)
     {
-        defaults.set(true, forKey: "firstTimeUsingApp")
         let firstTimeUsingApp = defaults.bool(forKey: "firstTimeUsingApp")
         
         if firstTimeUsingApp
@@ -171,20 +170,15 @@ class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegat
             currentGame.isOvertime = true
             // Show and animate overtime view
             let endView = setupEndOfGameView(gameEnding: GameEnding.overtime)
+            
             view.addSubview(endView)
             endView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                endView.leftAnchor.constraint(equalTo: view.leftAnchor),
-                endView.rightAnchor.constraint(equalTo: view.rightAnchor),
-                endView.topAnchor.constraint(equalTo: view.topAnchor),
-                endView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-                ])
-        
-            UIView.animate(withDuration: 1, animations: { endView.alpha = 1 }, completion: { (bool) in
+            endView.fillSuperView()
+            endView.fadeIn(duration: 1, delay: 0, completion: { (success) in
                 self.navigationItem.title = "Game \(self.currentGame.gameNumber) OT"
                 self.currentGame.resetStats()
                 self.resetStatLabels()
-                UIView.animate(withDuration: 1, delay: 1, options: UIViewAnimationOptions.curveLinear, animations: { endView.alpha = 0 }, completion: { (bool) in
+                endView.fadeOut(duration: 1, delay: 1, completion: { (success) in
                     endView.removeFromSuperview()
                 })
             })
@@ -196,18 +190,13 @@ class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegat
                 let endView = setupEndOfGameView(gameEnding: GameEnding.series("\(currentGame.winnersName)"))
                 view.addSubview(endView)
                 endView.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([
-                    endView.leftAnchor.constraint(equalTo: view.leftAnchor),
-                    endView.rightAnchor.constraint(equalTo: view.rightAnchor),
-                    endView.topAnchor.constraint(equalTo: view.topAnchor),
-                    endView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-                    ])
+                endView.fillSuperView()
                 self.navigationItem.leftBarButtonItem = nil
                 self.navigationItem.rightBarButtonItem = nil
                 currentGame.isOvertime = false
                 self.navigationItem.title = "Series Over"
                 self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Leave", style: .plain, target: self, action: #selector(GameViewController.leaveSeriesAfterWin(_:)))
-                UIView.animate(withDuration: 1, animations: { endView.alpha = 1 }, completion: nil)
+                endView.fadeIn(duration: 1, delay: 0, completion: nil)
                 // initialize data manager with stats array
                 // have data manager store stats in userdefaults
                 let seriesStats = SeriesStats(game: currentGame)
@@ -222,19 +211,14 @@ class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegat
                 let endView = setupEndOfGameView(gameEnding: GameEnding.game(currentGame.gameNumber))
                 view.addSubview(endView)
                 endView.translatesAutoresizingMaskIntoConstraints = false
-                NSLayoutConstraint.activate([
-                    endView.leftAnchor.constraint(equalTo: view.leftAnchor),
-                    endView.rightAnchor.constraint(equalTo: view.rightAnchor),
-                    endView.topAnchor.constraint(equalTo: view.topAnchor),
-                    endView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-                    ])
-                UIView.animate(withDuration: 1, animations: { endView.alpha = 1 }, completion: { (bool) in
+                endView.fillSuperView()
+                endView.fadeIn(duration: 1, delay: 0, completion: { (success) in
                     self.navigationItem.title = "Game \(self.currentGame.gameNumber)"
                     self.playerOneGamesWon.text = String(self.currentGame.playerOne.gamesWon)
                     self.playerTwoGamesWon.text = String(self.currentGame.playerTwo.gamesWon)
                     self.currentGame.resetStats()
                     self.resetStatLabels()
-                    UIView.animate(withDuration: 1, delay: 1, options: UIViewAnimationOptions.curveLinear, animations: { endView.alpha = 0 }, completion: { (bool) in
+                    endView.fadeOut(duration: 1, delay: 1, completion: { (success) in
                         endView.removeFromSuperview()
                     })
                 })
