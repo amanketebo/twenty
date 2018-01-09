@@ -30,14 +30,9 @@
 		CAF2EFF21E1B482A008DD77A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAF2EFF01E1B482A008DD77A /* Main.storyboard */; };
 		CAF2EFF41E1B482A008DD77A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAF2EFF31E1B482A008DD77A /* Assets.xcassets */; };
 		CAF2EFF71E1B482A008DD77A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAF2EFF51E1B482A008DD77A /* LaunchScreen.storyboard */; };
-		CAF47A751F09D28F00D8ED38 /* StatisticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF47A741F09D28F00D8ED38 /* StatisticsManager.swift */; };
-		E3D355869B5EA6F9EBC1C963 /* Pods_Twenty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B8DADBB9BE1571CF117CB20 /* Pods_Twenty.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0B8DADBB9BE1571CF117CB20 /* Pods_Twenty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twenty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		683FC92039FDDDE66E3E2A18 /* Pods-Twenty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twenty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twenty/Pods-Twenty.debug.xcconfig"; sourceTree = "<group>"; };
-		B9B83F194412ED50A420E05C /* Pods-Twenty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twenty.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twenty/Pods-Twenty.release.xcconfig"; sourceTree = "<group>"; };
 		CA35CDC11F11A55A00C26C57 /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
 		CA3CAD9E1E31F0600090DE7C /* PlayerNamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerNamesViewController.swift; sourceTree = "<group>"; };
 		CA3CADA01E31F0F90090DE7C /* GameLimitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLimitsViewController.swift; sourceTree = "<group>"; };
@@ -63,7 +58,6 @@
 		CAF2EFF31E1B482A008DD77A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAF2EFF61E1B482A008DD77A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAF2EFF81E1B482A008DD77A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CAF47A741F09D28F00D8ED38 /* StatisticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,22 +65,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3D355869B5EA6F9EBC1C963 /* Pods_Twenty.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		472EA985C8305CC963C56DC0 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				683FC92039FDDDE66E3E2A18 /* Pods-Twenty.debug.xcconfig */,
-				B9B83F194412ED50A420E05C /* Pods-Twenty.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		CA8F6B6E1E39BF3000E81FD7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,7 +107,6 @@
 				CA746DC81E6FF1BA00E95130 /* SeriesStats.swift */,
 				CA528D051E7775F100685781 /* StatsManager.swift */,
 				CA4AD2841E7A1E600072EB10 /* AverageStats.swift */,
-				CAF47A741F09D28F00D8ED38 /* StatisticsManager.swift */,
 				CA4DC0911E3044A1003D09AF /* Extensions.swift */,
 			);
 			path = Models;
@@ -161,8 +144,6 @@
 			children = (
 				CAF2EFEB1E1B482A008DD77A /* Twenty */,
 				CAF2EFEA1E1B482A008DD77A /* Products */,
-				472EA985C8305CC963C56DC0 /* Pods */,
-				E2E71A3C29A3D13A40ED971D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -185,14 +166,6 @@
 			path = Twenty;
 			sourceTree = "<group>";
 		};
-		E2E71A3C29A3D13A40ED971D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0B8DADBB9BE1571CF117CB20 /* Pods_Twenty.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -200,12 +173,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CAF2EFFB1E1B482A008DD77A /* Build configuration list for PBXNativeTarget "Twenty" */;
 			buildPhases = (
-				67A9B139D18E374B1A9ABB8F /* [CP] Check Pods Manifest.lock */,
 				CAF2EFE51E1B482A008DD77A /* Sources */,
 				CAF2EFE61E1B482A008DD77A /* Frameworks */,
 				CAF2EFE71E1B482A008DD77A /* Resources */,
-				87148286485C8D84D5EA7463 /* [CP] Embed Pods Frameworks */,
-				1EC6967A83B170021DC5719B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -223,12 +193,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Amanuel Ketebo";
 				TargetAttributes = {
 					CAF2EFE81E1B482A008DD77A = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = WYET37TU46;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -265,54 +236,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		1EC6967A83B170021DC5719B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Twenty/Pods-Twenty-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		67A9B139D18E374B1A9ABB8F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		87148286485C8D84D5EA7463 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Twenty/Pods-Twenty-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		CAF2EFE51E1B482A008DD77A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -333,7 +256,6 @@
 				CA5302631F0B8C890001CED5 /* BlurredView.swift in Sources */,
 				CAC28AE51E5A8818003C21DC /* GameViewController.swift in Sources */,
 				CAC380D71E62A732004A9096 /* Game.swift in Sources */,
-				CAF47A751F09D28F00D8ED38 /* StatisticsManager.swift in Sources */,
 				CA3CADA11E31F0F90090DE7C /* GameLimitsViewController.swift in Sources */,
 				CA4AD2831E7A1A750072EB10 /* StatCollectionViewCell.swift in Sources */,
 				CAE3E5491F11C73500F8D426 /* StatLabel.swift in Sources */,
@@ -374,7 +296,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -382,7 +306,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -424,7 +352,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -432,7 +362,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -460,7 +394,6 @@
 		};
 		CAF2EFFC1E1B482A008DD77A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 683FC92039FDDDE66E3E2A18 /* Pods-Twenty.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -471,14 +404,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.unlv.amanketebo.Twenty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		CAF2EFFD1E1B482A008DD77A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9B83F194412ED50A420E05C /* Pods-Twenty.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -489,7 +422,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.unlv.amanketebo.Twenty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

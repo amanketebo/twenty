@@ -81,7 +81,7 @@ class TimerLabel: UILabel
         backgroundColor = .fadedBrightRed
     }
     
-    func tickTimer()
+    @objc func tickTimer()
     {
         guard currentTime > 0 else
         {

@@ -19,7 +19,7 @@ class HowToView: UIView
         addGestureRecognizers()
     }
     
-    func tappedOkGotIt()
+    @objc func tappedOkGotIt()
     {
         fadeOut()
     }

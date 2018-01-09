@@ -40,7 +40,7 @@ class PlayerNamesViewController: UIViewController {
     
     // MARK: - Action methods
 
-    func tappedView(_ recognizer: UITapGestureRecognizer) {
+    @objc func tappedView(_ recognizer: UITapGestureRecognizer) {
         playerOneTextField.resignFirstResponder()
         playerTwoTextField.resignFirstResponder()
     }

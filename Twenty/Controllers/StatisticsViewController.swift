@@ -269,7 +269,7 @@ class StatisticsViewController: UIViewController {
         noStats = UILabel()
         noStats?.text = "No saved statistics"
         noStats?.textAlignment = .center
-        noStats?.font = UIFont.systemFont(ofSize: 21, weight: UIFontWeightSemibold)
+        noStats?.font = UIFont.systemFont(ofSize: 21, weight: UIFont.Weight.semibold)
         noStats?.textColor = UIColor(red: 28/255, green: 28/255, blue: 28/255, alpha: 1)
         noStats?.shadowOffset = CGSize(width: 1, height: 1)
         noStats?.shadowColor = UIColor(red: 48/255, green: 48/255, blue: 48/255, alpha: 1)

@@ -27,7 +27,7 @@ class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegat
         {
         didSet
         {
-            timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 60, weight: UIFontWeightLight)
+            timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 60, weight: UIFont.Weight.light)
         }
     }
     
@@ -136,7 +136,7 @@ class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegat
     
     // MARK: - Alert methods
     
-    func presentLosingStatsAlert(_ button: UIBarButtonItem) {
+    @objc func presentLosingStatsAlert(_ button: UIBarButtonItem) {
         // Alert the user their data won't be saved if they continue
         let alert = UIAlertController(title: "Oh no, the stats!", message: "You must finish the series for them to be saved.", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -153,7 +153,7 @@ class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegat
         self.present(alert, animated: true, completion: nil)
     }
     
-    func presentEndingGameAlert(_ button: UIBarButtonItem) {
+    @objc func presentEndingGameAlert(_ button: UIBarButtonItem) {
         let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let yes = UIAlertAction(title: "Yes, I'm Sure", style: .default, handler: handleUserEndingGame(_:))
@@ -220,7 +220,7 @@ class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegat
         }
     }
     
-    func leaveSeriesAfterWin(_ button: UIBarButtonItem) {
+    @objc func leaveSeriesAfterWin(_ button: UIBarButtonItem) {
         if let firstVc = navigationController?.viewControllers.first {
             let _ = navigationController?.popToViewController(firstVc, animated: true)
         }
@@ -301,7 +301,7 @@ class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegat
         
         let endingDescription = UILabel()
         endingDescription.textAlignment = .center
-        endingDescription.font = UIFont.systemFont(ofSize: 50, weight: UIFontWeightBold)
+        endingDescription.font = UIFont.systemFont(ofSize: 50, weight: UIFont.Weight.bold)
         endingDescription.textColor = .white
         endingDescription.numberOfLines = 0
         endingDescription.translatesAutoresizingMaskIntoConstraints = false

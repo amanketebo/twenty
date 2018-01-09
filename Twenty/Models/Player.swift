@@ -7,23 +7,16 @@
 //
 
 import Foundation
-import RealmSwift
 
-class Player: Object {
-    
-    dynamic var name: String = ""
-    dynamic var points: Int = 0
-    dynamic var fouls: Int = 0
-    dynamic var techs: Int = 0
-    dynamic var totalPoints = 0
-    dynamic var totalFouls = 0
-    dynamic var totalTechs = 0
-    dynamic var gamesWon: Int = 0
-    dynamic var gamesLost: Int = 0
-    dynamic var isOverGameLimit = false
-
-    override static func ignoredProperties() -> [String] {
-        return ["points", "fouls", "techs", "isOverGameLimit"]
-    }
-    
+class Player {
+    var name: String = ""
+    var points: Int = 0
+    var fouls: Int = 0
+    var techs: Int = 0
+    var totalPoints = 0
+    var totalFouls = 0
+    var totalTechs = 0
+    var gamesWon: Int = 0
+    var gamesLost: Int = 0
+    var isOverGameLimit = false
 }
