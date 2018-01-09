@@ -8,75 +8,78 @@
 
 import UIKit
 
-protocol StatLabelDelegate
+@objc protocol StatLabelDelegate
 {
-    func updatedPlayerStat(playerNumber: Int?, typeOfStat: Stat?, stat: Int)
+    func updatedPlayerStat(playerNumber: Int, typeOfStat: Int, stat: Int)
 }
 
 class StatLabel: UILabel
 {
-    // Related to the label's tags in storyboard
+    @IBOutlet var delegate: StatLabelDelegate?
+    
     var playerNumber: Int?
-    var statSection: Stat?
-    var delegate: StatLabelDelegate?
+    var statSection: Int?
     
     required init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
-        setupProperties()
+        setProperties()
         addGestureRecognizers()
     }
     
-    private func setupProperties()
+    private func setProperties()
     {
-        let cellTag = String(tag).characters
+        let statLabelTag = String(tag)
         
-        playerNumber = Int(String(describing: cellTag.first))
-        statSection = Stat(rawValue: Int(String(describing: cellTag.last)) ?? 0)
-    }
-    
-    @objc private func swippedStat(_ sender: UISwipeGestureRecognizer)
-    {
-        let direction = sender.direction
-        switch direction
-        {
-        case UISwipeGestureRecognizerDirection.up:
-            addStat()
-        case UISwipeGestureRecognizerDirection.down:
-            subtractStat()
-        default: break
-        }
-        
-        delegate?.updatedPlayerStat(playerNumber: playerNumber, typeOfStat: statSection, stat: Int(text!)!)
-    }
-    
-    func addStat()
-    {
-        let currentStat = Int(text!)!
-        let updatedStat = currentStat + 1
-        
-        text = String(updatedStat)
-    }
-    
-    func subtractStat()
-    {
-        let currentStat = Int(text!)!
-        
-        if currentStat > 0
-        {
-            let updatedStat = currentStat - 1
-            text = String(updatedStat)
-        }
+        playerNumber = Int(String(describing: statLabelTag.first ?? "0"))
+        statSection = Int(String(describing: statLabelTag.last ?? "0"))
     }
     
     private func addGestureRecognizers()
     {
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(swippedStat(_:)))
-        swipeUp.direction = .up
-        self.addGestureRecognizer(swipeUp)
-        
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(swippedStat(_:)))
+        
+        swipeUp.direction = .up
         swipeDown.direction = .down
+        
+        self.addGestureRecognizer(swipeUp)
         self.addGestureRecognizer(swipeDown)
+    }
+    
+    @objc private func swippedStat(_ sender: UISwipeGestureRecognizer)
+    {
+        switch sender.direction
+        {
+        case UISwipeGestureRecognizerDirection.up: addStat()
+        case UISwipeGestureRecognizerDirection.down: subtractStat()
+        default: break
+        }
+        
+        if let playerNumber = playerNumber,
+            let statSection = statSection,
+            let statLabelText = text,
+            let stat = Int(statLabelText) {
+            delegate?.updatedPlayerStat(playerNumber: playerNumber, typeOfStat: statSection, stat: stat)
+        }
+    }
+    
+    func addStat()
+    {
+        guard let statLabelText = text else { return }
+        guard let currentStat = Int(statLabelText) else { return }
+        
+        text = String(currentStat + 1)
+    }
+    
+    func subtractStat()
+    {
+        guard let statLabelText = text else { return }
+        guard let currentStat = Int(statLabelText) else { return }
+        
+        if currentStat > 0
+        {
+            text = String(currentStat - 1)
+        }
     }
 }

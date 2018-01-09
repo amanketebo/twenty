@@ -41,7 +41,6 @@ class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegat
         
         setupNavBar()
         setupGameInformation()
-        setupStatLabelDelegates()
         timerLabel.delegate = self
     }
     
@@ -93,22 +92,10 @@ class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegat
         playerTwoGamesWon.text = String(playerTwo.gamesWon)
     }
     
-    func setupStatLabelDelegates()
-    {
-        for view in view.subviews
-        {
-            if let statLabel = view as? StatLabel
-            {
-                statLabel.delegate = self
-            }
-        }
-    }
-    
     func presentHowToView()
     {
         if let howToView = Bundle.main.loadNibNamed("HowToView", owner: nil, options: nil)?.first as? HowToView
         {
-            print("Hey im bout to add the HowToView to my subview")
             view.addSubview(howToView)
             howToView.fillSuperView()
         }
@@ -128,17 +115,21 @@ class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegat
         }
     }
     
-    func updatedPlayerStat(playerNumber: Int?, typeOfStat: Stat?, stat: Int) {
-        if let playerNumber = playerNumber, let typeOfStat = typeOfStat
+    func updatedPlayerStat(playerNumber: Int, typeOfStat: Int, stat: Int) {
+        if let typeOfStat = Stat(rawValue: typeOfStat)
         {
-            let player = playerNumber == 1 ? playerOne : playerTwo
+            var player: Player!
+            
+            player = playerNumber == 1 ? playerOne : playerTwo
             
             switch typeOfStat
             {
-            case .point: player?.points = stat
-            case .foul: player?.fouls = stat
-            case .tech: player?.techs = stat
+            case .point: player.points = stat
+            case .foul: player.fouls = stat
+            case .tech: player.techs = stat
             }
+            
+            checkGameLimits(playerNumber: playerNumber)
         }
     }
 

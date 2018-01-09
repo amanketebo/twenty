@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PI1-o5-bTw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PI1-o5-bTw">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,7 +15,7 @@
             <objects>
                 <navigationController id="PI1-o5-bTw" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hFl-a9-l9U">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -51,7 +52,7 @@
                                                 </connections>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEW GAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9E-tv-0de">
-                                                <rect key="frame" x="111" y="133" width="153" height="36"/>
+                                                <rect key="frame" x="111.5" y="133" width="152.5" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -78,7 +79,7 @@
                                                 </connections>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STATISTICS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdS-wo-N6H">
-                                                <rect key="frame" x="112" y="133.5" width="152" height="36"/>
+                                                <rect key="frame" x="112.5" y="133.5" width="151.5" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -333,7 +334,7 @@
                                 <rect key="frame" x="21" y="66" width="333" height="551"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Names" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sw1-MD-8gm">
-                                        <rect key="frame" x="77.5" y="23" width="178.5" height="36"/>
+                                        <rect key="frame" x="80" y="23" width="173.5" height="36"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -443,7 +444,7 @@
                                 <rect key="frame" x="21" y="66" width="333" height="551"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Limits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OxA-3I-oCi">
-                                        <rect key="frame" x="85.5" y="15" width="161.5" height="38"/>
+                                        <rect key="frame" x="88" y="15" width="157" height="38"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -461,7 +462,7 @@
                                                                 <rect key="frame" x="15" y="5" width="295" height="127.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fouls:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etN-hp-sXs">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="61" height="30"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="59.5" height="30"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="25"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
@@ -524,7 +525,7 @@
                                                                 <rect key="frame" x="15" y="5" width="295" height="128"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Techs:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jy9-c4-2jR">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="68.5" height="30"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="67" height="30"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="25"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
@@ -587,7 +588,7 @@
                                                                 <rect key="frame" x="15" y="5" width="295" height="127.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Series:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Anh-UD-QEm">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="71" height="30"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="68.5" height="30"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="25"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
@@ -774,7 +775,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kobe Bryant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlJ-pz-bxy">
-                                                                        <rect key="frame" x="41.5" y="5" width="146" height="30"/>
+                                                                        <rect key="frame" x="41.5" y="5" width="143" height="30"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
@@ -864,6 +865,9 @@
                                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="50"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         <nil key="highlightedColor"/>
+                                                                                        <connections>
+                                                                                            <outlet property="delegate" destination="Eep-9h-0lZ" id="HtF-fT-XhQ"/>
+                                                                                        </connections>
                                                                                     </label>
                                                                                 </subviews>
                                                                                 <constraints>
@@ -883,6 +887,9 @@
                                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="50"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         <nil key="highlightedColor"/>
+                                                                                        <connections>
+                                                                                            <outlet property="delegate" destination="Eep-9h-0lZ" id="wLI-AF-8aZ"/>
+                                                                                        </connections>
                                                                                     </label>
                                                                                 </subviews>
                                                                                 <constraints>
@@ -902,6 +909,9 @@
                                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="50"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         <nil key="highlightedColor"/>
+                                                                                        <connections>
+                                                                                            <outlet property="delegate" destination="Eep-9h-0lZ" id="e0R-Am-jST"/>
+                                                                                        </connections>
                                                                                     </label>
                                                                                 </subviews>
                                                                                 <constraints>
@@ -948,7 +958,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Raja Bell" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFT-Pd-cEw">
-                                                                        <rect key="frame" x="41.5" y="5" width="101.5" height="30"/>
+                                                                        <rect key="frame" x="41.5" y="5" width="99.5" height="30"/>
                                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <nil key="highlightedColor"/>
@@ -1039,6 +1049,9 @@
                                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="50"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         <nil key="highlightedColor"/>
+                                                                                        <connections>
+                                                                                            <outlet property="delegate" destination="Eep-9h-0lZ" id="xpT-EC-HJr"/>
+                                                                                        </connections>
                                                                                     </label>
                                                                                 </subviews>
                                                                                 <constraints>
@@ -1058,6 +1071,9 @@
                                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="50"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         <nil key="highlightedColor"/>
+                                                                                        <connections>
+                                                                                            <outlet property="delegate" destination="Eep-9h-0lZ" id="F41-ZJ-SMf"/>
+                                                                                        </connections>
                                                                                     </label>
                                                                                 </subviews>
                                                                                 <constraints>
@@ -1077,6 +1093,9 @@
                                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="50"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         <nil key="highlightedColor"/>
+                                                                                        <connections>
+                                                                                            <outlet property="delegate" destination="Eep-9h-0lZ" id="kEv-Ws-SPg"/>
+                                                                                        </connections>
                                                                                     </label>
                                                                                 </subviews>
                                                                                 <constraints>
