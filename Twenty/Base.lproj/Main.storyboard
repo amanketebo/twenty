@@ -107,8 +107,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Twenty" id="Hbq-5e-WFv"/>
                     <connections>
-                        <outlet property="newGame" destination="gmh-xZ-Yf0" id="dnC-Yl-4kX"/>
-                        <outlet property="statistics" destination="WIh-Ng-Tpg" id="Wfy-bJ-vqF"/>
+                        <outlet property="newGameImageView" destination="gmh-xZ-Yf0" id="x7m-c8-gwF"/>
+                        <outlet property="statisticsImageView" destination="WIh-Ng-Tpg" id="FOj-ho-V3C"/>
                         <segue destination="8UJ-Vg-4AY" kind="show" identifier="New Game" id="Hfe-PA-5ME"/>
                         <segue destination="EoM-ak-uK3" kind="show" identifier="Statistics" id="J0F-47-ano"/>
                     </connections>
@@ -116,12 +116,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="VBR-5F-rQs">
                     <connections>
-                        <action selector="segueToNewGameVc:" destination="BYZ-38-t0r" id="2Cc-Pe-gWq"/>
+                        <action selector="segueToNewGameVC:" destination="BYZ-38-t0r" id="QLg-IP-Nvj"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="WgT-Qc-WNX">
                     <connections>
-                        <action selector="segueToStatisticsVc:" destination="BYZ-38-t0r" id="3dC-a6-3iW"/>
+                        <action selector="segueToStatisticsVC:" destination="BYZ-38-t0r" id="2fv-I6-dif"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

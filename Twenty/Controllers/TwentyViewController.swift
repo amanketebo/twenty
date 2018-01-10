@@ -27,11 +27,11 @@ class TwentyViewController: UIViewController {
     
     // MARK: - Action methods
     @IBAction func segueToNewGameVC(_ sender: UITapGestureRecognizer) {
-        performSegue(withIdentifier: "New Game", sender: nil)
+        performSegue(withIdentifier: UIStoryboard.newGameVCSegue, sender: nil)
     }
     
     @IBAction func segueToStatisticsVC(_ sender: UITapGestureRecognizer) {
-        performSegue(withIdentifier: "Statistics", sender: nil)
+        performSegue(withIdentifier: UIStoryboard.statisticsVCSegue, sender: nil)
 
     }
     
@@ -41,7 +41,7 @@ class TwentyViewController: UIViewController {
             let statManager = StatsManager()
             
             statsVC.averageStats = statManager.getStats()
-            statsVC.statsOrdering = StatsOrdering(rawValue: defaults.integer(forKey: "savedStatsOrdering"))
+            statsVC.statsOrdering = StatsOrdering(rawValue: defaults.integer(forKey: UserDefaults.savedStatsOrderingKey))
         }
     }
 }

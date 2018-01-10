@@ -101,9 +101,8 @@ extension UILabel {
 }
 
 extension UIView {
-    
     @IBInspectable var cornerRadius: CGFloat {
-        get { return 0 }
+        get { return self.layer.cornerRadius }
         set { self.layer.cornerRadius = newValue }
     }
     
@@ -131,4 +130,13 @@ extension UIView {
             self?.alpha = 0
         }, completion: completion)
     }
+}
+
+extension UIStoryboard {
+    static let newGameVCSegue = "New Game"
+    static let statisticsVCSegue = "Statistics"
+}
+
+extension UserDefaults {
+    static let savedStatsOrderingKey = "savedStatsOrdering"
 }
