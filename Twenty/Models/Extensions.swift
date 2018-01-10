@@ -139,4 +139,16 @@ extension UIStoryboard {
 
 extension UserDefaults {
     static let savedStatsOrderingKey = "savedStatsOrdering"
+    static let allStatsKey = "allStatsKey"
 }
+
+extension Bundle {
+    static let statsOrderingView = "StatsOrderingView"
+    
+    func loadNibNamed(_ name: String) -> UIView? {
+        guard let nibView = Bundle.main.loadNibNamed(name, owner: nil, options: nil)?.first as? UIView  else { return nil }
+        
+        return nibView
+    }
+}
+

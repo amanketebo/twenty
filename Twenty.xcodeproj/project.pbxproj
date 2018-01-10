@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA198ED92005E40D00833B0F /* StatsOrderingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA198ED82005E40D00833B0F /* StatsOrderingView.xib */; };
+		CA198EDB2005E68500833B0F /* StatsOrderingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA198EDA2005E68500833B0F /* StatsOrderingView.swift */; };
 		CA35CDC21F11A55A00C26C57 /* TimerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA35CDC11F11A55A00C26C57 /* TimerLabel.swift */; };
 		CA3CAD9F1E31F0600090DE7C /* PlayerNamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3CAD9E1E31F0600090DE7C /* PlayerNamesViewController.swift */; };
 		CA3CADA11E31F0F90090DE7C /* GameLimitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3CADA01E31F0F90090DE7C /* GameLimitsViewController.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CA198ED82005E40D00833B0F /* StatsOrderingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatsOrderingView.xib; sourceTree = "<group>"; };
+		CA198EDA2005E68500833B0F /* StatsOrderingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsOrderingView.swift; sourceTree = "<group>"; };
 		CA35CDC11F11A55A00C26C57 /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
 		CA3CAD9E1E31F0600090DE7C /* PlayerNamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerNamesViewController.swift; sourceTree = "<group>"; };
 		CA3CADA01E31F0F90090DE7C /* GameLimitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLimitsViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +102,7 @@
 				CA5302621F0B8C890001CED5 /* BlurredView.swift */,
 				CAE3E5461F11B60400F8D426 /* HowToView.swift */,
 				CAC8E9E820049FDD00C3AC11 /* EndOfGameView.swift */,
+				CA198EDA2005E68500833B0F /* StatsOrderingView.swift */,
 				CAE3E5451F11B44800F8D426 /* Storyboards */,
 				CAE3E5441F11B43A00F8D426 /* Xibs */,
 			);
@@ -131,6 +136,7 @@
 			children = (
 				CA5BC7B31F0A20C900A9DCD2 /* HowToView.xib */,
 				CAC8E9E620049B4800C3AC11 /* EndOfGameView.xib */,
+				CA198ED82005E40D00833B0F /* StatsOrderingView.xib */,
 			);
 			name = Xibs;
 			sourceTree = "<group>";
@@ -237,6 +243,7 @@
 				CAF2EFF71E1B482A008DD77A /* LaunchScreen.storyboard in Resources */,
 				CAF2EFF41E1B482A008DD77A /* Assets.xcassets in Resources */,
 				CA5BC7B41F0A20C900A9DCD2 /* HowToView.xib in Resources */,
+				CA198ED92005E40D00833B0F /* StatsOrderingView.xib in Resources */,
 				CAF2EFF21E1B482A008DD77A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAA72EAE1E5E7420006BB76C /* Player.swift in Sources */,
+				CA198EDB2005E68500833B0F /* StatsOrderingView.swift in Sources */,
 				CA746DC91E6FF1BA00E95130 /* SeriesStats.swift in Sources */,
 				CA35CDC21F11A55A00C26C57 /* TimerLabel.swift in Sources */,
 				CA3CAD9F1E31F0600090DE7C /* PlayerNamesViewController.swift in Sources */,

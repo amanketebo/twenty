@@ -35,7 +35,7 @@ class TwentyViewController: UIViewController {
 
     }
     
-    // MARK: - Segue functions
+    // MARK: - Segue methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let statsVC = segue.destination as? StatisticsViewController {
             let statManager = StatsManager()

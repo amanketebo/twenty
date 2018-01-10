@@ -16,6 +16,8 @@ class StatCollectionViewCell: UICollectionViewCell
     @IBOutlet weak var averageTechs: UILabel!
     @IBOutlet weak var record: UILabel!
     
+    static let identifier = "statCell"
+    
     required init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
