@@ -101,12 +101,9 @@ extension UILabel {
 }
 
 extension UIView {
-    
     @IBInspectable var cornerRadius: CGFloat {
-        
-        get { return 0 }
+        get { return self.layer.cornerRadius }
         set { self.layer.cornerRadius = newValue }
-        
     }
     
     func fillSuperView() {
@@ -134,3 +131,24 @@ extension UIView {
         }, completion: completion)
     }
 }
+
+extension UIStoryboard {
+    static let newGameVCSegue = "New Game"
+    static let statisticsVCSegue = "Statistics"
+}
+
+extension UserDefaults {
+    static let savedStatsOrderingKey = "savedStatsOrdering"
+    static let allStatsKey = "allStatsKey"
+}
+
+extension Bundle {
+    static let statsOrderingView = "StatsOrderingView"
+    
+    func loadNibNamed(_ name: String) -> UIView? {
+        guard let nibView = Bundle.main.loadNibNamed(name, owner: nil, options: nil)?.first as? UIView  else { return nil }
+        
+        return nibView
+    }
+}
+
