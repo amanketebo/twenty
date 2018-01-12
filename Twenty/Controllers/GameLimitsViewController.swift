@@ -9,27 +9,25 @@
 import UIKit
 
 class GameLimitsViewController: UIViewController {
-    
-    // MARK: - IBOutlets
-    
-    @IBOutlet weak var gameLimitsHolder: UIView! {
-        didSet {
-            gameLimitsHolder.layer.cornerRadius = 10
-        }
-    }
+    @IBOutlet weak var gameLimitsHolder: UIView!
     @IBOutlet weak var currentFoul: RoundedButton!
     @IBOutlet weak var currentTech: RoundedButton!
     @IBOutlet weak var currentSeries: RoundedButton! {
         didSet {
-            winsNeeded = Int(currentSeries.currentTitle!)!/2 + 1
+            guard let currentTitle = currentSeries.currentTitle else { return }
+            guard let currentTitleNumber = Int(currentTitle) else { return }
+            
+            winsNeeded = currentTitleNumber/2 + 1
         }
     }
     
-    // MARK: - Properties
-    
     private var winsNeeded = 0
-    
-    // MARK: - Action functions
+    private var pageManager: PageManagerViewController? {
+        return self.parent as? PageManagerViewController
+    }
+    private var playerNameVC: PlayerNamesViewController? {
+        return pageManager?.pageVcs.first as? PlayerNamesViewController
+    }
     
     @IBAction func touchedLimit(_ sender: RoundedButton) {
         // The buttons tag corresponds to the section its in
@@ -38,20 +36,20 @@ class GameLimitsViewController: UIViewController {
         switch section {
         case 1:
             if sender != currentFoul {
-                sender.backgroundColor = UIColor.lightRed
-                currentFoul.backgroundColor = UIColor.lightBlack
+                sender.backgroundColor = .lightRed
+                currentFoul.backgroundColor = .lightBlack
                 currentFoul = sender
             }
         case 2:
             if sender != currentTech {
-                sender.backgroundColor = UIColor.lightGreen
-                currentTech.backgroundColor = UIColor.lightBlack
+                sender.backgroundColor = .lightGreen
+                currentTech.backgroundColor = .lightBlack
                 currentTech = sender
             }
         case 3:
             if sender != currentSeries {
-                sender.backgroundColor = UIColor.lightPurple
-                currentSeries.backgroundColor = UIColor.lightBlack
+                sender.backgroundColor = .lightPurple
+                currentSeries.backgroundColor = .lightBlack
                 currentSeries = sender
             }
         default: break
@@ -59,45 +57,48 @@ class GameLimitsViewController: UIViewController {
     }
     
     @IBAction func touchedStartGame() {
-        // Check to make sure the game can be started first by making sure both player names have been entered
-        if let pageManager = self.parent as? PageManagerViewController {
-            if let playerNameVc = pageManager.pageVcs.first as? PlayerNamesViewController {
-                
-                // Make sure all players have entered their names or else show an alert
-                if playerNameVc.playerOneTextField.text == "" || playerNameVc.playerTwoTextField.text == "" {
-                    let alert = UIAlertController(title: "Not Enough Players!", message: "Please enter both player names." , preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    alert.addAction(action)
-                    self.present(alert, animated: true, completion: nil)
-                }
-                // Make sure the player names are not the same or else show an alert
-                else if playerNameVc.playerOneTextField.text == playerNameVc.playerTwoTextField.text {
-                    let alert = UIAlertController(title: "Same Names!", message: "Please make sure the players have different names." , preferredStyle: .alert)
-                    let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    alert.addAction(action)
-                    self.present(alert, animated: true, completion: nil)
-                }
-                    // Since both names were entered the page view controller can segue
-                    // Set up the model then segue from pagevc
-                else {
-                    if let gameLimitsVc = pageManager.pageVcs.last as? GameLimitsViewController {
-                        let playerOne = Player()
-                        let playerTwo = Player()
-                        let setupGame = Game(playerOne: playerOne, playerTwo: playerTwo)
-                        // ! since text fields definetly have names in them and buttons have numbers
-                        playerOne.name = playerNameVc.playerOneTextField.text!
-                        playerTwo.name = playerNameVc.playerTwoTextField.text!
-                        setupGame.foulLimit = Int(gameLimitsVc.currentFoul.currentTitle!)!
-                        setupGame.techLimit = Int(gameLimitsVc.currentTech.currentTitle!)!
-                        setupGame.seriesLimit = Int(gameLimitsVc.currentSeries.currentTitle!)!
-                        setupGame.playerOne = playerOne
-                        setupGame.playerTwo = playerTwo
-                        setupGame.winsNeeded = winsNeeded
-                        pageManager.segueToGameVc(game: setupGame)
-                    }
-                }
-            }
+        guard let pageManager = pageManager else { return }
+        guard let playerNameVC = playerNameVC else { return }
+        
+        if playerNameEmpty() {
+            let alert = UIAlertController(title: "Not Enough Players!", message: "Please enter both player names." , preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+        }
+        else if playerHaveSameNames() {
+            let alert = UIAlertController(title: "Same Names!", message: "Please make sure the players have different names." , preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+        }
+        else {
+            let playerOne = Player()
+            let playerTwo = Player()
+            let game = Game(playerOne: playerOne, playerTwo: playerTwo)
+            
+            // ! since text fields definetly have names in them and buttons have numbers
+            playerOne.name = playerNameVC.playerOneTextField.text ?? ""
+            playerTwo.name = playerNameVC.playerTwoTextField.text ?? ""
+            game.foulLimit = Int(currentFoul.currentTitle!)!
+            game.techLimit = Int(currentTech.currentTitle!)!
+            game.seriesLimit = Int(currentSeries.currentTitle!)!
+            game.playerOne = playerOne
+            game.playerTwo = playerTwo
+            game.winsNeeded = winsNeeded
+            pageManager.segueToGameVc(game: game)
         }
     }
     
+    private func playerNameEmpty() -> Bool {
+        guard let playerNameVC = playerNameVC else { return false }
+        
+        return playerNameVC.playerOneTextField.text == "" || playerNameVC.playerTwoTextField.text == ""
+    }
+    
+    private func playerHaveSameNames() -> Bool {
+        guard let playerNameVC = playerNameVC else { return false }
+        
+        return playerNameVC.playerOneTextField.text == playerNameVC.playerTwoTextField.text
+    }
 }
