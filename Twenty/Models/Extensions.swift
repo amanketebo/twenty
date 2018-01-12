@@ -108,11 +108,9 @@ extension UIStoryboard {
     class var playerNamesVC: UIViewController {
        return main.instantiateViewController(withIdentifier: "Player Names")
     }
-    
     class var gameLimitsVC: UIViewController {
         return main.instantiateViewController(withIdentifier: "Game Limits")
     }
-    
     class var gameVC: UIViewController {
         return main.instantiateViewController(withIdentifier: "Game")
     }
@@ -120,7 +118,7 @@ extension UIStoryboard {
 
 extension UserDefaults {
     static let savedStatsOrderingKey = "savedStatsOrdering"
-    static let allStatsKey = "allStatsKey"
+    static let allStatsKey = "allStats"
 }
 
 extension Bundle {
