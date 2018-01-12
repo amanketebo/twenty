@@ -9,15 +9,12 @@
 import UIKit
 
 class TwentyViewController: UIViewController {
-    // MARK: - IBOutlets
     @IBOutlet weak var newGameImageView: UIImageView!
     @IBOutlet weak var statisticsImageView: UIImageView!
     
-    // MARK: - Properties
     private let imageAlpha: CGFloat = 0.40
     private let defaults = UserDefaults.standard
     
-    // MARK: - Life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
@@ -25,7 +22,6 @@ class TwentyViewController: UIViewController {
         statisticsImageView.alpha = imageAlpha
     }
     
-    // MARK: - Action methods
     @IBAction func segueToNewGameVC(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: UIStoryboard.newGameVCSegue, sender: nil)
     }
@@ -35,7 +31,6 @@ class TwentyViewController: UIViewController {
 
     }
     
-    // MARK: - Segue methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let statsVC = segue.destination as? StatisticsViewController {
             let statManager = StatsManager()

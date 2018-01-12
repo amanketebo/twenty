@@ -133,8 +133,16 @@ extension UIView {
 }
 
 extension UIStoryboard {
+    static let main = UIStoryboard.init(name: "Main", bundle: nil)
+    
+    // Segues
     static let newGameVCSegue = "New Game"
     static let statisticsVCSegue = "Statistics"
+    
+    // VCs
+    static let playerNamesVC = main.instantiateViewController(withIdentifier: "Player Names")
+    static let gameLimitsVC = main.instantiateViewController(withIdentifier: "Game Limits")
+    static let gameVC = main.instantiateViewController(withIdentifier: "Game")
 }
 
 extension UserDefaults {
