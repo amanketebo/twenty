@@ -62,7 +62,7 @@ extension PageManagerViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let indexOfVC = pageVcs.index(of: viewController) else { return nil }
-        guard indexOfVC + 1 < pageVcs.count else { return pageVcs[1] }
+        guard indexOfVC + 1 < pageVcs.count else { return nil }
         
         return pageVcs[indexOfVC + 1]
     }
