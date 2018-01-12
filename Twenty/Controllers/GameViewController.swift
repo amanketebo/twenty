@@ -73,11 +73,6 @@ class GameViewController: UIViewController, StatLabelDelegate, TimerLabelDelegat
             target: self,
             action: #selector(GameViewController.presentEndingGameAlert(_:)
             ))
-        
-        if let navVc = self.parent as? UINavigationController
-        {
-            navVc.viewControllers.remove(at: 1)
-        }
     }
     
     func setupGameInformation()

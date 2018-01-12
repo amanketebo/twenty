@@ -71,10 +71,9 @@ extension PageManagerViewController: UIPageViewControllerDataSource {
 extension PageManagerViewController: UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        // Change page control to show current page dot
-        if let currentVC = viewControllers?.first,
-            let indexOfCurrentVC = pageVcs.index(of: currentVC) {
-            pageControl.currentPage = indexOfCurrentVC
-        }
+        guard let currentVC = viewControllers?.first else { return }
+        guard let indexOfCurrentVC = pageVcs.index(of: currentVC) else { return }
+
+        pageControl.currentPage = indexOfCurrentVC
     }
 }

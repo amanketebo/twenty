@@ -105,9 +105,17 @@ extension UIStoryboard {
     static let statisticsVCSegue = "Statistics"
     
     // VCs
-    static let playerNamesVC = main.instantiateViewController(withIdentifier: "Player Names")
-    static let gameLimitsVC = main.instantiateViewController(withIdentifier: "Game Limits")
-    static let gameVC = main.instantiateViewController(withIdentifier: "Game")
+    class var playerNamesVC: UIViewController {
+       return main.instantiateViewController(withIdentifier: "Player Names")
+    }
+    
+    class var gameLimitsVC: UIViewController {
+        return main.instantiateViewController(withIdentifier: "Game Limits")
+    }
+    
+    class var gameVC: UIViewController {
+        return main.instantiateViewController(withIdentifier: "Game")
+    }
 }
 
 extension UserDefaults {
