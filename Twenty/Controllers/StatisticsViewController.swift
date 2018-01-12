@@ -71,6 +71,7 @@ class StatisticsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        sortStats()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -124,6 +125,7 @@ class StatisticsViewController: UIViewController {
     
     private func sortStats() {
         guard let statsOrdering = statsOrdering else { return }
+        guard let _ = collectionView else { return }
         
         switch statsOrdering {
         case .pointsLeastToGreatest: averageStats.sort(by: { $0.points < $1.points })
