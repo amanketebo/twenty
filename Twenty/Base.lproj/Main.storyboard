@@ -301,9 +301,6 @@
                             <constraint firstAttribute="trailing" secondItem="N2d-vx-3vN" secondAttribute="trailing" id="cTr-8B-pdn"/>
                             <constraint firstItem="N2d-vx-3vN" firstAttribute="leading" secondItem="wZk-73-Ubw" secondAttribute="leading" id="ceB-xW-kxq"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="Uoh-tF-dwD" appends="YES" id="bsr-eu-lfc"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="N2d-vx-3vN" id="k0T-cS-WyF"/>
@@ -311,11 +308,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6wY-Wf-m80" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Uoh-tF-dwD">
-                    <connections>
-                        <action selector="tappedView:" destination="EoM-ak-uK3" id="p9A-qz-6rh"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="720.79999999999995" y="482.60869565217394"/>
         </scene>

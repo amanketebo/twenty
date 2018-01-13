@@ -39,6 +39,8 @@ class Game {
     var winsNeeded = 0
     var isOvertime = false
     
+    typealias InfractionInfo = (infraction: Infraction, description: String)
+    
     var shouldGoToOvertime: Bool {
         var decision = false
         
@@ -63,6 +65,19 @@ class Game {
         }
         
         return decision
+    }
+    
+    func decideEndOfGame() -> GameEnding? {
+        decideWinner()
+        
+        if shouldGoToOvertime {
+            return GameEnding.overtime
+        } else if shouldEndSeries {
+            return GameEnding.series("\(winnersName)")
+        } else {
+             gameNumber += 1
+            return GameEnding.game(gameNumber)
+        }
     }
     
     var winnersName: String {
@@ -130,8 +145,8 @@ class Game {
         
     }
     
-    func checkPlayerInfractions(player: Player) -> (infraction: Infraction, title: String)? {
-        var infractionInfo: (infraction: Infraction, title: String)?
+    func checkPlayerInfractions(player: Player) -> InfractionInfo? {
+        var infractionInfo: InfractionInfo?
         
         if player.fouls >= foulLimit && player.techs >= techLimit {
             player.isOverGameLimit = true
@@ -159,6 +174,9 @@ class Game {
     }
     
     func decideWinner() {
+        addTotals(for: playerOne)
+        addTotals(for: playerTwo)
+        
         if playerOne.isOverGameLimit && playerTwo.isOverGameLimit {
             if playerOne.points > playerTwo.points {
                 playerOne.gamesWon += 1

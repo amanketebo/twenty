@@ -27,7 +27,7 @@ class StatisticsViewController: UIViewController {
         didSet {
             if averageStats.isEmpty {
                 if noStatsLabel != nil {
-                    noStatsLabel.isHidden = true
+                    noStatsLabel.isHidden = false
                 }
                 
                 navigationItem.rightBarButtonItems?.removeAll()

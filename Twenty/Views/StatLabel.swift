@@ -10,7 +10,7 @@ import UIKit
 
 @objc protocol StatLabelDelegate
 {
-    func updatedPlayerStat(playerNumber: Int, typeOfStat: Int, stat: Int)
+    func updatedPlayerStat(playerNumber: Int, statType: Int, stat: Int)
 }
 
 class StatLabel: UILabel
@@ -60,7 +60,7 @@ class StatLabel: UILabel
             let statSection = statSection,
             let statLabelText = text,
             let stat = Int(statLabelText) {
-            delegate?.updatedPlayerStat(playerNumber: playerNumber, typeOfStat: statSection, stat: stat)
+            delegate?.updatedPlayerStat(playerNumber: playerNumber, statType: statSection, stat: stat)
         }
     }
     

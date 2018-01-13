@@ -119,6 +119,7 @@ extension UIStoryboard {
 extension UserDefaults {
     static let savedStatsOrderingKey = "savedStatsOrdering"
     static let allStatsKey = "allStats"
+    static let firstTimeUsingAppKey = "firstTimeUsingApp"
 }
 
 extension Bundle {
