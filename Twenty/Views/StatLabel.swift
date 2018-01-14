@@ -13,7 +13,7 @@ import UIKit
 }
 
 class StatLabel: UILabel {
-    @IBOutlet var delegate: StatLabelDelegate?
+    @IBOutlet weak var delegate: StatLabelDelegate?
 
     var playerNumber: Int?
     var statSection: Int?
@@ -37,15 +37,14 @@ class StatLabel: UILabel {
 
         swipeUp.direction = .up
         swipeDown.direction = .down
-
-        self.addGestureRecognizer(swipeUp)
-        self.addGestureRecognizer(swipeDown)
+        addGestureRecognizer(swipeUp)
+        addGestureRecognizer(swipeDown)
     }
 
     @objc private func swippedStat(_ sender: UISwipeGestureRecognizer) {
         switch sender.direction {
-        case UISwipeGestureRecognizerDirection.up: addStat()
-        case UISwipeGestureRecognizerDirection.down: subtractStat()
+        case .up: addStat()
+        case .down: subtractStat()
         default: break
         }
 

@@ -266,12 +266,24 @@
                                                 </stackView>
                                             </subviews>
                                         </view>
+                                        <color key="backgroundColor" red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="Adg-HS-hI6" firstAttribute="top" secondItem="GmV-vG-Kwp" secondAttribute="topMargin" id="0Xw-Kp-vwJ"/>
                                             <constraint firstItem="Adg-HS-hI6" firstAttribute="leading" secondItem="GmV-vG-Kwp" secondAttribute="leadingMargin" id="2o2-6c-Wwj"/>
                                             <constraint firstAttribute="bottomMargin" secondItem="Adg-HS-hI6" secondAttribute="bottom" id="KSV-zf-x7H"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="Adg-HS-hI6" secondAttribute="trailing" id="TFF-00-97h"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="averageFouls" destination="BoD-vE-dHA" id="tvk-5m-aT8"/>
                                             <outlet property="averagePoints" destination="WZZ-tl-ULA" id="GcL-Sg-Of9"/>

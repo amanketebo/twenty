@@ -24,13 +24,6 @@ extension UIColor {
     static let lightPurple = UIColor(red: 0.43, green: 0.31, blue: 0.53, alpha: 1.0)
 }
 
-extension Double {
-    func roundTo(places: Int) -> Double {
-        let divisor = pow(10, Double(places))
-        return (self * divisor).rounded() / divisor
-    }
-}
-
 extension UILabel {
     @IBInspectable
     var whiteBorder: Bool {
@@ -129,5 +122,12 @@ extension Bundle {
         guard let nibView = Bundle.main.loadNibNamed(name, owner: nil, options: nil)?.first as? UIView  else { return nil }
 
         return nibView
+    }
+}
+
+extension Double {
+    func roundTo(places: Int) -> Double {
+        let divisor = pow(10, Double(places))
+        return (self * divisor).rounded() / divisor
     }
 }

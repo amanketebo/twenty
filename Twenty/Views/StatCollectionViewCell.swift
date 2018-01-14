@@ -17,15 +17,6 @@ class StatCollectionViewCell: UICollectionViewCell {
 
     static let identifier = "statCell"
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        layer.borderColor = UIColor.slightlyGray.cgColor
-        layer.borderWidth = 1
-        layer.cornerRadius = 5
-        clipsToBounds = true
-        backgroundColor = .slightlyLightBlack
-    }
-
     func configureCell(with averageStat: AverageStats) {
         name.text = averageStat.name
         averagePoints.text = String(averageStat.points)
