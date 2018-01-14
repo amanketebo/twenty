@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol TimerLabelDelegate {
+protocol TimerLabelDelegate: NSObjectProtocol {
     func currentTimeLimit() -> Int
 }
 
@@ -18,6 +18,7 @@ class TimerLabel: UILabel {
         get {
             // Remove the "."
             var time = text!
+
             time.removeSubrange((time.range(of: ".")!))
 
             return Int(time)!
@@ -25,6 +26,7 @@ class TimerLabel: UILabel {
         set {
             // Add a 0 if below 10 and add the "." back
             var newTime = String(newValue)
+
             if newValue < 10 {
                 newTime.insert("0", at: newTime.startIndex)
             }
@@ -33,14 +35,15 @@ class TimerLabel: UILabel {
             text = newTime
         }
     }
-    var delegate: TimerLabelDelegate?
+
+    weak var delegate: TimerLabelDelegate?
 
     override func awakeFromNib() {
         addGestureRecognizers()
     }
 
     @objc private func tappedTimer() {
-        if (timer == nil) {
+        if timer == nil {
             createTimer()
             startTimer()
         }
@@ -50,10 +53,9 @@ class TimerLabel: UILabel {
     }
 
     @objc private func swippedTimer(_ sender: UISwipeGestureRecognizer) {
-        let direction = sender.direction
-        switch direction {
-        case UISwipeGestureRecognizerDirection.right: addSecond()
-        case UISwipeGestureRecognizerDirection.left: subtractSecond()
+        switch sender.direction {
+        case .right: addSecond()
+        case .left: subtractSecond()
         default: break
         }
     }
@@ -73,6 +75,7 @@ class TimerLabel: UILabel {
             stopTimer()
             return
         }
+
         currentTime = currentTime - 1
     }
 
@@ -88,7 +91,7 @@ class TimerLabel: UILabel {
         let newTime = currentTime + 10
 
         if let timeLimit = delegate?.currentTimeLimit() {
-            currentTime = (newTime > timeLimit) ? timeLimit : newTime
+            currentTime = newTime > timeLimit ? timeLimit : newTime
         }
         else {
             currentTime = newTime
@@ -96,17 +99,18 @@ class TimerLabel: UILabel {
     }
 
     func subtractSecond() {
-        currentTime = currentTime >= 1 ? currentTime - 10 : 0
+        currentTime = currentTime >= 10 ? currentTime - 10 : 0
     }
 
     func addGestureRecognizers() {
-        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tappedTimer)))
-
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swippedTimer(_:)))
-        swipeLeft.direction = .left
-        self.addGestureRecognizer(swipeLeft)
-
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swippedTimer(_:)))
-        self.addGestureRecognizer(swipeRight)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tappedTimer))
+
+        swipeLeft.direction = .left
+        swipeRight.direction = .right
+        addGestureRecognizer(tap)
+        addGestureRecognizer(swipeLeft)
+        addGestureRecognizer(swipeRight)
     }
 }
