@@ -10,9 +10,9 @@ import UIKit
 
 class GameLimitsViewController: UIViewController {
     @IBOutlet weak var gameLimitsHolder: UIView!
-    @IBOutlet weak var currentFoul: RoundedButton!
-    @IBOutlet weak var currentTech: RoundedButton!
-    @IBOutlet weak var currentSeries: RoundedButton! {
+    @IBOutlet weak var currentFoul: UIButton!
+    @IBOutlet weak var currentTech: UIButton!
+    @IBOutlet weak var currentSeries: UIButton! {
         didSet {
             guard let currentTitle = currentSeries.currentTitle else { return }
             guard let currentTitleNumber = Int(currentTitle) else { return }
@@ -29,7 +29,7 @@ class GameLimitsViewController: UIViewController {
         return pageManager?.pageVcs.first as? PlayerNamesViewController
     }
 
-    @IBAction func touchedLimit(_ sender: RoundedButton) {
+    @IBAction func touchedLimit(_ sender: UIButton) {
         // The buttons tag corresponds to the section its in
         // Fouls = Section 1, Techs = Section 2, Series = Section 3
         let section = sender.tag

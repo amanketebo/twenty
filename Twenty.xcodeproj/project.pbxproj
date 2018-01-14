@@ -21,7 +21,6 @@
 		CA5302631F0B8C890001CED5 /* BlurredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5302621F0B8C890001CED5 /* BlurredView.swift */; };
 		CA5BC7B41F0A20C900A9DCD2 /* HowToView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5BC7B31F0A20C900A9DCD2 /* HowToView.xib */; };
 		CA746DC91E6FF1BA00E95130 /* SeriesStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA746DC81E6FF1BA00E95130 /* SeriesStats.swift */; };
-		CA8F6B6C1E39BE9F00E81FD7 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8F6B6B1E39BE9F00E81FD7 /* RoundedButton.swift */; };
 		CAA72EAE1E5E7420006BB76C /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA72EAD1E5E7420006BB76C /* Player.swift */; };
 		CAACB2501E319BEB00223A7D /* PageManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAACB24F1E319BEB00223A7D /* PageManagerViewController.swift */; };
 		CAC28AE51E5A8818003C21DC /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC28AE41E5A8818003C21DC /* GameViewController.swift */; };
@@ -53,7 +52,6 @@
 		CA5302621F0B8C890001CED5 /* BlurredView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurredView.swift; sourceTree = "<group>"; };
 		CA5BC7B31F0A20C900A9DCD2 /* HowToView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HowToView.xib; sourceTree = "<group>"; };
 		CA746DC81E6FF1BA00E95130 /* SeriesStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeriesStats.swift; sourceTree = "<group>"; };
-		CA8F6B6B1E39BE9F00E81FD7 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		CAA72EAD1E5E7420006BB76C /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		CAACB24F1E319BEB00223A7D /* PageManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageManagerViewController.swift; sourceTree = "<group>"; };
 		CAC28AE41E5A8818003C21DC /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 				CA4AD2821E7A1A750072EB10 /* StatCollectionViewCell.swift */,
 				CAE3E5481F11C73500F8D426 /* StatLabel.swift */,
 				CA35CDC11F11A55A00C26C57 /* TimerLabel.swift */,
-				CA8F6B6B1E39BE9F00E81FD7 /* RoundedButton.swift */,
 				CA5302621F0B8C890001CED5 /* BlurredView.swift */,
 				CAE3E5461F11B60400F8D426 /* HowToView.swift */,
 				CAC8E9E820049FDD00C3AC11 /* EndOfGameView.swift */,
@@ -358,7 +355,6 @@
 				CAACB2501E319BEB00223A7D /* PageManagerViewController.swift in Sources */,
 				CA528D061E7775F100685781 /* StatsManager.swift in Sources */,
 				CA4AD28B1E7A2C100072EB10 /* StatisticsViewController.swift in Sources */,
-				CA8F6B6C1E39BE9F00E81FD7 /* RoundedButton.swift in Sources */,
 				CAE3E5471F11B60400F8D426 /* HowToView.swift in Sources */,
 				CA4AD2851E7A1E600072EB10 /* AverageStats.swift in Sources */,
 				CA5302631F0B8C890001CED5 /* BlurredView.swift in Sources */,

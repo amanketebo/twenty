@@ -189,7 +189,7 @@ class GameViewController: UIViewController {
             navigationItem.rightBarButtonItem = nil
             navigationItem.title = "Series Over"
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Leave", style: .plain, target: self, action: #selector(popToFirstVC))
-            endOfGameView.fadeIn(duration: 1, delay: 0, completion: nil)
+            endOfGameView.fadeIn(duration: animationDuration, delay: 0, completion: nil)
             // Save stats
             let seriesStats = SeriesStats(game: currentGame)
             let statsManager = StatsManager(seriesStats)

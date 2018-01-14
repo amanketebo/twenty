@@ -9,8 +9,7 @@
 import UIKit
 
 class BlurredView: UIVisualEffectView {
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        effect = UIBlurEffect.init(style: .dark)
+    override func awakeFromNib() {
+        effect = UIBlurEffect(style: .dark)
     }
 }
