@@ -14,13 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setupAppearance()
-        
+
         return true
     }
-    
+
     private func setupAppearance() {
         let navbar = UINavigationBar.appearance()
-        
+
         navbar.barStyle = .black
         navbar.tintColor = .white
         navbar.barTintColor = .darkBlack

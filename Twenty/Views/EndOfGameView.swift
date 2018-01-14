@@ -11,7 +11,7 @@ import UIKit
 
 class EndOfGameView: UIView {
     @IBOutlet weak var descriptionLabel: UILabel!
-    
+
     override func awakeFromNib() {
         backgroundColor = .clear
     }

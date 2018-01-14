@@ -20,7 +20,7 @@ class StatsOrderingView: UIView {
     @IBOutlet weak var foulsGreatestToLeastButton: UIButton!
     @IBOutlet weak var techsLeastToGreatestButton: UIButton!
     @IBOutlet weak var techsGreatestToLeastButton: UIButton!
-    
+
     var statsOrdering: StatsOrdering? {
         willSet {
             previousStatsOrdering = statsOrdering
@@ -35,10 +35,10 @@ class StatsOrderingView: UIView {
         }
     }
     weak var delegate: StatsOrderingDelegate?
-    
+
     private func setBackgroundColor(_ color: UIColor) {
         guard let statsOrdering = statsOrdering else { return }
-        
+
         switch statsOrdering {
         case .pointsLeastToGreatest: pointsLeastToGreatestButton.backgroundColor = color
         case .pointsGreatestToLeast: pointsGreatestToLeastButton.backgroundColor = color
@@ -49,11 +49,11 @@ class StatsOrderingView: UIView {
         default: break
         }
     }
-    
+
     @IBAction func tappedButton(_ sender: UIButton) {
         delegate?.didSelectStatsOrdering(position: sender.tag)
     }
-    
+
     @IBAction func tappedView(_ sender: UITapGestureRecognizer) {
         isHidden = true
     }

@@ -13,7 +13,7 @@ class PlayerNamesViewController: UIViewController {
     @IBOutlet weak var playerNameTextFieldsHolder: UIView!
     @IBOutlet weak var playerOneTextField: UITextField!
     @IBOutlet weak var playerTwoTextField: UITextField!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,7 +32,7 @@ extension PlayerNamesViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         playerOneTextField.resignFirstResponder()
         playerTwoTextField.resignFirstResponder()
-        
+
         return true
     }
 }

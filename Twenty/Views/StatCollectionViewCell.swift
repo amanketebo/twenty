@@ -8,18 +8,16 @@
 
 import UIKit
 
-class StatCollectionViewCell: UICollectionViewCell
-{
+class StatCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var averagePoints: UILabel!
     @IBOutlet weak var averageFouls: UILabel!
     @IBOutlet weak var averageTechs: UILabel!
     @IBOutlet weak var record: UILabel!
-    
+
     static let identifier = "statCell"
-    
-    required init?(coder aDecoder: NSCoder)
-    {
+
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         layer.borderColor = UIColor.slightlyGray.cgColor
         layer.borderWidth = 1
@@ -27,9 +25,8 @@ class StatCollectionViewCell: UICollectionViewCell
         clipsToBounds = true
         backgroundColor = .slightlyLightBlack
     }
-    
-    func configureCell(with averageStat: AverageStats)
-    {
+
+    func configureCell(with averageStat: AverageStats) {
         name.text = averageStat.name
         averagePoints.text = String(averageStat.points)
         averageFouls.text = String(averageStat.fouls)

@@ -1,0 +1,12 @@
+# paths to ignore during linting. Takes precedence over `included`.
+excluded:
+  - Carthage
+  - Pods
+  - Source/ExcludedFolder
+  - Source/ExcludedFile.swift
+
+whitelist_rules:
+  - opening_brace
+  - trailing_whitespace
+  - colon
+  - trailing_newline

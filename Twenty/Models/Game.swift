@@ -27,7 +27,7 @@ enum GameEnding {
 }
 
 class Game {
-    
+
     static let regularTimeLimit = 200
     static let overtimeTimeLimit = 100
     var playerOne = Player()
@@ -38,38 +38,38 @@ class Game {
     var seriesLimit = 0
     var winsNeeded = 0
     var isOvertime = false
-    
+
     typealias InfractionInfo = (infraction: Infraction, description: String)
-    
+
     var shouldGoToOvertime: Bool {
         var decision = false
-        
+
         if playerOne.points == playerTwo.points  && playerOne.isOverGameLimit == false && playerTwo.isOverGameLimit == false {
             decision = true
         }
         else if playerOne.points == playerTwo.points && playerOne.isOverGameLimit == true && playerTwo.isOverGameLimit == true {
             decision = true
         }
-        else if playerOne.isOverGameLimit == true && playerTwo.isOverGameLimit == true  {
+        else if playerOne.isOverGameLimit == true && playerTwo.isOverGameLimit == true {
             decision = true
         }
-        
+
         return decision
     }
-    
+
     var shouldEndSeries: Bool {
         var decision = false
-        
+
         if playerOne.gamesWon == winsNeeded || playerTwo.gamesWon == winsNeeded {
             decision = true
         }
-        
+
         return decision
     }
-    
+
     func decideEndOfGame() -> GameEnding? {
         decideWinner()
-        
+
         if shouldGoToOvertime {
             return GameEnding.overtime
         } else if shouldEndSeries {
@@ -79,25 +79,25 @@ class Game {
             return GameEnding.game(gameNumber)
         }
     }
-    
+
     var winnersName: String {
         var winnerName = ""
-        
+
         if playerOne.gamesWon == winsNeeded {
             winnerName = playerOne.name
         }
         else if playerTwo.gamesWon == winsNeeded {
             winnerName = playerTwo.name
         }
-        
+
         return winnerName
     }
-    
+
     init(playerOne: Player, playerTwo: Player) {
         self.playerOne = playerOne
         self.playerTwo = playerTwo
     }
-    
+
     func increaseStats(tagInfo: (playerNumber: Int, sectionNumber: Int)) {
         // sectionNumber is the section in the storyboard that was tapped by user
         // section 1 is for points, section 2 is for fouls, section 3 is for techs
@@ -120,7 +120,7 @@ class Game {
             }
         }
     }
-    
+
     func decreaseStats(tagInfo: (playerNumber: Int, sectionNumber: Int)) {
         // sectionNumber is the section in the storyboard that was tapped by user
         // section 1 is for points, section 2 is for fouls, section 3 is for techs
@@ -142,12 +142,12 @@ class Game {
                 }
             }
         }
-        
+
     }
-    
+
     func checkPlayerInfractions(player: Player) -> InfractionInfo? {
         var infractionInfo: InfractionInfo?
-        
+
         if player.fouls >= foulLimit && player.techs >= techLimit {
             player.isOverGameLimit = true
             infractionInfo = (Infraction.both, "\(player.name) has reached the \(Infraction.both.rawValue) limit!")
@@ -163,20 +163,20 @@ class Game {
         else {
             player.isOverGameLimit = false
         }
-        
+
         return infractionInfo
     }
-    
+
     func addTotals(for player: Player) {
         player.totalPoints += player.points
         player.totalFouls += player.fouls
         player.totalTechs += player.techs
     }
-    
+
     func decideWinner() {
         addTotals(for: playerOne)
         addTotals(for: playerTwo)
-        
+
         if playerOne.isOverGameLimit && playerTwo.isOverGameLimit {
             if playerOne.points > playerTwo.points {
                 playerOne.gamesWon += 1
@@ -204,19 +204,19 @@ class Game {
             playerOne.gamesLost += 1
         }
     }
-    
+
     func resetStats() {
         playerOne.points = 0
         playerOne.fouls = 0
         playerOne.techs = 0
         playerOne.isOverGameLimit = false
-        
+
         playerTwo.points = 0
         playerTwo.fouls = 0
         playerTwo.techs = 0
         playerTwo.isOverGameLimit = false
     }
-    
+
     func printPlayers() {
         print("Player : \(playerOne.name)")
         print("   Points: \(playerOne.points)")

@@ -9,11 +9,11 @@
 import Foundation
 
 class StatsManager {
-    
+
     let defaults = UserDefaults.standard
-    var playerOneStats = [String:[String:Double]]()
-    var playerTwoStats = [String:[String:Double]]()
-    
+    var playerOneStats = [String: [String: Double]]()
+    var playerTwoStats = [String: [String: Double]]()
+
     init(_ seriesStats: SeriesStats) {
         // Player one setup
         playerOneStats[seriesStats.playerOne.name] = [
@@ -32,12 +32,12 @@ class StatsManager {
             "games lost": Double(seriesStats.playerTwo.gamesLost)
         ]
     }
-    
+
     init() { }
-    
+
     func saveStats() {
         // Definitely want to use CoreData instead later down the line
-        
+
         if let allStats = defaults.object(forKey: "allStats") as? [[String:[String:Double]]] {
             // Create mutable version of "allStats"
             var mutableStats = allStats
@@ -48,13 +48,13 @@ class StatsManager {
         }
         else {
             // Since there aren't any save stats just create an array of player stats and place in defaults
-            var arrayOfPlayers = [[String:[String:Double]]]()
+            var arrayOfPlayers = [[String: [String: Double]]]()
             arrayOfPlayers.append(playerOneStats)
             arrayOfPlayers.append(playerTwoStats)
             defaults.set(arrayOfPlayers, forKey: "allStats")
         }
     }
-    
+
     func saveStatsForPlayer (_ newPlayerStats: [String:[String:Double]], savedStats: inout [[String:[String:Double]]]) {
         var newPlayer = true
         var foundPlayerIndex = 0
@@ -65,7 +65,7 @@ class StatsManager {
                 foundPlayerIndex = index
             }
         }
-        
+
         if newPlayer {
             // Sinces it a new player just simply append it to the stats array
             savedStats.append(newPlayerStats)
@@ -74,7 +74,7 @@ class StatsManager {
             // Add newPlayerStats to the saved stats
             var savedPlayerStats = savedStats[foundPlayerIndex]
             if let playerName = savedPlayerStats.keys.first {
-                
+
                 var savedTotalPoints = savedPlayerStats[playerName]?["total points"]
                 var savedTotalFouls = savedPlayerStats[playerName]?["total fouls"]
                 var savedTotalTechs = savedPlayerStats[playerName]?["total techs"]
@@ -85,37 +85,37 @@ class StatsManager {
                 let newTotalTechs = newPlayerStats[playerName]?["total techs"]
                 let newGamesWon = newPlayerStats[playerName]?["games won"]
                 let newGamesLost = newPlayerStats[playerName]?["games lost"]
-                
+
                 guard savedTotalPoints != nil && savedTotalFouls != nil && savedTotalTechs != nil && savedGamesWon != nil && savedGamesLost != nil && newTotalPoints != nil && newTotalFouls != nil && newTotalTechs != nil && newGamesWon != nil && newGamesLost != nil else {
                     return
                 }
-                
+
                 // Add stats to the running total
                 savedTotalPoints = savedTotalPoints! + newTotalPoints!
                 savedTotalFouls = savedTotalFouls! + newTotalFouls!
                 savedTotalTechs = savedTotalTechs! + newTotalTechs!
                 savedGamesWon = savedGamesWon! + newGamesWon!
                 savedGamesLost = savedGamesLost! + newGamesLost!
-                
+
                 savedPlayerStats[playerName]?["total points"] = savedTotalPoints
                 savedPlayerStats[playerName]?["total fouls"] = savedTotalFouls
                 savedPlayerStats[playerName]?["total techs"] = savedTotalTechs
                 savedPlayerStats[playerName]?["games won"] = savedGamesWon
                 savedPlayerStats[playerName]?["games lost"] = savedGamesLost
-                
+
                 savedStats[foundPlayerIndex] = savedPlayerStats
             }
-            
+
         }
     }
-    
+
     func getStats() -> [AverageStats] {
         // TODO:
         // - Figure out a way to use less "!" w/o having to use the pyramid of doom
-        
+
         // Create an average stats array so StatisticsViewController doesn't need to do the calculations
         var averageStats = [AverageStats]()
-        
+
         if let allStats = defaults.object(forKey: "allStats") as? [[String:[String:Double]]] {
             for playerStat in allStats {
                 let averageStat = AverageStats()
@@ -125,14 +125,14 @@ class StatsManager {
                     let totalTechs = playerStat[playerName]?["total techs"]
                     let gamesWon = playerStat[playerName]?["games won"]
                     let gamesLost = playerStat[playerName]?["games lost"]
-                    
+
                     guard totalPoints != nil && totalFouls != nil && totalTechs != nil && gamesWon != nil && gamesLost != nil else {
                         return []
                     }
-                    
+
                     let gamesPlayed = (playerStat[playerName]?["games won"])! + (playerStat[playerName]?["games lost"])!
                     averageStat.name = playerName
-                    
+
                     // Round points, fouls, and techs to the tenths place
                     averageStat.points = ((totalPoints)! / gamesPlayed).roundTo(places: 1)
                     averageStat.fouls = ((totalFouls)! / gamesPlayed).roundTo(places: 1)
@@ -149,8 +149,8 @@ class StatsManager {
         else {
             averageStats = [AverageStats]()
         }
-        
+
         return averageStats
     }
-    
+
 }

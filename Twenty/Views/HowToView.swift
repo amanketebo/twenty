@@ -9,28 +9,23 @@
 import UIKit
 import Foundation
 
-class HowToView: UIView
-{
+class HowToView: UIView {
     @IBOutlet weak var okGotItLabel: UILabel!
-    
-    override func awakeFromNib()
-    {
+
+    override func awakeFromNib() {
         backgroundColor = .clear
         addGestureRecognizers()
     }
-    
-    @objc func tappedOkGotIt()
-    {
+
+    @objc func tappedOkGotIt() {
         fadeOut()
     }
-    
-    func addGestureRecognizers()
-    {
+
+    func addGestureRecognizers() {
         okGotItLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tappedOkGotIt)))
     }
-    
-    func fadeOut()
-    {
+
+    func fadeOut() {
         UIView.animate(withDuration: 0.5, animations: {
             self.alpha = 0
         }, completion: { [weak self] (_) in

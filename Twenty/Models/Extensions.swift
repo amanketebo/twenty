@@ -37,7 +37,7 @@ extension UILabel {
         get {
             return false
         }
-        
+
         set {
             if newValue {
                 self.layer.borderWidth = 1
@@ -53,13 +53,13 @@ extension UIView {
         get { return layer.cornerRadius }
         set { layer.cornerRadius = newValue }
     }
-    
+
     @IBInspectable
     var borderWidth: CGFloat {
         get { return layer.borderWidth }
         set { layer.borderWidth = newValue }
     }
-    
+
     @IBInspectable
     var borderColor: UIColor {
         get {
@@ -70,7 +70,7 @@ extension UIView {
             layer.borderColor = newValue.cgColor
         }
     }
-    
+
     func fillSuperView() {
         if let superView = self.superview {
             self.translatesAutoresizingMaskIntoConstraints = false
@@ -82,15 +82,15 @@ extension UIView {
                 ])
         }
     }
-    
+
     func fadeIn(duration: TimeInterval, delay: TimeInterval, completion: ((Bool) -> Void)?) {
         alpha = 0
         UIView.animate(withDuration: duration, delay: delay, options: .curveLinear, animations: { [weak self] in
             self?.alpha = 1
         }, completion: completion)
     }
-    
-    func fadeOut(duration: TimeInterval, delay: TimeInterval, completion: ((Bool) -> Void)?) {        
+
+    func fadeOut(duration: TimeInterval, delay: TimeInterval, completion: ((Bool) -> Void)?) {
         UIView.animate(withDuration: duration, delay: delay, options: .curveLinear, animations: { [weak self] in
             self?.alpha = 0
         }, completion: completion)
@@ -99,11 +99,11 @@ extension UIView {
 
 extension UIStoryboard {
     static let main = UIStoryboard.init(name: "Main", bundle: nil)
-    
+
     // Segues
     static let newGameVCSegue = "New Game"
     static let statisticsVCSegue = "Statistics"
-    
+
     // VCs
     class var playerNamesVC: UIViewController {
        return main.instantiateViewController(withIdentifier: "Player Names")
@@ -124,11 +124,10 @@ extension UserDefaults {
 
 extension Bundle {
     static let statsOrderingView = "StatsOrderingView"
-    
+
     func loadNibNamed(_ name: String) -> UIView? {
         guard let nibView = Bundle.main.loadNibNamed(name, owner: nil, options: nil)?.first as? UIView  else { return nil }
-        
+
         return nibView
     }
 }
-

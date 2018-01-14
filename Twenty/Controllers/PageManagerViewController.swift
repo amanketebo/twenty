@@ -13,23 +13,23 @@ class PageManagerViewController: UIPageViewController {
     lazy var pageVcs: [UIViewController] = {
         let firstVc = UIStoryboard.playerNamesVC
         let secondVc = UIStoryboard.gameLimitsVC
-        
+
         return [firstVc, secondVc]
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "New Game"
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         dataSource = self
         delegate = self
-        
+
         if let firstVc = pageVcs.first {
             setViewControllers([firstVc], direction: .forward, animated: true, completion: nil)
         }
         setupPageControl()
     }
-    
+
     private func setupPageControl() {
         pageControl.numberOfPages = pageVcs.count
         pageControl.currentPage = 0
@@ -40,7 +40,7 @@ class PageManagerViewController: UIPageViewController {
             pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15)
             ])
     }
-    
+
     func segueToGameVc(game: Game) {
         if let navVc = parent as? UINavigationController,
             let gameVc = UIStoryboard.gameVC as? GameViewController {
@@ -56,20 +56,20 @@ extension PageManagerViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let indexOfVC = pageVcs.index(of: viewController) else { return nil }
         guard indexOfVC - 1 >= 0 else { return nil }
-        
+
         return pageVcs[indexOfVC - 1]
     }
-    
+
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let indexOfVC = pageVcs.index(of: viewController) else { return nil }
         guard indexOfVC + 1 < pageVcs.count else { return nil }
-        
+
         return pageVcs[indexOfVC + 1]
     }
 }
 
 extension PageManagerViewController: UIPageViewControllerDelegate {
-    
+
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         guard let currentVC = viewControllers?.first else { return }
         guard let indexOfCurrentVC = pageVcs.index(of: currentVC) else { return }

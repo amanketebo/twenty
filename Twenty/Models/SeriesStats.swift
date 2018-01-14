@@ -9,7 +9,7 @@
 import Foundation
 
 struct SeriesStats {
-    
+
     struct PlayerStats {
         var name = ""
         var totalPoints = 0
@@ -18,10 +18,10 @@ struct SeriesStats {
         var gamesWon = 0
         var gamesLost = 0
     }
-    
+
     var playerOne = PlayerStats()
     var playerTwo = PlayerStats()
-    
+
     init(game: Game) {
         // Player one setup
         self.playerOne.name = game.playerOne.name
@@ -38,5 +38,5 @@ struct SeriesStats {
         self.playerTwo.gamesWon = game.playerTwo.gamesWon
         self.playerTwo.gamesLost = game.playerTwo.gamesLost
     }
-    
+
 }
