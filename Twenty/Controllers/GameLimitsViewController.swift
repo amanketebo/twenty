@@ -28,6 +28,7 @@ class GameLimitsViewController: UIViewController {
     private var playerNameVC: PlayerNamesViewController? {
         return pageManager?.pageVcs.first as? PlayerNamesViewController
     }
+    private let statsManager = StatsManager.shared
 
     @IBAction func touchedLimit(_ sender: UIButton) {
         // The buttons tag corresponds to the section its in

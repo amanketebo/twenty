@@ -70,9 +70,9 @@ class GameViewController: UIViewController {
 
     func setupGameInformation() {
         playerOneName.text = currentGame.playerOne.name
-        playerOneGamesWon.text = String(playerOne.gamesWon)
+        playerOneGamesWon.text = String(playerOne.seriesGamesWon)
         playerTwoName.text = currentGame.playerTwo.name
-        playerTwoGamesWon.text = String(playerTwo.gamesWon)
+        playerTwoGamesWon.text = String(playerTwo.seriesGamesWon)
         seriesLimitLabel.text = "SERIES: \(currentGame.seriesLimit)"
         foulLimitLabel.text = "FOULS: \(currentGame.foulLimit)"
         techLimitLabel.text = "TECHS: \(currentGame.techLimit)"
@@ -88,13 +88,16 @@ class GameViewController: UIViewController {
     private func checkGameLimits(playerNumber: Int) {
         let player = playerNumber == 1 ? currentGame.playerOne : currentGame.playerTwo
 
-        if let infractionInfo = currentGame.checkPlayerInfractions(player: player) {
-            changeStatsLabelsToRed(for: player, with: infractionInfo.infraction)
+        if let infraction = currentGame.checkPlayerInfractions(player: player) {
+            changeStatsLabelsToRed(for: player, with: infraction)
 
-            let alert = UIAlertController(title: infractionInfo.description, message: "Feel free to end the game.", preferredStyle: .alert)
-            let okay = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(okay)
-            self.present(alert, animated: true, completion: nil)
+            switch infraction {
+                case .foul(let info), .both(let info), .tech(let info):
+                    let alert = UIAlertController(title: info, message: "Feel free to end the game.", preferredStyle: .alert)
+                    let okay = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(okay)
+                    self.present(alert, animated: true, completion: nil)
+            }
         }
     }
 
@@ -122,6 +125,7 @@ class GameViewController: UIViewController {
         let alert = UIAlertController(title: "Oh no, the stats!", message: "You must finish the series for them to be saved.", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let exitAction = UIAlertAction(title: "Exit", style: .destructive, handler: { [weak self] (alert) in
+            self?.currentGame.resetStats()
             self?.popToFirstVC()
         })
 
@@ -157,8 +161,8 @@ class GameViewController: UIViewController {
             endOfGameView.fillSuperView()
             endOfGameView.fadeIn(duration: animationDuration, delay: 0, completion: { (success) in
                 self.navigationItem.title = "Game \(gameNumber)"
-                self.playerOneGamesWon.text = String(self.currentGame.playerOne.gamesWon)
-                self.playerTwoGamesWon.text = String(self.currentGame.playerTwo.gamesWon)
+                self.playerOneGamesWon.text = String(self.currentGame.playerOne.seriesGamesWon)
+                self.playerTwoGamesWon.text = String(self.currentGame.playerTwo.seriesGamesWon)
                 self.currentGame.resetStats()
                 self.resetStatLabels()
                 endOfGameView.fadeOut(duration: animationDuration, delay: animationDelay, completion: { (success) in
@@ -181,6 +185,7 @@ class GameViewController: UIViewController {
             })
         case .series(let winnersName):
             currentGame.isOvertime = false
+            currentGame.resetStats()
             endOfGameView = setupEndOfGameView(gameEnding: GameEnding.series("\(winnersName)"))
             view.addSubview(endOfGameView)
             endOfGameView.translatesAutoresizingMaskIntoConstraints = false
@@ -191,10 +196,8 @@ class GameViewController: UIViewController {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Leave", style: .plain, target: self, action: #selector(popToFirstVC))
             endOfGameView.fadeIn(duration: animationDuration, delay: 0, completion: nil)
             // Save stats
-            let seriesStats = SeriesStats(game: currentGame)
-            let statsManager = StatsManager(seriesStats)
-
-            statsManager.saveStats()
+            let statsManager = StatsManager.shared
+            statsManager.savePlayerStats(for: playerOne, playerTwo)
         }
     }
 
@@ -251,9 +254,9 @@ extension GameViewController: StatLabelDelegate {
             player = playerNumber == 1 ? playerOne : playerTwo
 
             switch typeOfStat {
-            case .point: player.points = stat
-            case .foul: player.fouls = stat
-            case .tech: player.techs = stat
+            case .point: player.currentGamePoints = stat
+            case .foul: player.currentGameFouls = stat
+            case .tech: player.currentGameTechs = stat
             }
 
             checkGameLimits(playerNumber: playerNumber)

@@ -14,10 +14,10 @@ enum Stat: Int {
     case tech
 }
 
-enum Infraction: String {
-    case foul = "foul"
-    case tech = "tech"
-    case both = "foul and tech"
+enum Infraction {
+    case foul(String)
+    case tech(String)
+    case both(String)
 }
 
 enum GameEnding {
@@ -27,27 +27,27 @@ enum GameEnding {
 }
 
 class Game {
-
     static let regularTimeLimit = 200
     static let overtimeTimeLimit = 100
-    var playerOne = Player()
-    var playerTwo = Player()
+    var playerOne: Player
+    var playerTwo: Player
     var gameNumber = 1
     var foulLimit = 0
     var techLimit = 0
     var seriesLimit = 0
     var winsNeeded = 0
     var isOvertime = false
-
-    typealias InfractionInfo = (infraction: Infraction, description: String)
+    var players: [Player] {
+        return [playerOne, playerTwo]
+    }
 
     var shouldGoToOvertime: Bool {
         var decision = false
 
-        if playerOne.points == playerTwo.points  && playerOne.isOverGameLimit == false && playerTwo.isOverGameLimit == false {
+        if playerOne.currentGamePoints == playerTwo.currentGamePoints  && playerOne.isOverGameLimit == false && playerTwo.isOverGameLimit == false {
             decision = true
         }
-        else if playerOne.points == playerTwo.points && playerOne.isOverGameLimit == true && playerTwo.isOverGameLimit == true {
+        else if playerOne.currentGamePoints == playerTwo.currentGamePoints && playerOne.isOverGameLimit == true && playerTwo.isOverGameLimit == true {
             decision = true
         }
         else if playerOne.isOverGameLimit == true && playerTwo.isOverGameLimit == true {
@@ -60,33 +60,20 @@ class Game {
     var shouldEndSeries: Bool {
         var decision = false
 
-        if playerOne.gamesWon == winsNeeded || playerTwo.gamesWon == winsNeeded {
+        if playerOne.seriesGamesWon == winsNeeded || playerTwo.seriesGamesWon == winsNeeded {
             decision = true
         }
 
         return decision
     }
 
-    func decideEndOfGame() -> GameEnding? {
-        decideWinner()
-
-        if shouldGoToOvertime {
-            return GameEnding.overtime
-        } else if shouldEndSeries {
-            return GameEnding.series("\(winnersName)")
-        } else {
-             gameNumber += 1
-            return GameEnding.game(gameNumber)
-        }
-    }
-
     var winnersName: String {
         var winnerName = ""
 
-        if playerOne.gamesWon == winsNeeded {
+        if playerOne.seriesGamesWon == winsNeeded {
             winnerName = playerOne.name
         }
-        else if playerTwo.gamesWon == winsNeeded {
+        else if playerTwo.seriesGamesWon == winsNeeded {
             winnerName = playerTwo.name
         }
 
@@ -104,18 +91,18 @@ class Game {
         if tagInfo.playerNumber == 1 {
             if let statType = Stat(rawValue: tagInfo.sectionNumber) {
                 switch statType {
-                case .point: playerOne.points += 1
-                case .foul: playerOne.fouls += 1
-                case .tech: playerOne.techs += 1
+                case .point: playerOne.currentGamePoints += 1
+                case .foul: playerOne.currentGameFouls += 1
+                case .tech: playerOne.currentGameTechs += 1
                 }
             }
         }
         else if tagInfo.playerNumber == 2 {
             if let statType = Stat(rawValue: tagInfo.sectionNumber) {
                 switch statType {
-                case .point: playerTwo.points += 1
-                case .foul: playerTwo.fouls += 1
-                case .tech: playerTwo.techs += 1
+                case .point: playerTwo.currentGamePoints += 1
+                case .foul: playerTwo.currentGameFouls += 1
+                case .tech: playerTwo.currentGameTechs += 1
                 }
             }
         }
@@ -127,116 +114,103 @@ class Game {
         if tagInfo.playerNumber == 1 {
             if let statType = Stat(rawValue: tagInfo.sectionNumber) {
                 switch statType {
-                case .point: playerOne.points -= 1
-                case .foul: playerOne.fouls -= 1
-                case .tech: playerOne.techs -= 1
+                case .point: playerOne.currentGamePoints -= 1
+                case .foul: playerOne.currentGameFouls -= 1
+                case .tech: playerOne.currentGameTechs -= 1
                 }
             }
         }
         else if tagInfo.playerNumber == 2 {
             if let statType = Stat(rawValue: tagInfo.sectionNumber) {
                 switch statType {
-                case .point: playerTwo.points -= 1
-                case .foul: playerTwo.fouls -= 1
-                case .tech: playerTwo.techs -= 1
+                case .point: playerTwo.currentGamePoints -= 1
+                case .foul: playerTwo.currentGameFouls -= 1
+                case .tech: playerTwo.currentGameTechs -= 1
                 }
             }
         }
-
     }
 
-    func checkPlayerInfractions(player: Player) -> InfractionInfo? {
-        var infractionInfo: InfractionInfo?
+    func checkPlayerInfractions(player: Player) -> Infraction? {
+        var infraction: Infraction?
 
-        if player.fouls >= foulLimit && player.techs >= techLimit {
+        if player.currentGameFouls >= foulLimit && player.currentGameTechs >= techLimit {
             player.isOverGameLimit = true
-            infractionInfo = (Infraction.both, "\(player.name) has reached the \(Infraction.both.rawValue) limit!")
+            infraction = Infraction.both("\(player.name) has reached the foul and tech limit!")
         }
-        else if player.fouls >= foulLimit {
+        else if player.currentGameFouls >= foulLimit {
             player.isOverGameLimit = true
-            infractionInfo = (Infraction.foul, "\(player.name) has reached the \(Infraction.foul.rawValue) limit!")
+            infraction = Infraction.foul("\(player.name) has reached the foul limit!")
         }
-        else if player.techs >= techLimit {
+        else if player.currentGameTechs >= techLimit {
             player.isOverGameLimit = true
-            infractionInfo = (Infraction.tech, "\(player.name) has reached the \(Infraction.tech.rawValue) limit!")
+            infraction = Infraction.tech("\(player.name) has reached the tech limit!")
         }
         else {
             player.isOverGameLimit = false
         }
 
-        return infractionInfo
+        return infraction
     }
 
-    func addTotals(for player: Player) {
-        player.totalPoints += player.points
-        player.totalFouls += player.fouls
-        player.totalTechs += player.techs
+    func decideEndOfGame() -> GameEnding? {
+        decideGameWinner()
+
+        if shouldGoToOvertime {
+            return GameEnding.overtime
+        } else if shouldEndSeries {
+            return GameEnding.series("\(winnersName)")
+        } else {
+            gameNumber += 1
+            return GameEnding.game(gameNumber)
+        }
     }
 
-    func decideWinner() {
-        addTotals(for: playerOne)
-        addTotals(for: playerTwo)
+    func decideGameWinner() {
+        addCurrentGameTotalToSeriesTotals()
 
         if playerOne.isOverGameLimit && playerTwo.isOverGameLimit {
-            if playerOne.points > playerTwo.points {
-                playerOne.gamesWon += 1
-                playerTwo.gamesLost += 1
+            if playerOne.currentGamePoints > playerTwo.currentGamePoints {
+                playerOne.seriesGamesWon += 1
+                playerTwo.seriesGamesLost += 1
             }
             else {
-                playerTwo.gamesWon += 1
-                playerOne.gamesLost += 1
+                playerTwo.seriesGamesWon += 1
+                playerOne.seriesGamesLost += 1
             }
         }
         else if playerOne.isOverGameLimit {
-            playerTwo.gamesWon += 1
-            playerOne.gamesLost += 1
+            playerTwo.seriesGamesWon += 1
+            playerOne.seriesGamesLost += 1
         }
         else if playerTwo.isOverGameLimit {
-            playerOne.gamesWon += 1
-            playerTwo.gamesLost += 1
+            playerOne.seriesGamesWon += 1
+            playerTwo.seriesGamesLost += 1
         }
-        else if playerOne.points > playerTwo.points {
-            playerOne.gamesWon += 1
-            playerTwo.gamesLost += 1
+        else if playerOne.currentGamePoints > playerTwo.currentGamePoints {
+            playerOne.seriesGamesWon += 1
+            playerTwo.seriesGamesLost += 1
         }
-        else if playerOne.points < playerTwo.points {
-            playerTwo.gamesWon += 1
-            playerOne.gamesLost += 1
+        else if playerOne.currentGamePoints < playerTwo.currentGamePoints {
+            playerTwo.seriesGamesWon += 1
+            playerOne.seriesGamesLost += 1
+        }
+    }
+
+    func addCurrentGameTotalToSeriesTotals() {
+        for player in players {
+            player.seriesTotalPoints += player.currentGamePoints
+            player.seriesTotalFouls += player.currentGameFouls
+            player.seriesTotalTechs += player.currentGameTechs
         }
     }
 
     func resetStats() {
-        playerOne.points = 0
-        playerOne.fouls = 0
-        playerOne.techs = 0
-        playerOne.isOverGameLimit = false
-
-        playerTwo.points = 0
-        playerTwo.fouls = 0
-        playerTwo.techs = 0
-        playerTwo.isOverGameLimit = false
-    }
-
-    func printPlayers() {
-        print("Player : \(playerOne.name)")
-        print("   Points: \(playerOne.points)")
-        print("   Fouls: \(playerOne.fouls)")
-        print("   Techs: \(playerOne.techs)")
-        print("   Is Over Game Limit: \(playerOne.isOverGameLimit)")
-        print("   Games Won In Series: \(playerOne.gamesWon)")
-        print("   Games Lost In Series: \(playerOne.gamesLost)")
-        print("   Total Points: \(playerOne.totalPoints)")
-        print("   Total Fouls: \(playerOne.totalFouls)")
-        print("   Total Techs: \(playerOne.totalTechs)")
-        print("Player : \(playerTwo.name)")
-        print("   Points: \(playerTwo.points)")
-        print("   Fouls: \(playerTwo.fouls)")
-        print("   Techs: \(playerTwo.techs)")
-        print("   Is Over Game Limit: \(playerTwo.isOverGameLimit)")
-        print("   Games Won In Series: \(playerTwo.gamesWon)")
-        print("   Games Lost In Series: \(playerTwo.gamesLost)")
-        print("   Total Points: \(playerTwo.totalPoints)")
-        print("   Total Fouls: \(playerTwo.totalFouls)")
-        print("   Total Techs: \(playerTwo.totalTechs)")
+        for player in players {
+            player.currentGamePoints = 0
+            player.currentGameFouls = 0
+            player.currentGameTechs = 0
+            player.isOverGameLimit = false
+        }
     }
 }

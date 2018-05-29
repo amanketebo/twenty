@@ -33,9 +33,6 @@ class TwentyViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let statsVC = segue.destination as? StatisticsViewController {
-            let statManager = StatsManager()
-
-            statsVC.averageStats = statManager.getStats()
             statsVC.statsOrdering = StatsOrdering(rawValue: defaults.integer(forKey: UserDefaults.savedStatsOrderingKey))
         }
     }

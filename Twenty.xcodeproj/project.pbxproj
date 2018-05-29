@@ -10,6 +10,8 @@
 		BAF1ADBF1E7AF2C85D9332DD /* Pods_Twenty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FCD7801E2A0AD632FAB5F72 /* Pods_Twenty.framework */; };
 		CA198ED92005E40D00833B0F /* StatsOrderingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA198ED82005E40D00833B0F /* StatsOrderingView.xib */; };
 		CA198EDB2005E68500833B0F /* StatsOrderingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA198EDA2005E68500833B0F /* StatsOrderingView.swift */; };
+		CA275D9320BA6484001FD84A /* Twenty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA275D9120BA6484001FD84A /* Twenty.xcdatamodeld */; };
+		CA275D9620BA65DC001FD84A /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA275D9420BA65DC001FD84A /* Player.swift */; };
 		CA35CDC21F11A55A00C26C57 /* TimerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA35CDC11F11A55A00C26C57 /* TimerLabel.swift */; };
 		CA3CAD9F1E31F0600090DE7C /* PlayerNamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3CAD9E1E31F0600090DE7C /* PlayerNamesViewController.swift */; };
 		CA3CADA11E31F0F90090DE7C /* GameLimitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3CADA01E31F0F90090DE7C /* GameLimitsViewController.swift */; };
@@ -20,8 +22,7 @@
 		CA528D061E7775F100685781 /* StatsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA528D051E7775F100685781 /* StatsManager.swift */; };
 		CA5302631F0B8C890001CED5 /* BlurredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5302621F0B8C890001CED5 /* BlurredView.swift */; };
 		CA5BC7B41F0A20C900A9DCD2 /* HowToView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA5BC7B31F0A20C900A9DCD2 /* HowToView.xib */; };
-		CA746DC91E6FF1BA00E95130 /* SeriesStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA746DC81E6FF1BA00E95130 /* SeriesStats.swift */; };
-		CAA72EAE1E5E7420006BB76C /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA72EAD1E5E7420006BB76C /* Player.swift */; };
+		CA80F81D20BD345500686E3D /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA80F81B20BD345500686E3D /* PlayerStats.swift */; };
 		CAACB2501E319BEB00223A7D /* PageManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAACB24F1E319BEB00223A7D /* PageManagerViewController.swift */; };
 		CAC28AE51E5A8818003C21DC /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC28AE41E5A8818003C21DC /* GameViewController.swift */; };
 		CAC380D71E62A732004A9096 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC380D61E62A732004A9096 /* Game.swift */; };
@@ -41,6 +42,8 @@
 		3FCD7801E2A0AD632FAB5F72 /* Pods_Twenty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twenty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA198ED82005E40D00833B0F /* StatsOrderingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatsOrderingView.xib; sourceTree = "<group>"; };
 		CA198EDA2005E68500833B0F /* StatsOrderingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsOrderingView.swift; sourceTree = "<group>"; };
+		CA275D9220BA6484001FD84A /* Twenty.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Twenty.xcdatamodel; sourceTree = "<group>"; };
+		CA275D9420BA65DC001FD84A /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		CA35CDC11F11A55A00C26C57 /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
 		CA3CAD9E1E31F0600090DE7C /* PlayerNamesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerNamesViewController.swift; sourceTree = "<group>"; };
 		CA3CADA01E31F0F90090DE7C /* GameLimitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLimitsViewController.swift; sourceTree = "<group>"; };
@@ -51,8 +54,7 @@
 		CA528D051E7775F100685781 /* StatsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsManager.swift; sourceTree = "<group>"; };
 		CA5302621F0B8C890001CED5 /* BlurredView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurredView.swift; sourceTree = "<group>"; };
 		CA5BC7B31F0A20C900A9DCD2 /* HowToView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HowToView.xib; sourceTree = "<group>"; };
-		CA746DC81E6FF1BA00E95130 /* SeriesStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeriesStats.swift; sourceTree = "<group>"; };
-		CAA72EAD1E5E7420006BB76C /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		CA80F81B20BD345500686E3D /* PlayerStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
 		CAACB24F1E319BEB00223A7D /* PageManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageManagerViewController.swift; sourceTree = "<group>"; };
 		CAC28AE41E5A8818003C21DC /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		CAC380D61E62A732004A9096 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -134,11 +136,12 @@
 			isa = PBXGroup;
 			children = (
 				CAC380D61E62A732004A9096 /* Game.swift */,
-				CAA72EAD1E5E7420006BB76C /* Player.swift */,
-				CA746DC81E6FF1BA00E95130 /* SeriesStats.swift */,
+				CA275D9420BA65DC001FD84A /* Player.swift */,
+				CA80F81B20BD345500686E3D /* PlayerStats.swift */,
 				CA528D051E7775F100685781 /* StatsManager.swift */,
 				CA4AD2841E7A1E600072EB10 /* AverageStats.swift */,
 				CA4DC0911E3044A1003D09AF /* Extensions.swift */,
+				CA275D9120BA6484001FD84A /* Twenty.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -233,7 +236,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Amanuel Ketebo";
 				TargetAttributes = {
 					CAF2EFE81E1B482A008DD77A = {
@@ -345,9 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAA72EAE1E5E7420006BB76C /* Player.swift in Sources */,
 				CA198EDB2005E68500833B0F /* StatsOrderingView.swift in Sources */,
-				CA746DC91E6FF1BA00E95130 /* SeriesStats.swift in Sources */,
 				CA35CDC21F11A55A00C26C57 /* TimerLabel.swift in Sources */,
 				CA3CAD9F1E31F0600090DE7C /* PlayerNamesViewController.swift in Sources */,
 				CADCA7511EC95C460044302E /* AppDelegate.swift in Sources */,
@@ -359,8 +360,11 @@
 				CA4AD2851E7A1E600072EB10 /* AverageStats.swift in Sources */,
 				CA5302631F0B8C890001CED5 /* BlurredView.swift in Sources */,
 				CAC28AE51E5A8818003C21DC /* GameViewController.swift in Sources */,
+				CA275D9620BA65DC001FD84A /* Player.swift in Sources */,
 				CAC380D71E62A732004A9096 /* Game.swift in Sources */,
 				CAC8E9E920049FDD00C3AC11 /* EndOfGameView.swift in Sources */,
+				CA275D9320BA6484001FD84A /* Twenty.xcdatamodeld in Sources */,
+				CA80F81D20BD345500686E3D /* PlayerStats.swift in Sources */,
 				CA3CADA11E31F0F90090DE7C /* GameLimitsViewController.swift in Sources */,
 				CA4AD2831E7A1A750072EB10 /* StatCollectionViewCell.swift in Sources */,
 				CAE3E5491F11C73500F8D426 /* StatLabel.swift in Sources */,
@@ -405,6 +409,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -412,6 +417,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -461,6 +467,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -468,6 +475,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -505,7 +513,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = WYET37TU46;
 				INFOPLIST_FILE = Twenty/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.unlv.amanketebo.Twenty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -524,7 +532,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = WYET37TU46;
 				INFOPLIST_FILE = Twenty/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.unlv.amanketebo.Twenty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -557,6 +565,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CA275D9120BA6484001FD84A /* Twenty.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CA275D9220BA6484001FD84A /* Twenty.xcdatamodel */,
+			);
+			currentVersion = CA275D9220BA6484001FD84A /* Twenty.xcdatamodel */;
+			path = Twenty.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CAF2EFE11E1B482A008DD77A /* Project object */;
 }
