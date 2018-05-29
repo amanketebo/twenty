@@ -76,8 +76,8 @@ class GameLimitsViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
         else {
-            let playerOne = statsManager.fetchPlayer(matching: playerNameVC.playerOneTextField.text ?? "")
-            let playerTwo = statsManager.fetchPlayer(matching: playerNameVC.playerTwoTextField.text ?? "")
+            let playerOne = Player()
+            let playerTwo = Player()
             let game = Game(playerOne: playerOne, playerTwo: playerTwo)
 
             // ! since text fields definetly have names in them and buttons have numbers

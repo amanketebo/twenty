@@ -23,7 +23,7 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var noStatsLabel: UILabel!
 
-    var allPlayers = [Player]() {
+    var allPlayers = [PlayerStats]() {
         didSet {
             if allPlayers.isEmpty {
                 if noStatsLabel != nil {
@@ -73,7 +73,7 @@ class StatisticsViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         sortStats()
-        let players = statsManager.fetchAllPlayers()
+        let players = statsManager.fetchAllPlayersStats()
         self.allPlayers = players
     }
 

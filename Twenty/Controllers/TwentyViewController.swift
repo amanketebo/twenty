@@ -11,7 +11,7 @@ import UIKit
 class TwentyViewController: UIViewController {
     @IBOutlet weak var newGameImageView: UIImageView!
     @IBOutlet weak var statisticsImageView: UIImageView!
-    
+
     private let imageAlpha: CGFloat = 0.40
     private let defaults = UserDefaults.standard
 
@@ -33,8 +33,6 @@ class TwentyViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let statsVC = segue.destination as? StatisticsViewController {
-            let statManager = StatsManager()
-
             statsVC.statsOrdering = StatsOrdering(rawValue: defaults.integer(forKey: UserDefaults.savedStatsOrderingKey))
         }
     }

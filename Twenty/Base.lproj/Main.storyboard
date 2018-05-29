@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PI1-o5-bTw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="PI1-o5-bTw">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -98,6 +99,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
+                        <color key="backgroundColor" name="darkBlack"/>
                         <constraints>
                             <constraint firstItem="E5c-lt-yqk" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="Z1J-3U-tJ7"/>
                             <constraint firstAttribute="trailing" secondItem="E5c-lt-yqk" secondAttribute="trailing" id="bPt-n9-M8v"/>
@@ -1238,7 +1240,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" name="darkBlack"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="JQC-Nm-8jq" firstAttribute="top" secondItem="bbj-IU-VD5" secondAttribute="bottom" id="QQJ-hc-eaE"/>
@@ -1272,5 +1274,8 @@
     <resources>
         <image name="newgame" width="518" height="345"/>
         <image name="stats" width="518" height="345"/>
+        <namedColor name="darkBlack">
+            <color red="0.12941176470588237" green="0.12941176470588237" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
