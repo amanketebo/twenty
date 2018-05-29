@@ -27,11 +27,10 @@ enum GameEnding {
 }
 
 class Game {
-
     static let regularTimeLimit = 200
     static let overtimeTimeLimit = 100
-    var playerOne = Player()
-    var playerTwo = Player()
+    var playerOne: Player
+    var playerTwo: Player
     var gameNumber = 1
     var foulLimit = 0
     var techLimit = 0
@@ -60,7 +59,7 @@ class Game {
     var shouldEndSeries: Bool {
         var decision = false
 
-        if playerOne.gamesWon == winsNeeded || playerTwo.gamesWon == winsNeeded {
+        if playerOne.seriesGamesWon == winsNeeded || playerTwo.seriesGamesWon == winsNeeded {
             decision = true
         }
 
@@ -83,10 +82,10 @@ class Game {
     var winnersName: String {
         var winnerName = ""
 
-        if playerOne.gamesWon == winsNeeded {
+        if playerOne.seriesGamesWon == winsNeeded {
             winnerName = playerOne.name
         }
-        else if playerTwo.gamesWon == winsNeeded {
+        else if playerTwo.seriesGamesWon == winsNeeded {
             winnerName = playerTwo.name
         }
 
@@ -168,9 +167,9 @@ class Game {
     }
 
     func addTotals(for player: Player) {
-        player.totalPoints += player.points
-        player.totalFouls += player.fouls
-        player.totalTechs += player.techs
+        player.totalPoints += Int16(player.points)
+        player.totalFouls += Int16(player.fouls)
+        player.totalTechs += Int16(player.techs)
     }
 
     func decideWinner() {
@@ -179,29 +178,41 @@ class Game {
 
         if playerOne.isOverGameLimit && playerTwo.isOverGameLimit {
             if playerOne.points > playerTwo.points {
-                playerOne.gamesWon += 1
-                playerTwo.gamesLost += 1
+                playerOne.seriesGamesWon += 1
+                playerTwo.seriesGamesLost += 1
+                playerOne.totalGamesWon += 1
+                playerTwo.totalGamesLost += 1
             }
             else {
-                playerTwo.gamesWon += 1
-                playerOne.gamesLost += 1
+                playerTwo.seriesGamesWon += 1
+                playerOne.seriesGamesLost += 1
+                playerTwo.totalGamesWon += 1
+                playerOne.totalGamesLost += 1
             }
         }
         else if playerOne.isOverGameLimit {
-            playerTwo.gamesWon += 1
-            playerOne.gamesLost += 1
+            playerTwo.seriesGamesWon += 1
+            playerOne.seriesGamesLost += 1
+            playerTwo.totalGamesWon += 1
+            playerOne.totalGamesLost += 1
         }
         else if playerTwo.isOverGameLimit {
-            playerOne.gamesWon += 1
-            playerTwo.gamesLost += 1
+            playerOne.seriesGamesWon += 1
+            playerTwo.seriesGamesLost += 1
+            playerOne.totalGamesWon += 1
+            playerTwo.totalGamesLost += 1
         }
         else if playerOne.points > playerTwo.points {
-            playerOne.gamesWon += 1
-            playerTwo.gamesLost += 1
+            playerOne.seriesGamesWon += 1
+            playerTwo.seriesGamesLost += 1
+            playerOne.totalGamesWon += 1
+            playerTwo.totalGamesLost += 1
         }
         else if playerOne.points < playerTwo.points {
-            playerTwo.gamesWon += 1
-            playerOne.gamesLost += 1
+            playerTwo.seriesGamesWon += 1
+            playerOne.seriesGamesLost += 1
+            playerTwo.totalGamesWon += 1
+            playerOne.totalGamesLost += 1
         }
     }
 
@@ -223,8 +234,8 @@ class Game {
         print("   Fouls: \(playerOne.fouls)")
         print("   Techs: \(playerOne.techs)")
         print("   Is Over Game Limit: \(playerOne.isOverGameLimit)")
-        print("   Games Won In Series: \(playerOne.gamesWon)")
-        print("   Games Lost In Series: \(playerOne.gamesLost)")
+        print("   Games Won In Series: \(playerOne.seriesGamesWon)")
+        print("   Games Lost In Series: \(playerOne.seriesGamesLost)")
         print("   Total Points: \(playerOne.totalPoints)")
         print("   Total Fouls: \(playerOne.totalFouls)")
         print("   Total Techs: \(playerOne.totalTechs)")
@@ -233,8 +244,8 @@ class Game {
         print("   Fouls: \(playerTwo.fouls)")
         print("   Techs: \(playerTwo.techs)")
         print("   Is Over Game Limit: \(playerTwo.isOverGameLimit)")
-        print("   Games Won In Series: \(playerTwo.gamesWon)")
-        print("   Games Lost In Series: \(playerTwo.gamesLost)")
+        print("   Games Won In Series: \(playerTwo.seriesGamesWon)")
+        print("   Games Lost In Series: \(playerTwo.seriesGamesLost)")
         print("   Total Points: \(playerTwo.totalPoints)")
         print("   Total Fouls: \(playerTwo.totalFouls)")
         print("   Total Techs: \(playerTwo.totalTechs)")

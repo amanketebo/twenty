@@ -28,6 +28,7 @@ class GameLimitsViewController: UIViewController {
     private var playerNameVC: PlayerNamesViewController? {
         return pageManager?.pageVcs.first as? PlayerNamesViewController
     }
+    private let statsManager = StatsManager.shared
 
     @IBAction func touchedLimit(_ sender: UIButton) {
         // The buttons tag corresponds to the section its in
@@ -75,8 +76,8 @@ class GameLimitsViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
         else {
-            let playerOne = Player()
-            let playerTwo = Player()
+            let playerOne = statsManager.fetchPlayer(matching: playerNameVC.playerOneTextField.text ?? "")
+            let playerTwo = statsManager.fetchPlayer(matching: playerNameVC.playerTwoTextField.text ?? "")
             let game = Game(playerOne: playerOne, playerTwo: playerTwo)
 
             // ! since text fields definetly have names in them and buttons have numbers

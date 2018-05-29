@@ -17,11 +17,11 @@ class StatCollectionViewCell: UICollectionViewCell {
 
     static let identifier = "statCell"
 
-    func configureCell(with averageStat: AverageStats) {
-        name.text = averageStat.name
-        averagePoints.text = String(averageStat.points)
-        averageFouls.text = String(averageStat.fouls)
-        averageTechs.text = String(averageStat.techs)
-        record.text = "\(String(averageStat.gamesWon))-\(String(averageStat.gamesLost))"
+    func configureCell(with player: Player) {
+        name.text = player.name
+        averagePoints.text = String(player.averagePoints)
+        averageFouls.text = String(player.averageFouls)
+        averageTechs.text = String(player.averageTechs)
+        record.text = "\(String(player.totalGamesWon))-\(String(player.totalGamesLost))"
     }
 }

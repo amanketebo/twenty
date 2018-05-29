@@ -23,9 +23,9 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var noStatsLabel: UILabel!
 
-    var averageStats = [AverageStats]() {
+    var allPlayers = [Player]() {
         didSet {
-            if averageStats.isEmpty {
+            if allPlayers.isEmpty {
                 if noStatsLabel != nil {
                     noStatsLabel.isHidden = false
                 }
@@ -66,12 +66,15 @@ class StatisticsViewController: UIViewController {
             action: #selector(resetStats(_:)))
     }()
 
+    private let statsManager = StatsManager.shared
     private let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         sortStats()
+        let players = statsManager.fetchAllPlayers()
+        self.allPlayers = players
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -98,7 +101,7 @@ class StatisticsViewController: UIViewController {
 
         sortStats()
 
-        if averageStats.isEmpty {
+        if allPlayers.isEmpty {
             noStatsLabel.isHidden = false
         } else {
             noStatsLabel.isHidden = true
@@ -109,8 +112,8 @@ class StatisticsViewController: UIViewController {
         let alert = UIAlertController(title: "Are you sure you want to reset all the stats?", message: nil, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let yes = UIAlertAction(title: "Yes, I'm Sure", style: .default) { [weak self] (alert) in
-            self?.defaults.removeObject(forKey: UserDefaults.allStatsKey)
-            self?.averageStats.removeAll()
+            self?.statsManager.deleteAllPlayers()
+            self?.allPlayers.removeAll()
             self?.collectionView.reloadData()
         }
 
@@ -128,14 +131,14 @@ class StatisticsViewController: UIViewController {
         guard let _ = collectionView else { return }
 
         switch statsOrdering {
-        case .pointsLeastToGreatest: averageStats.sort(by: { $0.points < $1.points })
-        case .pointsGreatestToLeast: averageStats.sort(by: { $0.points > $1.points })
-        case .foulsLeastToGreatest: averageStats.sort(by: { $0.fouls < $1.fouls })
-        case .foulsGreatestToLeast: averageStats.sort(by: { $0.fouls > $1.fouls })
-        case .techsLeastToGreatest: averageStats.sort(by: { $0.techs < $1.techs })
-        case .techsGreatestToLeast: averageStats.sort(by: { $0.techs > $1.techs })
-        case .recordLeastToGreatest: averageStats.sort(by: { $0.winPercentage < $1.winPercentage })
-        case .recordGreatestToLeast: averageStats.sort(by: { $0.winPercentage > $1.winPercentage })
+        case .pointsLeastToGreatest: allPlayers.sort(by: { $0.averagePoints < $1.averagePoints })
+        case .pointsGreatestToLeast: allPlayers.sort(by: { $0.averagePoints > $1.averagePoints })
+        case .foulsLeastToGreatest: allPlayers.sort(by: { $0.averageFouls < $1.averageFouls })
+        case .foulsGreatestToLeast: allPlayers.sort(by: { $0.averageFouls > $1.averageFouls })
+        case .techsLeastToGreatest: allPlayers.sort(by: { $0.averageTechs < $1.averageTechs })
+        case .techsGreatestToLeast: allPlayers.sort(by: { $0.averageTechs > $1.averageTechs })
+        case .recordLeastToGreatest: allPlayers.sort(by: { $0.winPercentage < $1.winPercentage })
+        case .recordGreatestToLeast: allPlayers.sort(by: { $0.winPercentage > $1.winPercentage })
         }
 
         collectionView.reloadData()
@@ -148,13 +151,13 @@ extension StatisticsViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return averageStats.count
+        return allPlayers.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StatCollectionViewCell.identifier, for: indexPath) as! StatCollectionViewCell
-        cell.configureCell(with: averageStats[indexPath.row])
+        cell.configureCell(with: allPlayers[indexPath.row])
 
         if cellsViewed[indexPath.row] == nil {
             let animationEndingFrame = cell.frame

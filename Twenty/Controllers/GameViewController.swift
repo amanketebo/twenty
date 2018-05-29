@@ -70,9 +70,9 @@ class GameViewController: UIViewController {
 
     func setupGameInformation() {
         playerOneName.text = currentGame.playerOne.name
-        playerOneGamesWon.text = String(playerOne.gamesWon)
+        playerOneGamesWon.text = String(playerOne.seriesGamesWon)
         playerTwoName.text = currentGame.playerTwo.name
-        playerTwoGamesWon.text = String(playerTwo.gamesWon)
+        playerTwoGamesWon.text = String(playerTwo.seriesGamesWon)
         seriesLimitLabel.text = "SERIES: \(currentGame.seriesLimit)"
         foulLimitLabel.text = "FOULS: \(currentGame.foulLimit)"
         techLimitLabel.text = "TECHS: \(currentGame.techLimit)"
@@ -157,8 +157,8 @@ class GameViewController: UIViewController {
             endOfGameView.fillSuperView()
             endOfGameView.fadeIn(duration: animationDuration, delay: 0, completion: { (success) in
                 self.navigationItem.title = "Game \(gameNumber)"
-                self.playerOneGamesWon.text = String(self.currentGame.playerOne.gamesWon)
-                self.playerTwoGamesWon.text = String(self.currentGame.playerTwo.gamesWon)
+                self.playerOneGamesWon.text = String(self.currentGame.playerOne.seriesGamesWon)
+                self.playerTwoGamesWon.text = String(self.currentGame.playerTwo.seriesGamesWon)
                 self.currentGame.resetStats()
                 self.resetStatLabels()
                 endOfGameView.fadeOut(duration: animationDuration, delay: animationDelay, completion: { (success) in
@@ -191,10 +191,8 @@ class GameViewController: UIViewController {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Leave", style: .plain, target: self, action: #selector(popToFirstVC))
             endOfGameView.fadeIn(duration: animationDuration, delay: 0, completion: nil)
             // Save stats
-            let seriesStats = SeriesStats(game: currentGame)
-            let statsManager = StatsManager(seriesStats)
-
-            statsManager.saveStats()
+            let statsManager = StatsManager.shared
+            statsManager.saveContext()
         }
     }
 
