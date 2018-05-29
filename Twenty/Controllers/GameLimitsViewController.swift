@@ -102,6 +102,9 @@ class GameLimitsViewController: UIViewController {
     private func playerHaveSameNames() -> Bool {
         guard let playerNameVC = playerNameVC else { return false }
 
-        return playerNameVC.playerOneTextField.text == playerNameVC.playerTwoTextField.text
+        let playerOneName = playerNameVC.playerOneTextField.text
+        let playerTwoName = playerNameVC.playerTwoTextField.text
+
+        return playerOneName?.trimmingCharacters(in: .whitespaces) == playerTwoName?.trimmingCharacters(in: .whitespaces)
     }
 }
