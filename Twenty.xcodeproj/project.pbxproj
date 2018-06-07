@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BAF1ADBF1E7AF2C85D9332DD /* Pods_Twenty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FCD7801E2A0AD632FAB5F72 /* Pods_Twenty.framework */; };
+		CA17D78D20C8C8BA0042FF4A /* TwentyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA17D78C20C8C8BA0042FF4A /* TwentyUITests.swift */; };
+		CA17D79520C8C8D70042FF4A /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA17D79420C8C8D70042FF4A /* SnapshotHelper.swift */; };
 		CA198ED92005E40D00833B0F /* StatsOrderingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA198ED82005E40D00833B0F /* StatsOrderingView.xib */; };
 		CA198EDB2005E68500833B0F /* StatsOrderingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA198EDA2005E68500833B0F /* StatsOrderingView.swift */; };
 		CA275D9320BA6484001FD84A /* Twenty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA275D9120BA6484001FD84A /* Twenty.xcdatamodeld */; };
@@ -38,8 +40,22 @@
 		CAF2EFF71E1B482A008DD77A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAF2EFF51E1B482A008DD77A /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		CA17D78F20C8C8BA0042FF4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CAF2EFE11E1B482A008DD77A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CAF2EFE81E1B482A008DD77A;
+			remoteInfo = Twenty;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		3FCD7801E2A0AD632FAB5F72 /* Pods_Twenty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twenty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA17D78A20C8C8BA0042FF4A /* TwentyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwentyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA17D78C20C8C8BA0042FF4A /* TwentyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwentyUITests.swift; sourceTree = "<group>"; };
+		CA17D78E20C8C8BA0042FF4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA17D79420C8C8D70042FF4A /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		CA198ED82005E40D00833B0F /* StatsOrderingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatsOrderingView.xib; sourceTree = "<group>"; };
 		CA198EDA2005E68500833B0F /* StatsOrderingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsOrderingView.swift; sourceTree = "<group>"; };
 		CA275D9220BA6484001FD84A /* Twenty.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Twenty.xcdatamodel; sourceTree = "<group>"; };
@@ -75,6 +91,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CA17D78720C8C8BA0042FF4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CAF2EFE61E1B482A008DD77A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -101,6 +124,16 @@
 				3FCD7801E2A0AD632FAB5F72 /* Pods_Twenty.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CA17D78B20C8C8BA0042FF4A /* TwentyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CA17D79420C8C8D70042FF4A /* SnapshotHelper.swift */,
+				CA17D78C20C8C8BA0042FF4A /* TwentyUITests.swift */,
+				CA17D78E20C8C8BA0042FF4A /* Info.plist */,
+			);
+			path = TwentyUITests;
 			sourceTree = "<group>";
 		};
 		CA8F6B6E1E39BF3000E81FD7 /* Controllers */ = {
@@ -178,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				CAF2EFEB1E1B482A008DD77A /* Twenty */,
+				CA17D78B20C8C8BA0042FF4A /* TwentyUITests */,
 				CAF2EFEA1E1B482A008DD77A /* Products */,
 				2270C30E084BB6FB07282F4F /* Pods */,
 				33D929E5D5934F4F1EAD43FD /* Frameworks */,
@@ -188,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				CAF2EFE91E1B482A008DD77A /* Twenty.app */,
+				CA17D78A20C8C8BA0042FF4A /* TwentyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -208,6 +243,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CA17D78920C8C8BA0042FF4A /* TwentyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA17D79320C8C8BA0042FF4A /* Build configuration list for PBXNativeTarget "TwentyUITests" */;
+			buildPhases = (
+				CA17D78620C8C8BA0042FF4A /* Sources */,
+				CA17D78720C8C8BA0042FF4A /* Frameworks */,
+				CA17D78820C8C8BA0042FF4A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CA17D79020C8C8BA0042FF4A /* PBXTargetDependency */,
+			);
+			name = TwentyUITests;
+			productName = TwentyUITests;
+			productReference = CA17D78A20C8C8BA0042FF4A /* TwentyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		CAF2EFE81E1B482A008DD77A /* Twenty */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CAF2EFFB1E1B482A008DD77A /* Build configuration list for PBXNativeTarget "Twenty" */;
@@ -235,10 +288,16 @@
 		CAF2EFE11E1B482A008DD77A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Amanuel Ketebo";
 				TargetAttributes = {
+					CA17D78920C8C8BA0042FF4A = {
+						CreatedOnToolsVersion = 9.4;
+						DevelopmentTeam = 6Z5EK2Z6N5;
+						ProvisioningStyle = Automatic;
+						TestTargetID = CAF2EFE81E1B482A008DD77A;
+					};
 					CAF2EFE81E1B482A008DD77A = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = WYET37TU46;
@@ -261,11 +320,19 @@
 			projectRoot = "";
 			targets = (
 				CAF2EFE81E1B482A008DD77A /* Twenty */,
+				CA17D78920C8C8BA0042FF4A /* TwentyUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CA17D78820C8C8BA0042FF4A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CAF2EFE71E1B482A008DD77A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -339,11 +406,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CA17D78620C8C8BA0042FF4A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA17D78D20C8C8BA0042FF4A /* TwentyUITests.swift in Sources */,
+				CA17D79520C8C8D70042FF4A /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CAF2EFE51E1B482A008DD77A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -374,6 +450,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		CA17D79020C8C8BA0042FF4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CAF2EFE81E1B482A008DD77A /* Twenty */;
+			targetProxy = CA17D78F20C8C8BA0042FF4A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		CAF2EFF01E1B482A008DD77A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -396,6 +480,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		CA17D79120C8C8BA0042FF4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6Z5EK2Z6N5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TwentyUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.unlv.keteboa.TwentyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Twenty;
+			};
+			name = Debug;
+		};
+		CA17D79220C8C8BA0042FF4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6Z5EK2Z6N5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TwentyUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.unlv.keteboa.TwentyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Twenty;
+			};
+			name = Release;
+		};
 		CAF2EFF91E1B482A008DD77A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -546,6 +674,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CA17D79320C8C8BA0042FF4A /* Build configuration list for PBXNativeTarget "TwentyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA17D79120C8C8BA0042FF4A /* Debug */,
+				CA17D79220C8C8BA0042FF4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CAF2EFE41E1B482A008DD77A /* Build configuration list for PBXProject "Twenty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

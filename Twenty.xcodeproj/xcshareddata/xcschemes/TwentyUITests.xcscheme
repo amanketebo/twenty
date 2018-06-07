@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "0940"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -9,14 +9,14 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CAF2EFE81E1B482A008DD77A"
-               BuildableName = "Twenty.app"
-               BlueprintName = "Twenty"
+               BlueprintIdentifier = "CA17D78920C8C8BA0042FF4A"
+               BuildableName = "TwentyUITests.xctest"
+               BlueprintName = "TwentyUITests"
                ReferencedContainer = "container:Twenty.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,16 +28,17 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CA17D78920C8C8BA0042FF4A"
+               BuildableName = "TwentyUITests.xctest"
+               BlueprintName = "TwentyUITests"
+               ReferencedContainer = "container:Twenty.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CAF2EFE81E1B482A008DD77A"
-            BuildableName = "Twenty.app"
-            BlueprintName = "Twenty"
-            ReferencedContainer = "container:Twenty.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -51,23 +52,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CAF2EFE81E1B482A008DD77A"
-            BuildableName = "Twenty.app"
-            BlueprintName = "Twenty"
+            BlueprintIdentifier = "CA17D78920C8C8BA0042FF4A"
+            BuildableName = "TwentyUITests.xctest"
+            BlueprintName = "TwentyUITests"
             ReferencedContainer = "container:Twenty.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "OS_ACTIVITY_MODE"
-            value = "disable"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -77,16 +70,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CAF2EFE81E1B482A008DD77A"
-            BuildableName = "Twenty.app"
-            BlueprintName = "Twenty"
+            BlueprintIdentifier = "CA17D78920C8C8BA0042FF4A"
+            BuildableName = "TwentyUITests.xctest"
+            BlueprintName = "TwentyUITests"
             ReferencedContainer = "container:Twenty.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
