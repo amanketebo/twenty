@@ -24,7 +24,7 @@ extension UIColor {
     static let lightPurple = UIColor(red: 0.43, green: 0.31, blue: 0.53, alpha: 1.0)
 }
 
-extension UILabel {
+extension UIView {
     @IBInspectable
     var whiteBorder: Bool {
         get {

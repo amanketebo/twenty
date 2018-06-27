@@ -9,19 +9,19 @@
 import UIKit
 
 class GameViewController: UIViewController {
-    @IBOutlet weak var playerOnePoints: StatLabel!
-    @IBOutlet weak var playerOneFouls: StatLabel!
-    @IBOutlet weak var playerOneTechs: StatLabel!
-    @IBOutlet weak var playerTwoPoints: StatLabel!
-    @IBOutlet weak var playerTwoFouls: StatLabel!
-    @IBOutlet weak var playerTwoTechs: StatLabel!
-    @IBOutlet weak var seriesLimitLabel: StatLabel!
-    @IBOutlet weak var foulLimitLabel: StatLabel!
-    @IBOutlet weak var techLimitLabel: StatLabel!
-    @IBOutlet weak var playerOneGamesWon: StatLabel!
-    @IBOutlet weak var playerTwoGamesWon: StatLabel!
-    @IBOutlet weak var playerOneName: StatLabel!
-    @IBOutlet weak var playerTwoName: StatLabel!
+    @IBOutlet weak var playerOnePoints: StatView!
+    @IBOutlet weak var playerOneFouls: StatView!
+    @IBOutlet weak var playerOneTechs: StatView!
+    @IBOutlet weak var playerTwoPoints: StatView!
+    @IBOutlet weak var playerTwoFouls: StatView!
+    @IBOutlet weak var playerTwoTechs: StatView!
+    @IBOutlet weak var seriesLimitLabel: UILabel!
+    @IBOutlet weak var foulLimitLabel: UILabel!
+    @IBOutlet weak var techLimitLabel: UILabel!
+    @IBOutlet weak var playerOneGamesWon: UILabel!
+    @IBOutlet weak var playerTwoGamesWon: UILabel!
+    @IBOutlet weak var playerOneName: UILabel!
+    @IBOutlet weak var playerTwoName: UILabel!
     @IBOutlet weak var timerLabel: TimerLabel! {
         didSet {
             timerLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 60, weight: UIFont.Weight.light)
@@ -39,7 +39,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         setupNavbar()
         setupGameInformation()
-        timerLabel.delegate = self
+        setDelegates()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -78,6 +78,16 @@ class GameViewController: UIViewController {
         techLimitLabel.text = "TECHS: \(currentGame.techLimit)"
     }
 
+    func setDelegates() {
+        timerLabel.delegate = self
+        playerOnePoints.delegate = self
+        playerOneFouls.delegate = self
+        playerOneTechs.delegate = self
+        playerTwoPoints.delegate = self
+        playerTwoFouls.delegate = self
+        playerTwoTechs.delegate = self
+    }
+
     func presentHowToView() {
         guard let howToView = Bundle.main.loadNibNamed("HowToView", owner: nil, options: nil)?.first as? HowToView else { return }
 
@@ -104,19 +114,19 @@ class GameViewController: UIViewController {
     private func changeStatsLabelsToRed(for player: Player, with infraction: Infraction) {
         switch (player.name, infraction) {
         case (currentGame.playerOne.name, Infraction.foul):
-            playerOneFouls.textColor = UIColor.warningRed
+            playerOneFouls.overLimit()
         case (currentGame.playerOne.name, Infraction.tech):
-            playerOneTechs.textColor = UIColor.warningRed
+            playerOneTechs.overLimit()
         case (currentGame.playerOne.name, Infraction.both):
-            playerOneFouls.textColor = UIColor.warningRed
-            playerOneTechs.textColor = UIColor.warningRed
+            playerOneFouls.overLimit()
+            playerOneTechs.overLimit()
         case (currentGame.playerTwo.name, Infraction.foul):
-            playerTwoFouls.textColor = UIColor.warningRed
+            playerTwoFouls.overLimit()
         case (currentGame.playerTwo.name, Infraction.tech):
-            playerTwoTechs.textColor = UIColor.warningRed
+            playerTwoTechs.overLimit()
         case (currentGame.playerTwo.name, Infraction.both):
-            playerTwoFouls.textColor = UIColor.warningRed
-            playerTwoTechs.textColor = UIColor.warningRed
+            playerTwoFouls.overLimit()
+            playerTwoTechs.overLimit()
         default: break
         }
     }
@@ -164,7 +174,7 @@ class GameViewController: UIViewController {
                 self.playerOneGamesWon.text = String(self.currentGame.playerOne.seriesGamesWon)
                 self.playerTwoGamesWon.text = String(self.currentGame.playerTwo.seriesGamesWon)
                 self.currentGame.resetStats()
-                self.resetStatLabels()
+                self.resetStatViews()
                 endOfGameView.fadeOut(duration: animationDuration, delay: animationDelay, completion: { (success) in
                     endOfGameView.removeFromSuperview()
                 })
@@ -178,7 +188,7 @@ class GameViewController: UIViewController {
             endOfGameView.fadeIn(duration: animationDuration, delay: 0, completion: { (success) in
                 self.navigationItem.title = "Game \(self.currentGame.gameNumber) OT"
                 self.currentGame.resetStats()
-                self.resetStatLabels()
+                self.resetStatViews()
                 endOfGameView.fadeOut(duration: animationDuration, delay: animationDelay, completion: { (success) in
                     endOfGameView.removeFromSuperview()
                 })
@@ -222,18 +232,13 @@ class GameViewController: UIViewController {
         return endOfGameView
     }
 
-    private func resetStatLabels() {
-        playerOnePoints.text = "0"
-        playerOneFouls.text = "0"
-        playerOneTechs.text = "0"
-        playerTwoPoints.text = "0"
-        playerTwoFouls.text = "0"
-        playerTwoTechs.text = "0"
-
-        playerOneFouls.textColor = UIColor.white
-        playerOneTechs.textColor = UIColor.white
-        playerTwoFouls.textColor = UIColor.white
-        playerTwoTechs.textColor = UIColor.white
+    private func resetStatViews() {
+        playerOnePoints.reset()
+        playerOneFouls.reset()
+        playerOneTechs.reset()
+        playerTwoPoints.reset()
+        playerTwoFouls.reset()
+        playerTwoTechs.reset()
 
         if currentGame.isOvertime {
             timerLabel.text = "10.0"
@@ -246,7 +251,7 @@ class GameViewController: UIViewController {
     }
 }
 
-extension GameViewController: StatLabelDelegate {
+extension GameViewController: StatViewDelegate {
     func updatedPlayerStat(playerNumber: Int, statType: Int, stat: Int) {
         if let typeOfStat = Stat(rawValue: statType) {
             var player: Player!
@@ -258,7 +263,7 @@ extension GameViewController: StatLabelDelegate {
             case .foul: player.currentGameFouls = stat
             case .tech: player.currentGameTechs = stat
             }
-
+    
             checkGameLimits(playerNumber: playerNumber)
         }
     }

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,24 +22,6 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qbA-ZU-hSb" customClass="BlurredView" customModule="Twenty" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         </view>
-                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hj-I6-J2r" customClass="StatLabel" customModule="Twenty" customModuleProvider="target">
-                            <rect key="frame" x="20" y="106" width="110" height="180"/>
-                            <color key="backgroundColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.12549019610000001" alpha="1" colorSpace="deviceRGB"/>
-                            <gestureRecognizers/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="110" id="PXB-jW-VdX"/>
-                                <constraint firstAttribute="height" constant="180" id="dJb-QC-PNH"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="50"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="whiteBorder" value="YES"/>
-                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <real key="value" value="5"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </label>
                         <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3O-hT-GKo" customClass="TimerLabel" customModule="Twenty" customModuleProvider="target">
                             <rect key="frame" x="20" y="336" width="335" height="75"/>
                             <color key="backgroundColor" red="0.1529411765" green="0.90980392160000001" blue="0.20000000000000001" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
@@ -63,7 +46,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ok, got it" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEc-TZ-SEF">
-                            <rect key="frame" x="122" y="587" width="130" height="45"/>
+                            <rect key="frame" x="122.5" y="587" width="130" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="130" id="3Hc-Nq-nb2"/>
                                 <constraint firstAttribute="height" constant="45" id="Wbu-4d-Zc1"/>
@@ -84,27 +67,41 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snf-Jd-GD8" customClass="StatView" customModule="Twenty" customModuleProvider="target">
+                            <rect key="frame" x="20" y="106" width="110" height="180"/>
+                            <color key="backgroundColor" name="darkBlack"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="180" id="lU2-eW-tnc"/>
+                                <constraint firstAttribute="width" constant="110" id="riX-A5-QlP"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="whiteBorder" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
                     </subviews>
                     <gestureRecognizers/>
                     <constraints>
-                        <constraint firstItem="LSy-A5-xO6" firstAttribute="centerY" secondItem="3hj-I6-J2r" secondAttribute="centerY" id="2qR-Nh-JPp"/>
-                        <constraint firstItem="3hj-I6-J2r" firstAttribute="leading" secondItem="xoR-GP-QxR" secondAttribute="leading" constant="20" id="E24-tH-ksy"/>
                         <constraint firstItem="s3O-hT-GKo" firstAttribute="leading" secondItem="xoR-GP-QxR" secondAttribute="leading" constant="20" id="GJW-qW-tFN"/>
+                        <constraint firstItem="s3O-hT-GKo" firstAttribute="top" secondItem="snf-Jd-GD8" secondAttribute="bottom" constant="50" id="Ifd-tn-LWx"/>
                         <constraint firstItem="8fj-mG-8br" firstAttribute="top" secondItem="s3O-hT-GKo" secondAttribute="bottom" constant="10" id="LFf-sp-vJ1"/>
                         <constraint firstItem="qbA-ZU-hSb" firstAttribute="top" secondItem="xoR-GP-QxR" secondAttribute="top" id="LU4-N3-uXO"/>
-                        <constraint firstItem="LSy-A5-xO6" firstAttribute="leading" secondItem="3hj-I6-J2r" secondAttribute="trailing" constant="5" id="Luj-Iu-dPt"/>
                         <constraint firstAttribute="trailing" secondItem="8fj-mG-8br" secondAttribute="trailing" constant="5" id="NXy-9r-sal"/>
                         <constraint firstAttribute="bottom" secondItem="WEc-TZ-SEF" secondAttribute="bottom" constant="35" id="PLF-ym-xff"/>
                         <constraint firstItem="s3O-hT-GKo" firstAttribute="centerX" secondItem="xoR-GP-QxR" secondAttribute="centerX" id="Q5Y-ga-b6D"/>
                         <constraint firstAttribute="trailing" secondItem="qbA-ZU-hSb" secondAttribute="trailing" id="TVr-Ji-7Gh"/>
                         <constraint firstAttribute="bottom" secondItem="qbA-ZU-hSb" secondAttribute="bottom" id="Tdu-is-ptt"/>
+                        <constraint firstItem="LSy-A5-xO6" firstAttribute="leading" secondItem="snf-Jd-GD8" secondAttribute="trailing" constant="5" id="X1f-0f-mfQ"/>
+                        <constraint firstItem="LSy-A5-xO6" firstAttribute="centerY" secondItem="snf-Jd-GD8" secondAttribute="centerY" id="XNe-GG-gVc"/>
                         <constraint firstItem="s3O-hT-GKo" firstAttribute="centerY" secondItem="xoR-GP-QxR" secondAttribute="centerY" constant="40" id="YAu-RZ-uo7"/>
                         <constraint firstItem="WEc-TZ-SEF" firstAttribute="centerX" secondItem="xoR-GP-QxR" secondAttribute="centerX" id="ZLy-2s-bS9"/>
+                        <constraint firstItem="snf-Jd-GD8" firstAttribute="leading" secondItem="xoR-GP-QxR" secondAttribute="leading" constant="20" id="aYf-9p-WRo"/>
                         <constraint firstItem="qbA-ZU-hSb" firstAttribute="leading" secondItem="xoR-GP-QxR" secondAttribute="leading" id="h1q-0V-PAj"/>
                         <constraint firstItem="8fj-mG-8br" firstAttribute="leading" secondItem="xoR-GP-QxR" secondAttribute="leading" constant="5" id="jvk-J7-oZL"/>
                         <constraint firstAttribute="trailing" secondItem="LSy-A5-xO6" secondAttribute="trailing" constant="5" id="mhp-g1-wx2"/>
                         <constraint firstAttribute="trailing" secondItem="s3O-hT-GKo" secondAttribute="trailing" constant="20" id="nR0-Da-Jna"/>
-                        <constraint firstItem="s3O-hT-GKo" firstAttribute="top" secondItem="3hj-I6-J2r" secondAttribute="bottom" constant="50" id="sms-UG-UtW"/>
                     </constraints>
                 </view>
             </subviews>
@@ -121,4 +118,9 @@
             <point key="canvasLocation" x="-516.5" y="485.5"/>
         </view>
     </objects>
+    <resources>
+        <namedColor name="darkBlack">
+            <color red="0.12941176470588237" green="0.12941176470588237" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

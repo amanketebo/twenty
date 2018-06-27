@@ -32,12 +32,12 @@
 		CAC8E9E920049FDD00C3AC11 /* EndOfGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8E9E820049FDD00C3AC11 /* EndOfGameView.swift */; };
 		CADCA7511EC95C460044302E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADCA7501EC95C460044302E /* AppDelegate.swift */; };
 		CAE3E5471F11B60400F8D426 /* HowToView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3E5461F11B60400F8D426 /* HowToView.swift */; };
-		CAE3E5491F11C73500F8D426 /* StatLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3E5481F11C73500F8D426 /* StatLabel.swift */; };
 		CAF18EC2200B23C80081E13A /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CAF18EC1200B23C80081E13A /* .swiftlint.yml */; };
 		CAF2EFEF1E1B482A008DD77A /* TwentyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2EFEE1E1B482A008DD77A /* TwentyViewController.swift */; };
 		CAF2EFF21E1B482A008DD77A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAF2EFF01E1B482A008DD77A /* Main.storyboard */; };
 		CAF2EFF41E1B482A008DD77A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAF2EFF31E1B482A008DD77A /* Assets.xcassets */; };
 		CAF2EFF71E1B482A008DD77A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAF2EFF51E1B482A008DD77A /* LaunchScreen.storyboard */; };
+		CAF4726020E22812003ECE90 /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF4725F20E22812003ECE90 /* StatView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +58,7 @@
 		CA17D79420C8C8D70042FF4A /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		CA198ED82005E40D00833B0F /* StatsOrderingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatsOrderingView.xib; sourceTree = "<group>"; };
 		CA198EDA2005E68500833B0F /* StatsOrderingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsOrderingView.swift; sourceTree = "<group>"; };
+		CA1DBF9320E2E35700B59582 /* Prototype.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Prototype.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CA275D9220BA6484001FD84A /* Twenty.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Twenty.xcdatamodel; sourceTree = "<group>"; };
 		CA275D9420BA65DC001FD84A /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		CA35CDC11F11A55A00C26C57 /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
@@ -78,7 +79,6 @@
 		CAC8E9E820049FDD00C3AC11 /* EndOfGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndOfGameView.swift; sourceTree = "<group>"; };
 		CADCA7501EC95C460044302E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAE3E5461F11B60400F8D426 /* HowToView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToView.swift; sourceTree = "<group>"; };
-		CAE3E5481F11C73500F8D426 /* StatLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatLabel.swift; sourceTree = "<group>"; };
 		CAF18EC1200B23C80081E13A /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		CAF2EFE91E1B482A008DD77A /* Twenty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twenty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAF2EFEE1E1B482A008DD77A /* TwentyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwentyViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +86,7 @@
 		CAF2EFF31E1B482A008DD77A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAF2EFF61E1B482A008DD77A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAF2EFF81E1B482A008DD77A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAF4725F20E22812003ECE90 /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
 		DE813DF9E44106EAB69DC6B8 /* Pods-Twenty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twenty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twenty/Pods-Twenty.debug.xcconfig"; sourceTree = "<group>"; };
 		FEFF655B9EC787F0F5EB9375 /* Pods-Twenty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twenty.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twenty/Pods-Twenty.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,7 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				CA4AD2821E7A1A750072EB10 /* StatCollectionViewCell.swift */,
-				CAE3E5481F11C73500F8D426 /* StatLabel.swift */,
+				CAF4725F20E22812003ECE90 /* StatView.swift */,
 				CA35CDC11F11A55A00C26C57 /* TimerLabel.swift */,
 				CA5302621F0B8C890001CED5 /* BlurredView.swift */,
 				CAE3E5461F11B60400F8D426 /* HowToView.swift */,
@@ -232,10 +233,11 @@
 			children = (
 				CAF18EC1200B23C80081E13A /* .swiftlint.yml */,
 				CADCA7501EC95C460044302E /* AppDelegate.swift */,
-				CAA72EAC1E5E7394006BB76C /* Models */,
 				CA8F6B6F1E39BF4000E81FD7 /* Views */,
+				CAA72EAC1E5E7394006BB76C /* Models */,
 				CA8F6B6E1E39BF3000E81FD7 /* Controllers */,
 				CACEC66F1E1B520B00FB1F5C /* Support Files */,
+				CA1DBF9320E2E35700B59582 /* Prototype.playground */,
 			);
 			path = Twenty;
 			sourceTree = "<group>";
@@ -424,6 +426,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAF4726020E22812003ECE90 /* StatView.swift in Sources */,
 				CA198EDB2005E68500833B0F /* StatsOrderingView.swift in Sources */,
 				CA35CDC21F11A55A00C26C57 /* TimerLabel.swift in Sources */,
 				CA3CAD9F1E31F0600090DE7C /* PlayerNamesViewController.swift in Sources */,
@@ -443,7 +446,6 @@
 				CA80F81D20BD345500686E3D /* PlayerStats.swift in Sources */,
 				CA3CADA11E31F0F90090DE7C /* GameLimitsViewController.swift in Sources */,
 				CA4AD2831E7A1A750072EB10 /* StatCollectionViewCell.swift in Sources */,
-				CAE3E5491F11C73500F8D426 /* StatLabel.swift in Sources */,
 				CAF2EFEF1E1B482A008DD77A /* TwentyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
