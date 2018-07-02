@@ -18,9 +18,11 @@ extension UIColor {
     static let slightlyGray = UIColor(red: 0.29, green: 0.29, blue: 0.29, alpha: 1.0)
     static let lightRed = UIColor(red:0.53, green:0.31, blue:0.31, alpha:1.0)
     static let fadedBrightRed = UIColor(red: 0.69, green: 0.11, blue: 0.18, alpha: 0.75)
+    static let darkerFadedBrightRed = UIColor(red:0.40, green:0.06, blue:0.10, alpha:0.75)
     static let warningRed = UIColor(red: 0.98, green: 0.08, blue: 0.18, alpha: 1.0)
     static let lightGreen = UIColor(red: 0.32, green: 0.53, blue: 0.31, alpha: 1.0)
     static let fadedBrightGreen = UIColor(red: 0.15, green: 0.91, blue: 0.20, alpha: 0.40)
+    static let darkerFadedBrightGreen = UIColor(red:0.05, green:0.28, blue:0.07, alpha: 0.75)
     static let lightPurple = UIColor(red: 0.43, green: 0.31, blue: 0.53, alpha: 1.0)
 }
 

@@ -35,6 +35,9 @@ class TimerLabel: UILabel {
             text = newTime
         }
     }
+    private var timerStopped: Bool {
+        return timer == nil
+    }
 
     weak var delegate: TimerLabelDelegate?
 
@@ -42,7 +45,7 @@ class TimerLabel: UILabel {
         addGestureRecognizers()
     }
 
-    @objc private func tappedTimer() {
+    @objc private func tappedTimer(_ sender: UITapGestureRecognizer) {
         if timer == nil {
             createTimer()
             startTimer()
@@ -53,6 +56,9 @@ class TimerLabel: UILabel {
     }
 
     @objc private func swippedTimer(_ sender: UISwipeGestureRecognizer) {
+        stopTimer()
+        backgroundColor = .fadedBrightGreen
+
         switch sender.direction {
         case .right: addSecond()
         case .left: subtractSecond()
@@ -105,12 +111,30 @@ class TimerLabel: UILabel {
     func addGestureRecognizers() {
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swippedTimer(_:)))
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swippedTimer(_:)))
-        let tap = UITapGestureRecognizer(target: self, action: #selector(tappedTimer))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tappedTimer(_:)))
 
         swipeLeft.direction = .left
         swipeRight.direction = .right
         addGestureRecognizer(tap)
         addGestureRecognizer(swipeLeft)
         addGestureRecognizer(swipeRight)
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if timerStopped {
+            backgroundColor = .darkerFadedBrightGreen
+        } else {
+            backgroundColor = .darkerFadedBrightRed
+        }
+
+        super.touchesBegan(touches, with: event)
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if timerStopped {
+            backgroundColor = .fadedBrightGreen
+        } else {
+            backgroundColor = .fadedBrightRed
+        }
     }
 }
