@@ -109,17 +109,15 @@ class StatisticsViewController: UIViewController {
     }
 
     @objc private func resetStats(_ barButton: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Are you sure you want to reset all the stats?", message: nil, preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let yes = UIAlertAction(title: "Yes, I'm Sure", style: .default) { [weak self] (alert) in
+        let title = "Are you sure you want to reset all the stats?"
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let yesAction = UIAlertAction(title: "Yes, I'm Sure", style: .default) { [weak self] (alert) in
             self?.statsManager.deleteAllPlayers()
             self?.allPlayers.removeAll()
             self?.collectionView.reloadData()
         }
 
-        alert.addAction(cancel)
-        alert.addAction(yes)
-        present(alert, animated: true, completion: nil)
+        Alert.showAlert(in: self, title: title, message: nil, actions: [cancelAction, yesAction])
     }
 
     @objc private func presentStatsOrderingView(_ barButton: UIBarButtonItem) {

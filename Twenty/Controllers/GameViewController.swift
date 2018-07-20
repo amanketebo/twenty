@@ -103,10 +103,7 @@ class GameViewController: UIViewController {
 
             switch infraction {
                 case .foul(let info), .both(let info), .tech(let info):
-                    let alert = UIAlertController(title: info, message: "Feel free to end the game.", preferredStyle: .alert)
-                    let okay = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    alert.addAction(okay)
-                    self.present(alert, animated: true, completion: nil)
+                    Alert.showAlert(in: self, title: info, message: "Feel free to end the game.")
             }
         }
     }
@@ -132,26 +129,23 @@ class GameViewController: UIViewController {
     }
 
     @objc func presentLosingStatsAlert(_ button: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Oh no, the stats!", message: "You must finish the series for them to be saved.", preferredStyle: .alert)
+        let title = "Oh no, the stats!"
+        let message = "You must finish the series for them to be saved."
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let exitAction = UIAlertAction(title: "Exit", style: .destructive, handler: { [weak self] (alert) in
             self?.currentGame.resetStats()
             self?.popToFirstVC()
         })
 
-        alert.addAction(cancelAction)
-        alert.addAction(exitAction)
-        present(alert, animated: true, completion: nil)
+        Alert.showAlert(in: self, title: title, message: message, actions: [cancelAction, exitAction])
     }
 
     @objc func presentEndingGameAlert(_ button: UIBarButtonItem) {
-        let alert = UIAlertController(title: "Are you sure?", message: nil, preferredStyle: .alert)
+        let title = "Are you sure?"
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let yesAction = UIAlertAction(title: "Yes, I'm Sure", style: .default, handler: handleEndOfGame(_:))
 
-        alert.addAction(cancelAction)
-        alert.addAction(yesAction)
-        self.present(alert, animated: true, completion: nil)
+        Alert.showAlert(in: self, title: title, message: nil, actions: [cancelAction, yesAction])
     }
 
     func handleEndOfGame(_ alert: UIAlertAction) {
