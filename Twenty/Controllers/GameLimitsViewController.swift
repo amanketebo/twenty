@@ -62,18 +62,10 @@ class GameLimitsViewController: UIViewController {
         guard let playerNameVC = playerNameVC else { return }
 
         if playerNameEmpty() {
-            let alert = UIAlertController(title: "Not Enough Players!", message: "Please enter both player names." , preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
+            Alert.showAlert(in: self, title: "Not Enough Players!", message: "Please enter both player names.")
         }
         else if playerHaveSameNames() {
-            let alert = UIAlertController(title: "Same Names!", message: "Please make sure the players have different names." , preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
+            Alert.showAlert(in: self, title: "Same Names!", message: "Please make sure the players have different names.")
         }
         else {
             let playerOne = Player()
