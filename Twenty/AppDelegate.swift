@@ -25,5 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navbar.tintColor = .white
         navbar.barTintColor = .darkBlack
         navbar.isTranslucent = false
+        navbar.prefersLargeTitles = true
     }
 }
