@@ -33,7 +33,6 @@
 		CAC8E9E920049FDD00C3AC11 /* EndOfGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8E9E820049FDD00C3AC11 /* EndOfGameView.swift */; };
 		CADCA7511EC95C460044302E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADCA7501EC95C460044302E /* AppDelegate.swift */; };
 		CAE3E5471F11B60400F8D426 /* HowToView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3E5461F11B60400F8D426 /* HowToView.swift */; };
-		CAF18EC2200B23C80081E13A /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CAF18EC1200B23C80081E13A /* .swiftlint.yml */; };
 		CAF2EFEF1E1B482A008DD77A /* TwentyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2EFEE1E1B482A008DD77A /* TwentyViewController.swift */; };
 		CAF2EFF21E1B482A008DD77A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAF2EFF01E1B482A008DD77A /* Main.storyboard */; };
 		CAF2EFF41E1B482A008DD77A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAF2EFF31E1B482A008DD77A /* Assets.xcassets */; };
@@ -59,7 +58,7 @@
 		CA17D79420C8C8D70042FF4A /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		CA198ED82005E40D00833B0F /* StatsOrderingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatsOrderingView.xib; sourceTree = "<group>"; };
 		CA198EDA2005E68500833B0F /* StatsOrderingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsOrderingView.swift; sourceTree = "<group>"; };
-		CA1DBF9320E2E35700B59582 /* ScratchWork.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ScratchWork.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		CA1DBF9320E2E35700B59582 /* scratchwork.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = scratchwork.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CA275D9220BA6484001FD84A /* Twenty.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Twenty.xcdatamodel; sourceTree = "<group>"; };
 		CA275D9420BA65DC001FD84A /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		CA35CDC11F11A55A00C26C57 /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
@@ -81,7 +80,6 @@
 		CAC8E9E820049FDD00C3AC11 /* EndOfGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndOfGameView.swift; sourceTree = "<group>"; };
 		CADCA7501EC95C460044302E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAE3E5461F11B60400F8D426 /* HowToView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToView.swift; sourceTree = "<group>"; };
-		CAF18EC1200B23C80081E13A /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		CAF2EFE91E1B482A008DD77A /* Twenty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twenty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAF2EFEE1E1B482A008DD77A /* TwentyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwentyViewController.swift; sourceTree = "<group>"; };
 		CAF2EFF11E1B482A008DD77A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -234,13 +232,12 @@
 		CAF2EFEB1E1B482A008DD77A /* Twenty */ = {
 			isa = PBXGroup;
 			children = (
-				CAF18EC1200B23C80081E13A /* .swiftlint.yml */,
 				CADCA7501EC95C460044302E /* AppDelegate.swift */,
 				CAA72EAC1E5E7394006BB76C /* Models */,
 				CA8F6B6F1E39BF4000E81FD7 /* Views */,
 				CA8F6B6E1E39BF3000E81FD7 /* Controllers */,
 				CACEC66F1E1B520B00FB1F5C /* Support Files */,
-				CA1DBF9320E2E35700B59582 /* ScratchWork.playground */,
+				CA1DBF9320E2E35700B59582 /* scratchwork.playground */,
 			);
 			path = Twenty;
 			sourceTree = "<group>";
@@ -270,8 +267,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CAF2EFFB1E1B482A008DD77A /* Build configuration list for PBXNativeTarget "Twenty" */;
 			buildPhases = (
-				CAF18EC0200AF2990081E13A /* ShellScript */,
 				793D3B2EA59AB574F926B8A7 /* [CP] Check Pods Manifest.lock */,
+				CAF18EC0200AF2990081E13A /* ShellScript */,
 				CAF2EFE51E1B482A008DD77A /* Sources */,
 				CAF2EFE61E1B482A008DD77A /* Frameworks */,
 				CAF2EFE71E1B482A008DD77A /* Resources */,
@@ -345,7 +342,6 @@
 				CAC8E9E720049B4800C3AC11 /* EndOfGameView.xib in Resources */,
 				CAF2EFF71E1B482A008DD77A /* LaunchScreen.storyboard in Resources */,
 				CAF2EFF41E1B482A008DD77A /* Assets.xcassets in Resources */,
-				CAF18EC2200B23C80081E13A /* .swiftlint.yml in Resources */,
 				CA5BC7B41F0A20C900A9DCD2 /* HowToView.xib in Resources */,
 				CA198ED92005E40D00833B0F /* StatsOrderingView.xib in Resources */,
 				CAF2EFF21E1B482A008DD77A /* Main.storyboard in Resources */,
@@ -391,13 +387,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Twenty-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CAF18EC0200AF2990081E13A /* ShellScript */ = {
@@ -411,7 +410,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

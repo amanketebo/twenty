@@ -6,6 +6,4 @@ target 'Twenty' do
   use_frameworks!
 
   # Pods for Twenty
-  pod 'SwiftLint'
-
 end
