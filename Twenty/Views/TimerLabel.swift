@@ -57,7 +57,7 @@ class TimerLabel: UILabel {
 
     @objc private func swippedTimer(_ sender: UISwipeGestureRecognizer) {
         stopTimer()
-        backgroundColor = .fadedBrightGreen
+        backgroundColor = .brightGreen
 
         switch sender.direction {
         case .right: addSecond()
@@ -73,7 +73,7 @@ class TimerLabel: UILabel {
     func startTimer() {
         guard timer != nil else { return }
 
-        backgroundColor = .fadedBrightRed
+        backgroundColor = .brightRed
     }
 
     @objc func tickTimer() {
@@ -88,7 +88,7 @@ class TimerLabel: UILabel {
     func stopTimer() {
         guard timer != nil else { return }
 
-        backgroundColor = .fadedBrightGreen
+        backgroundColor = .brightGreen
         timer?.invalidate()
         timer = nil
     }
@@ -122,9 +122,9 @@ class TimerLabel: UILabel {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if timerStopped {
-            backgroundColor = .darkerFadedBrightGreen
+            backgroundColor = .darkBrightGreen
         } else {
-            backgroundColor = .darkerFadedBrightRed
+            backgroundColor = .darkBrightRed
         }
 
         super.touchesBegan(touches, with: event)
@@ -132,9 +132,9 @@ class TimerLabel: UILabel {
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if timerStopped {
-            backgroundColor = .fadedBrightGreen
+            backgroundColor = .brightGreen
         } else {
-            backgroundColor = .fadedBrightRed
+            backgroundColor = .brightRed
         }
     }
 }

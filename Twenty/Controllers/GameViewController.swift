@@ -241,7 +241,7 @@ class GameViewController: UIViewController {
             timerLabel.text = "20.0"
         }
 
-        timerLabel.backgroundColor = .fadedBrightGreen
+        timerLabel.backgroundColor = .brightGreen
     }
 }
 

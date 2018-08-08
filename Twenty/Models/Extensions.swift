@@ -10,20 +10,51 @@ import Foundation
 import UIKit
 
 extension UIColor {
-    static let darkBlack = UIColor(red: 0.13, green: 0.13, blue: 0.13, alpha: 1.0)
-    static let lightBlack = UIColor(red:0.16, green:0.16, blue:0.16, alpha: 1.0)
-    static let slightlyLightBlack = UIColor(red: 0.14, green: 0.14, blue: 0.14, alpha: 1.0)
-    static let darkBlue = UIColor(red: 0.17, green: 0.44, blue: 0.64, alpha: 1.0)
-    static let lightGray = UIColor(red: 0.31, green: 0.31, blue: 0.31, alpha: 1.0)
-    static let slightlyGray = UIColor(red: 0.29, green: 0.29, blue: 0.29, alpha: 1.0)
-    static let lightRed = UIColor(red:0.53, green:0.31, blue:0.31, alpha:1.0)
-    static let fadedBrightRed = UIColor(red: 0.69, green: 0.11, blue: 0.18, alpha: 0.75)
-    static let darkerFadedBrightRed = UIColor(red:0.40, green:0.06, blue:0.10, alpha:0.75)
-    static let warningRed = UIColor(red: 0.98, green: 0.08, blue: 0.18, alpha: 1.0)
-    static let lightGreen = UIColor(red: 0.32, green: 0.53, blue: 0.31, alpha: 1.0)
-    static let fadedBrightGreen = UIColor(red: 0.15, green: 0.91, blue: 0.20, alpha: 0.40)
-    static let darkerFadedBrightGreen = UIColor(red:0.05, green:0.28, blue:0.07, alpha: 0.75)
-    static let lightPurple = UIColor(red: 0.43, green: 0.31, blue: 0.53, alpha: 1.0)
+    // Blacks
+    static let darkBlack = UIColor(hex: 0x212121, alpha: 1)
+    static let lightBlack = UIColor(hex: 0x292929, alpha: 1)
+
+    // Blues
+    static let darkBlue = UIColor(hex: 0x2B70A3, alpha: 1.0)
+
+    // Grays
+    static let lightGray = UIColor(hex: 0x4F4F4F, alpha: 1.0)
+
+    // Reds
+    static let lightRed = UIColor(hex: 0x874F4F, alpha:1.0)
+    static let brightRed = UIColor(hex: 0xB01C2E, alpha: 0.75)
+    static let darkBrightRed = UIColor(hex: 0x660F19, alpha:0.75)
+    static let warningRed = UIColor(hex: 0xF9142D, alpha: 1.0)
+
+    // Greens
+    static let lightGreen = UIColor(hex: 0x51874F, alpha: 1.0)
+    static let brightGreen = UIColor(hex: 0x26E833, alpha: 0.40)
+    static let darkBrightGreen = UIColor(hex: 0x0C4711, alpha: 0.75)
+    
+    // Purples
+    static let lightPurple = UIColor(hex: 0x6D4F87, alpha: 1.0)
+
+    convenience init(hex: Int, alpha: CGFloat) {
+        let red = CGFloat((hex & 0xFF0000) >> 16) / 255
+        let green = CGFloat((hex & 0xFF00) >> 8) / 255
+        let blue = CGFloat((hex & 0xFF)) / 255
+
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
+
+    var hexString: String {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+
+        self.getRed(&red, green: &green, blue: &blue, alpha: nil)
+
+        let redUInt = UInt32(red * 255)
+        let greenUInt = UInt32(green * 255)
+        let blueUInt = UInt32(blue * 255)
+
+        return String(format: "%02X%02X%02X", Int(redUInt & 0xFF), Int(greenUInt & 0xFF), Int(blueUInt & 0xFF))
+    }
 }
 
 extension UIView {

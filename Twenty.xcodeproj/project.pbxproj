@@ -59,7 +59,7 @@
 		CA17D79420C8C8D70042FF4A /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		CA198ED82005E40D00833B0F /* StatsOrderingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatsOrderingView.xib; sourceTree = "<group>"; };
 		CA198EDA2005E68500833B0F /* StatsOrderingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsOrderingView.swift; sourceTree = "<group>"; };
-		CA1DBF9320E2E35700B59582 /* Prototype.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Prototype.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		CA1DBF9320E2E35700B59582 /* ScratchWork.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ScratchWork.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		CA275D9220BA6484001FD84A /* Twenty.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Twenty.xcdatamodel; sourceTree = "<group>"; };
 		CA275D9420BA65DC001FD84A /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		CA35CDC11F11A55A00C26C57 /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
@@ -240,7 +240,7 @@
 				CA8F6B6F1E39BF4000E81FD7 /* Views */,
 				CA8F6B6E1E39BF3000E81FD7 /* Controllers */,
 				CACEC66F1E1B520B00FB1F5C /* Support Files */,
-				CA1DBF9320E2E35700B59582 /* Prototype.playground */,
+				CA1DBF9320E2E35700B59582 /* ScratchWork.playground */,
 			);
 			path = Twenty;
 			sourceTree = "<group>";
