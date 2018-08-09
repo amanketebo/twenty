@@ -41,10 +41,7 @@ class StatView: UIView {
     var statLabel: UILabel {
         let label = UILabel()
 
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 50, weight: .medium)
-        label.textColor = .white
-        label.backgroundColor = .darkBlack
+        Theme.shared.styleStatLabel(label)
 
         return label
     }

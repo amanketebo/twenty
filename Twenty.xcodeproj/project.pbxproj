@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BAF1ADBF1E7AF2C85D9332DD /* Pods_Twenty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FCD7801E2A0AD632FAB5F72 /* Pods_Twenty.framework */; };
+		CA0DB09E211CE30A003AF382 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DB09D211CE30A003AF382 /* Theme.swift */; };
 		CA17D78D20C8C8BA0042FF4A /* TwentyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA17D78C20C8C8BA0042FF4A /* TwentyUITests.swift */; };
 		CA17D79520C8C8D70042FF4A /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA17D79420C8C8D70042FF4A /* SnapshotHelper.swift */; };
 		CA198ED92005E40D00833B0F /* StatsOrderingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CA198ED82005E40D00833B0F /* StatsOrderingView.xib */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		3FCD7801E2A0AD632FAB5F72 /* Pods_Twenty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twenty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA0DB09D211CE30A003AF382 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		CA17D78A20C8C8BA0042FF4A /* TwentyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwentyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA17D78C20C8C8BA0042FF4A /* TwentyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwentyUITests.swift; sourceTree = "<group>"; };
 		CA17D78E20C8C8BA0042FF4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				CA528D051E7775F100685781 /* StatsManager.swift */,
 				CA4AD2841E7A1E600072EB10 /* AverageStats.swift */,
 				CA65D498210192AA0059226E /* Alert.swift */,
+				CA0DB09D211CE30A003AF382 /* Theme.swift */,
 				CA4DC0911E3044A1003D09AF /* Extensions.swift */,
 				CA275D9120BA6484001FD84A /* Twenty.xcdatamodeld */,
 			);
@@ -431,6 +434,7 @@
 				CAF4726020E22812003ECE90 /* StatView.swift in Sources */,
 				CA198EDB2005E68500833B0F /* StatsOrderingView.swift in Sources */,
 				CA35CDC21F11A55A00C26C57 /* TimerLabel.swift in Sources */,
+				CA0DB09E211CE30A003AF382 /* Theme.swift in Sources */,
 				CA3CAD9F1E31F0600090DE7C /* PlayerNamesViewController.swift in Sources */,
 				CADCA7511EC95C460044302E /* AppDelegate.swift in Sources */,
 				CA4DC0921E3044A1003D09AF /* Extensions.swift in Sources */,

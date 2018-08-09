@@ -19,12 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func setupAppearance() {
-        let navbar = UINavigationBar.appearance()
-
-        navbar.barStyle = .black
-        navbar.tintColor = .white
-        navbar.barTintColor = .darkBlack
-        navbar.isTranslucent = false
-        navbar.prefersLargeTitles = true
+        Theme.shared.styleNavBar(UINavigationBar.appearance())
     }
 }
