@@ -32,6 +32,7 @@
 		CAC380D71E62A732004A9096 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC380D61E62A732004A9096 /* Game.swift */; };
 		CAC8E9E720049B4800C3AC11 /* EndOfGameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAC8E9E620049B4800C3AC11 /* EndOfGameView.xib */; };
 		CAC8E9E920049FDD00C3AC11 /* EndOfGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC8E9E820049FDD00C3AC11 /* EndOfGameView.swift */; };
+		CACC6B7A2123C87700FC4830 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC6B792123C87700FC4830 /* GameTests.swift */; };
 		CADCA7511EC95C460044302E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADCA7501EC95C460044302E /* AppDelegate.swift */; };
 		CAE3E5471F11B60400F8D426 /* HowToView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3E5461F11B60400F8D426 /* HowToView.swift */; };
 		CAF2EFEF1E1B482A008DD77A /* TwentyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF2EFEE1E1B482A008DD77A /* TwentyViewController.swift */; };
@@ -43,6 +44,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		CA17D78F20C8C8BA0042FF4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CAF2EFE11E1B482A008DD77A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CAF2EFE81E1B482A008DD77A;
+			remoteInfo = Twenty;
+		};
+		CACC6B7C2123C87700FC4830 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CAF2EFE11E1B482A008DD77A /* Project object */;
 			proxyType = 1;
@@ -80,6 +88,9 @@
 		CAC380D61E62A732004A9096 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		CAC8E9E620049B4800C3AC11 /* EndOfGameView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EndOfGameView.xib; sourceTree = "<group>"; };
 		CAC8E9E820049FDD00C3AC11 /* EndOfGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndOfGameView.swift; sourceTree = "<group>"; };
+		CACC6B772123C87700FC4830 /* TwentyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwentyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CACC6B792123C87700FC4830 /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
+		CACC6B7B2123C87700FC4830 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CADCA7501EC95C460044302E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAE3E5461F11B60400F8D426 /* HowToView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToView.swift; sourceTree = "<group>"; };
 		CAF2EFE91E1B482A008DD77A /* Twenty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twenty.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +106,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		CA17D78720C8C8BA0042FF4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CACC6B742123C87700FC4830 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -184,6 +202,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		CACC6B782123C87700FC4830 /* TwentyTests */ = {
+			isa = PBXGroup;
+			children = (
+				CACC6B792123C87700FC4830 /* GameTests.swift */,
+				CACC6B7B2123C87700FC4830 /* Info.plist */,
+			);
+			path = TwentyTests;
+			sourceTree = "<group>";
+		};
 		CACEC66F1E1B520B00FB1F5C /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +244,7 @@
 			children = (
 				CAF2EFEB1E1B482A008DD77A /* Twenty */,
 				CA17D78B20C8C8BA0042FF4A /* TwentyUITests */,
+				CACC6B782123C87700FC4830 /* TwentyTests */,
 				CAF2EFEA1E1B482A008DD77A /* Products */,
 				2270C30E084BB6FB07282F4F /* Pods */,
 				33D929E5D5934F4F1EAD43FD /* Frameworks */,
@@ -228,6 +256,7 @@
 			children = (
 				CAF2EFE91E1B482A008DD77A /* Twenty.app */,
 				CA17D78A20C8C8BA0042FF4A /* TwentyUITests.xctest */,
+				CACC6B772123C87700FC4830 /* TwentyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -266,6 +295,24 @@
 			productReference = CA17D78A20C8C8BA0042FF4A /* TwentyUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		CACC6B762123C87700FC4830 /* TwentyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CACC6B802123C87700FC4830 /* Build configuration list for PBXNativeTarget "TwentyTests" */;
+			buildPhases = (
+				CACC6B732123C87700FC4830 /* Sources */,
+				CACC6B742123C87700FC4830 /* Frameworks */,
+				CACC6B752123C87700FC4830 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CACC6B7D2123C87700FC4830 /* PBXTargetDependency */,
+			);
+			name = TwentyTests;
+			productName = TwentyTests;
+			productReference = CACC6B772123C87700FC4830 /* TwentyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CAF2EFE81E1B482A008DD77A /* Twenty */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CAF2EFFB1E1B482A008DD77A /* Build configuration list for PBXNativeTarget "Twenty" */;
@@ -293,12 +340,18 @@
 		CAF2EFE11E1B482A008DD77A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Amanuel Ketebo";
 				TargetAttributes = {
 					CA17D78920C8C8BA0042FF4A = {
 						CreatedOnToolsVersion = 9.4;
+						DevelopmentTeam = 6Z5EK2Z6N5;
+						ProvisioningStyle = Automatic;
+						TestTargetID = CAF2EFE81E1B482A008DD77A;
+					};
+					CACC6B762123C87700FC4830 = {
+						CreatedOnToolsVersion = 10.0;
 						DevelopmentTeam = 6Z5EK2Z6N5;
 						ProvisioningStyle = Automatic;
 						TestTargetID = CAF2EFE81E1B482A008DD77A;
@@ -326,12 +379,20 @@
 			targets = (
 				CAF2EFE81E1B482A008DD77A /* Twenty */,
 				CA17D78920C8C8BA0042FF4A /* TwentyUITests */,
+				CACC6B762123C87700FC4830 /* TwentyTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CA17D78820C8C8BA0042FF4A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CACC6B752123C87700FC4830 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -427,6 +488,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CACC6B732123C87700FC4830 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CACC6B7A2123C87700FC4830 /* GameTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CAF2EFE51E1B482A008DD77A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -464,6 +533,11 @@
 			isa = PBXTargetDependency;
 			target = CAF2EFE81E1B482A008DD77A /* Twenty */;
 			targetProxy = CA17D78F20C8C8BA0042FF4A /* PBXContainerItemProxy */;
+		};
+		CACC6B7D2123C87700FC4830 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CAF2EFE81E1B482A008DD77A /* Twenty */;
+			targetProxy = CACC6B7C2123C87700FC4830 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -530,6 +604,55 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Twenty;
+			};
+			name = Release;
+		};
+		CACC6B7E2123C87700FC4830 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6Z5EK2Z6N5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TwentyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.unlv.keteboa.TwentyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twenty.app/Twenty";
+			};
+			name = Debug;
+		};
+		CACC6B7F2123C87700FC4830 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6Z5EK2Z6N5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = TwentyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.unlv.keteboa.TwentyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Twenty.app/Twenty";
 			};
 			name = Release;
 		};
@@ -688,6 +811,15 @@
 			buildConfigurations = (
 				CA17D79120C8C8BA0042FF4A /* Debug */,
 				CA17D79220C8C8BA0042FF4A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CACC6B802123C87700FC4830 /* Build configuration list for PBXNativeTarget "TwentyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CACC6B7E2123C87700FC4830 /* Debug */,
+				CACC6B7F2123C87700FC4830 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
