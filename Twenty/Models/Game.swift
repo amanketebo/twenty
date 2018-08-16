@@ -50,9 +50,6 @@ class Game {
         else if playerOne.currentGamePoints == playerTwo.currentGamePoints && playerOne.isOverGameLimit == true && playerTwo.isOverGameLimit == true {
             decision = true
         }
-        else if playerOne.isOverGameLimit == true && playerTwo.isOverGameLimit == true {
-            decision = true
-        }
 
         return decision
     }
@@ -67,6 +64,7 @@ class Game {
         return decision
     }
 
+    // TODO: Return an optional string in cases where winner can't be determined
     var winnersName: String {
         var winnerName = ""
 
@@ -85,6 +83,8 @@ class Game {
         self.playerTwo = playerTwo
     }
 
+    // TODO: Brainstorm some ways to clean up increasing and decreasing of stats
+    //       and making it easier to test
     func increaseStats(tagInfo: (playerNumber: Int, sectionNumber: Int)) {
         // sectionNumber is the section in the storyboard that was tapped by user
         // section 1 is for points, section 2 is for fouls, section 3 is for techs
@@ -131,6 +131,8 @@ class Game {
         }
     }
 
+    // TODO: Remove string from Infraction type for better testing
+    //       Create function that creates the infraction messages
     func checkPlayerInfractions(player: Player) -> Infraction? {
         var infraction: Infraction?
 
@@ -166,6 +168,8 @@ class Game {
         }
     }
 
+    // TODO: Fix issue where both players are tied and both are
+    //       either over or under the game limits
     func decideGameWinner() {
         addCurrentGameTotalToSeriesTotals()
 
