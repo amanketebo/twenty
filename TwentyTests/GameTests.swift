@@ -104,10 +104,32 @@ class GameTests: XCTestCase {
         game.playerTwo.seriesGamesWon = 2
         XCTAssert(game.winnersName == playerTwoName)
 
-        // TODO: Fix this test after making winnersName return an optional string
         game.playerOne.seriesGamesWon = 0
         game.playerTwo.seriesGamesWon = 0
-        XCTAssert(game.winnersName == "")
+        XCTAssert(game.winnersName == nil)
+    }
+
+    func testCheckPlayerInfractions() {
+        let player = game.playerOne
+
+        game.foulLimit = 3
+        game.techLimit = 2
+
+        player.currentGameFouls = 4
+        player.currentGameTechs = 2
+        XCTAssert(game.checkPlayerInfractions(player: player) == Infraction.both)
+
+        player.currentGameFouls = 2
+        player.currentGameTechs = 2
+        XCTAssert(game.checkPlayerInfractions(player: player) == Infraction.tech)
+
+        player.currentGameFouls = 4
+        player.currentGameTechs = 1
+        XCTAssert(game.checkPlayerInfractions(player: player) == Infraction.foul)
+
+        player.currentGameFouls = 0
+        player.currentGameTechs = 0
+        XCTAssert(game.checkPlayerInfractions(player: player) == nil)
     }
 
     func testAddCurrentGameTotalsToSeriesTotals() {

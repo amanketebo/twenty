@@ -15,9 +15,17 @@ enum Stat: Int {
 }
 
 enum Infraction {
-    case foul(String)
-    case tech(String)
-    case both(String)
+    case foul
+    case tech
+    case both
+
+    func message(for player: Player) -> String {
+        switch self {
+        case .both: return "\(player.name) has reached the foul and tech limit!"
+        case .foul: return "\(player.name) has reached the foul limit!"
+        case .tech: return "\(player.name) has reached the tech limit!"
+        }
+    }
 }
 
 enum GameEnding {
@@ -64,9 +72,8 @@ class Game {
         return decision
     }
 
-    // TODO: Return an optional string in cases where winner can't be determined
-    var winnersName: String {
-        var winnerName = ""
+    var winnersName: String? {
+        var winnerName: String?
 
         if playerOne.seriesGamesWon == winsNeeded {
             winnerName = playerOne.name
@@ -131,22 +138,20 @@ class Game {
         }
     }
 
-    // TODO: Remove string from Infraction type for better testing
-    //       Create function that creates the infraction messages
     func checkPlayerInfractions(player: Player) -> Infraction? {
         var infraction: Infraction?
 
         if player.currentGameFouls >= foulLimit && player.currentGameTechs >= techLimit {
             player.isOverGameLimit = true
-            infraction = Infraction.both("\(player.name) has reached the foul and tech limit!")
+            infraction = Infraction.both
         }
         else if player.currentGameFouls >= foulLimit {
             player.isOverGameLimit = true
-            infraction = Infraction.foul("\(player.name) has reached the foul limit!")
+            infraction = Infraction.foul
         }
         else if player.currentGameTechs >= techLimit {
             player.isOverGameLimit = true
-            infraction = Infraction.tech("\(player.name) has reached the tech limit!")
+            infraction = Infraction.tech
         }
         else {
             player.isOverGameLimit = false
@@ -161,15 +166,17 @@ class Game {
         if shouldGoToOvertime {
             return GameEnding.overtime
         } else if shouldEndSeries {
-            return GameEnding.series("\(winnersName)")
+            if let winnersName = winnersName {
+                return GameEnding.series("\(winnersName)")
+            }
+
+            return nil
         } else {
             gameNumber += 1
             return GameEnding.game(gameNumber)
         }
     }
 
-    // TODO: Fix issue where both players are tied and both are
-    //       either over or under the game limits
     func decideGameWinner() {
         addCurrentGameTotalToSeriesTotals()
 

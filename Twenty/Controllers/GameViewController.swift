@@ -100,11 +100,9 @@ class GameViewController: UIViewController {
 
         if let infraction = currentGame.checkPlayerInfractions(player: player) {
             changeStatsLabelsToRed(for: player, with: infraction)
+            let infractionMessage = infraction.message(for: player)
 
-            switch infraction {
-                case .foul(let info), .both(let info), .tech(let info):
-                    Alert.showAlert(in: self, title: info, message: "Feel free to end the game.")
-            }
+            Alert.showAlert(in: self, title: infractionMessage, message: "Feel free to end the game.")
         }
     }
 
