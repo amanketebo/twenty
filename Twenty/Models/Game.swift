@@ -50,9 +50,6 @@ class Game {
         else if playerOne.currentGamePoints == playerTwo.currentGamePoints && playerOne.isOverGameLimit == true && playerTwo.isOverGameLimit == true {
             decision = true
         }
-        else if playerOne.currentGamePoints == playerTwo.currentGamePoints && playerOne.isOverGameLimit == true && playerTwo.isOverGameLimit == true {
-            decision = true
-        }
 
         return decision
     }
@@ -134,6 +131,8 @@ class Game {
         }
     }
 
+    // TODO: Remove string from Infraction type for better testing
+    //       Create function that creates the infraction messages
     func checkPlayerInfractions(player: Player) -> Infraction? {
         var infraction: Infraction?
 
@@ -169,6 +168,8 @@ class Game {
         }
     }
 
+    // TODO: Fix issue where both players are tied and both are
+    //       either over or under the game limits
     func decideGameWinner() {
         addCurrentGameTotalToSeriesTotals()
 

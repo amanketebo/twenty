@@ -109,4 +109,49 @@ class GameTests: XCTestCase {
         game.playerTwo.seriesGamesWon = 0
         XCTAssert(game.winnersName == "")
     }
+
+    func testAddCurrentGameTotalsToSeriesTotals() {
+        let playerOne = game.playerOne
+        let playerTwo = game.playerTwo
+
+        playerOne.currentGamePoints = Int.random(in: 0..<10)
+        playerOne.currentGameFouls = Int.random(in: 0..<10)
+        playerOne.currentGameTechs = Int.random(in: 0..<10)
+
+        playerTwo.currentGamePoints = Int.random(in: 0..<10)
+        playerTwo.currentGameFouls = Int.random(in: 0..<10)
+        playerTwo.currentGameTechs = Int.random(in: 0..<10)
+
+        game.addCurrentGameTotalToSeriesTotals()
+        XCTAssert(playerOne.seriesTotalPoints == playerOne.currentGamePoints)
+        XCTAssert(playerOne.seriesTotalFouls == playerOne.currentGameFouls)
+        XCTAssert(playerOne.seriesTotalTechs == playerOne.currentGameTechs)
+
+        XCTAssert(playerTwo.seriesTotalPoints == playerTwo.currentGamePoints)
+        XCTAssert(playerTwo.seriesTotalFouls == playerTwo.currentGameFouls)
+        XCTAssert(playerTwo.seriesTotalTechs == playerTwo.currentGameTechs)
+    }
+
+    func testResetStats() {
+        let playerOne = game.playerOne
+        let playerTwo = game.playerTwo
+
+        playerOne.currentGamePoints = Int.random(in: 0...10)
+        playerOne.currentGameFouls = Int.random(in: 0...10)
+        playerOne.currentGameTechs = Int.random(in: 0...10)
+
+        playerTwo.currentGamePoints = Int.random(in: 0...10)
+        playerTwo.currentGameFouls = Int.random(in: 0...10)
+        playerTwo.currentGameTechs = Int.random(in: 0...10)
+
+        game.resetStats()
+
+        XCTAssert(playerOne.currentGamePoints == 0)
+        XCTAssert(playerOne.currentGameFouls == 0)
+        XCTAssert(playerOne.currentGameTechs == 0)
+
+        XCTAssert(playerTwo.currentGamePoints == 0)
+        XCTAssert(playerTwo.currentGameFouls == 0)
+        XCTAssert(playerTwo.currentGameTechs == 0)
+    }
 }
