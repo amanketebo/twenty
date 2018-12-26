@@ -2,7 +2,9 @@
 
 ![](readmeimages/blackscreenshots.png)
 
-### Here's a Few Things I Learned 👨🏾‍💻
+
+
+### Few Things I Learned 👨🏾‍💻
 🎨 Implementing **xibs** for custom views<br>
 ⏱ Working with Foundation's **Timer** class<br>
 💾 Storing data using **Core Data**<br>
